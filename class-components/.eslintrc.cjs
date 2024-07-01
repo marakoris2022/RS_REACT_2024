@@ -16,13 +16,20 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: "module",
   },
-  plugins: ["react", "react-hooks", "@typescript-eslint", "react-refresh"],
+  plugins: [
+    "react",
+    "react-hooks",
+    "react-compiler",
+    "@typescript-eslint",
+    "react-refresh",
+  ],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
     ],
     "@typescript-eslint/no-explicit-any": "error",
+    "react-compiler/react-compiler": "error",
     "react/prop-types": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
