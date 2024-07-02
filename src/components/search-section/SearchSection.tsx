@@ -1,5 +1,5 @@
-import { SearchButton } from '../button/SearchButton';
-import { SearchInput } from '../input/SearchInput';
+import { SearchButton } from '../search-button/SearchButton';
+import { SearchInput } from '../search-input/SearchInput';
 import './searchSection.css';
 
 export const SearchSection = () => {

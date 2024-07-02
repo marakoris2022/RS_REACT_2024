@@ -3,6 +3,7 @@ import {
   getSearchValue,
   setSearchValue,
   setSearchValueState,
+  setSearchValueToLocalStorage,
 } from '../../store/state';
 
 interface ButtonProps {
@@ -11,6 +12,7 @@ interface ButtonProps {
 
 function handleClick() {
   console.log(getSearchValue());
+  setSearchValueToLocalStorage(getSearchValue());
   setSearchValue('');
   setSearchValueState(getSearchValue());
 }

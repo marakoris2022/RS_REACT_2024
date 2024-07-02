@@ -23,7 +23,7 @@ type _State = {
   };
 };
 
-export const _state: _State = {
+const _state: _State = {
   url: 'https://pokeapi.co/api/v2/',
   search: {
     value: '',
@@ -40,6 +40,16 @@ export const _state: _State = {
       prevPage: null,
     },
   },
+};
+
+const getSearchValueFromLocalStorage = () => {
+  const value = localStorage.getItem('searchValue');
+  _state.search.value = value ?? '';
+};
+getSearchValueFromLocalStorage();
+
+export const setSearchValueToLocalStorage = (value: string) => {
+  localStorage.setItem('searchValue', value);
 };
 
 export const getBaseUrl = () => {
