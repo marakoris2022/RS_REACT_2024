@@ -1,8 +1,15 @@
+import { PokemonData, getPokemonDataByName } from '../components/api/restApi';
+
 type State = {
   value: string;
 };
 
+type PokemonState = {
+  pokemon: PokemonData | null;
+};
+
 type SetStateFunction = React.Dispatch<React.SetStateAction<State>>;
+type SetStatePokemonCard = React.Dispatch<React.SetStateAction<PokemonState>>;
 
 type _State = {
   url: string;
@@ -24,6 +31,7 @@ type _State = {
       prevPage: null;
     };
   };
+  setPokemonCardState: null | SetStatePokemonCard;
 };
 
 const _state: _State = {
@@ -46,6 +54,7 @@ const _state: _State = {
       prevPage: null,
     },
   },
+  setPokemonCardState: null,
 };
 
 export const getSearchValueFromLocalStorage = () => {
@@ -95,6 +104,20 @@ export const setSectionState = () => {
       ...prevState,
       value: newValue,
     }));
+  }
+};
+
+export const bindSetPokemonCardState = (f: SetStatePokemonCard) => {
+  _state.setPokemonCardState = f;
+};
+
+export const setPokemonCardState = async () => {
+  if (_state.setPokemonCardState) {
+    const respond = await getPokemonDataByName(
+      getSearchValueFromLocalStorage()
+    );
+
+    _state.setPokemonCardState({ pokemon: respond });
   }
 };
 

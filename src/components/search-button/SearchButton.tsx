@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   getSearchValue,
+  setPokemonCardState,
   setSearchValue,
   setSearchValueState,
   setSearchValueToLocalStorage,
@@ -24,6 +25,7 @@ async function handleClick() {
     setSearchValueToLocalStorage(getSearchValue());
     setSectionState();
     clearSearchInput();
+    setPokemonCardState();
   } catch {
     setSearchValueToLocalStorage('');
     const pokeName = getSearchValue();
