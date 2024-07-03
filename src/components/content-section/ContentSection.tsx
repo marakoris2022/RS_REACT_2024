@@ -4,6 +4,8 @@ import {
   bindSectionState,
   getSearchValueFromLocalStorage,
 } from '../../store/state';
+import { PokemonCard } from '../pokemon-card/PokemonCard';
+import { PokemonList } from '../pokemon-list/PokemonList';
 
 type ContentSectionProps = {};
 
@@ -21,6 +23,8 @@ export class ContentSection extends Component<ContentSectionProps, State> {
   }
 
   render(): ReactNode {
-    return <section>{this.state.value ? <p>Have</p> : <p>No</p>}</section>;
+    return (
+      <section>{this.state.value ? <PokemonCard /> : <PokemonList />}</section>
+    );
   }
 }
