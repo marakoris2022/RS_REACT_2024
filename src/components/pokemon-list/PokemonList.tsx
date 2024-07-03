@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import {
   bindSetPokemonListState,
+  getPaginationSettings,
   setPokemonListState,
 } from '../../store/state';
 import { PokemonData } from '../api/restApi';
@@ -21,7 +22,7 @@ export class PokemonList extends Component<PokemonListProps, PokemonListState> {
 
     bindSetPokemonListState(this.setState.bind(this));
 
-    setPokemonListState('0');
+    setPokemonListState(String(getPaginationSettings().offset));
   }
 
   render() {
