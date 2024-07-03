@@ -16,7 +16,7 @@ type PokemonListState = {
   pokemons:
     | {
         name: string;
-        pokemonUrl: string;
+        url: string;
       }[]
     | null;
 };

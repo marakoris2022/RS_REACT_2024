@@ -14,7 +14,7 @@ export type PokemonListData = {
   previous: string | null;
   results: {
     name: string;
-    pokemonUrl: string;
+    url: string;
   }[];
 };
 
