@@ -31,7 +31,14 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
       <div>
         {pokemon ? (
           <>
-            <p>{pokemon.name}</p>
+            <p>Name: {pokemon.name}</p>
+            <p>{}</p>
+            <img
+              width={60}
+              src={pokemon.sprites.front_default}
+              alt="pokemon_img"
+            />
+            <p>Weight: {pokemon.weight}</p>
           </>
         ) : (
           <p>Loading...</p>
