@@ -13,7 +13,12 @@ type PokemonState = {
 };
 
 type PokemonListState = {
-  pokemons: PokemonData[] | null;
+  pokemons:
+    | {
+        name: string;
+        pokemonUrl: string;
+      }[]
+    | null;
 };
 
 type SetStateFunction = React.Dispatch<React.SetStateAction<State>>;

@@ -4,12 +4,16 @@ import {
   getPaginationSettings,
   setPokemonListState,
 } from '../../store/state';
-import { PokemonData } from '../api/restApi';
 
 type PokemonListProps = {};
 
 type PokemonListState = {
-  pokemons: PokemonData[] | null;
+  pokemons:
+    | {
+        name: string;
+        pokemonUrl: string;
+      }[]
+    | null;
 };
 
 export class PokemonList extends Component<PokemonListProps, PokemonListState> {
