@@ -1,4 +1,8 @@
-import { PokemonData, getPokemonDataByName } from '../components/api/restApi';
+import {
+  PokemonData,
+  getPokemonData,
+  getPokemonDataByName,
+} from '../components/api/restApi';
 
 type State = {
   value: string;
@@ -8,8 +12,15 @@ type PokemonState = {
   pokemon: PokemonData | null;
 };
 
+type PokemonListState = {
+  pokemons: PokemonData[] | null;
+};
+
 type SetStateFunction = React.Dispatch<React.SetStateAction<State>>;
 type SetStatePokemonCard = React.Dispatch<React.SetStateAction<PokemonState>>;
+type SetStatePokemonList = React.Dispatch<
+  React.SetStateAction<PokemonListState>
+>;
 
 type _State = {
   url: string;
@@ -32,6 +43,7 @@ type _State = {
     };
   };
   setPokemonCardState: null | SetStatePokemonCard;
+  setPokemonListState: null | SetStatePokemonList;
 };
 
 const _state: _State = {
@@ -55,6 +67,7 @@ const _state: _State = {
     },
   },
   setPokemonCardState: null,
+  setPokemonListState: null,
 };
 
 export const getSearchValueFromLocalStorage = () => {
@@ -118,6 +131,18 @@ export const setPokemonCardState = async () => {
     );
 
     _state.setPokemonCardState({ pokemon: respond });
+  }
+};
+
+export const bindSetPokemonListState = (f: SetStatePokemonList) => {
+  _state.setPokemonListState = f;
+};
+
+export const setPokemonListState = async (offset: string) => {
+  if (_state.setPokemonListState) {
+    const respond = await getPokemonData(offset);
+
+    _state.setPokemonListState({ pokemons: respond.results });
   }
 };
 

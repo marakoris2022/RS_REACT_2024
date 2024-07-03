@@ -8,6 +8,13 @@ export type PokemonData = {
   };
 };
 
+export type PokemonListData = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: PokemonData[];
+};
+
 export const getPokemonData = async (offset: string) => {
   const { limit } = getPaginationSettings();
 
@@ -15,7 +22,7 @@ export const getPokemonData = async (offset: string) => {
     getBaseUrl() + `pokemon?offset=${offset}&limit=${limit}`;
 
   const fetchData = await fetch(paginationUrl);
-  const respond: PokemonData[] = await fetchData.json();
+  const respond: PokemonListData = await fetchData.json();
   return respond;
 };
 

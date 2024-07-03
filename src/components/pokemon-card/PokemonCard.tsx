@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { PokemonData, getPokemonDataByName } from '../api/restApi';
+import { PokemonData } from '../api/restApi';
 import {
   bindSetPokemonCardState,
-  getSearchValueFromLocalStorage,
+  setPokemonCardState,
 } from '../../store/state';
 
 type PokemonCardProps = {};
@@ -19,18 +19,10 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
       pokemon: null,
     };
 
-    this.getPokemonData();
-
     bindSetPokemonCardState(this.setState.bind(this));
+
+    setPokemonCardState();
   }
-
-  getPokemonData = async () => {
-    const respond = await getPokemonDataByName(
-      getSearchValueFromLocalStorage()
-    );
-
-    this.setState({ pokemon: respond });
-  };
 
   render() {
     const { pokemon } = this.state;
