@@ -10,6 +10,9 @@ type _State = {
     value: string;
     searchValueState: null | SetStateFunction;
   };
+  contentSection: {
+    setSectionState: null | SetStateFunction;
+  };
   pagination: {
     settings: {
       offset: number;
@@ -29,6 +32,9 @@ const _state: _State = {
     value: '',
     searchValueState: null,
   },
+  contentSection: {
+    setSectionState: null,
+  },
   pagination: {
     settings: {
       offset: 0,
@@ -42,11 +48,10 @@ const _state: _State = {
   },
 };
 
-const getSearchValueFromLocalStorage = () => {
+export const getSearchValueFromLocalStorage = () => {
   const value = localStorage.getItem('searchValue');
-  _state.search.value = value ?? '';
+  return value ?? '';
 };
-getSearchValueFromLocalStorage();
 
 export const setSearchValueToLocalStorage = (value: string) => {
   localStorage.setItem('searchValue', value);
@@ -77,3 +82,20 @@ export const setSearchValueState = (value: string) => {
     _state.search.searchValueState((prevState) => ({ ...prevState, value }));
   }
 };
+
+export const bindSectionState = (f: SetStateFunction) => {
+  _state.contentSection.setSectionState = f;
+};
+
+export const setSectionState = () => {
+  if (_state.contentSection.setSectionState) {
+    const newValue = getSearchValueFromLocalStorage();
+
+    _state.contentSection.setSectionState((prevState) => ({
+      ...prevState,
+      value: newValue,
+    }));
+  }
+};
+
+setSearchValue(getSearchValueFromLocalStorage());

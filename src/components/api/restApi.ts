@@ -9,3 +9,10 @@ export const getPokemonData = async (offset: string) => {
   const fetchData = await fetch(paginationUrl);
   return await fetchData.json();
 };
+
+export const getPokemonDataByName = async (name: string) => {
+  const paginationUrl = getBaseUrl() + `pokemon/${name}`;
+
+  const fetchData = await fetch(paginationUrl);
+  return await fetchData.json();
+};
