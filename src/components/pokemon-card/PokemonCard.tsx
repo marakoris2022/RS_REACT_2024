@@ -12,6 +12,7 @@ import AbilIco from '/abil-ico.svg';
 import ItemsIco from '/items-ico.svg';
 import SpecialIco from '/special-ico.svg';
 import StatsIco from '/stats-ico.svg';
+import { Loading } from '../loading/Loading';
 
 type PokemonCardProps = {};
 
@@ -138,7 +139,7 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
+          <Loading />
         )}
       </div>
     );

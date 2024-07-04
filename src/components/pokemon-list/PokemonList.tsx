@@ -13,6 +13,7 @@ import { PokemonData } from '../../api/restApi';
 import { firstLetterUppercase } from '../../utils/utils';
 import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
 import { searchButtonClick } from '../search-button/SearchButton';
+import { Loading } from '../loading/Loading';
 
 type PokemonListProps = {};
 
@@ -86,7 +87,7 @@ export class PokemonList extends Component<
             );
           })
         ) : (
-          <div>Loading...</div>
+          <Loading />
         )}
       </div>
     );

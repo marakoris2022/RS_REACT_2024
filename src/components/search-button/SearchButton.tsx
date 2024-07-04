@@ -14,23 +14,19 @@ interface ButtonProps {
   label: string;
 }
 
-function clearSearchInput() {
-  setSearchValue('');
-  setSearchValueState(getSearchValue());
-}
-
 export async function searchButtonClick() {
-  try {
-    await getPokemonDataByName(getSearchValue());
-    setSearchValueToLocalStorage(getSearchValue());
-    setPokemonCardState();
-  } catch {
-    setSearchValueToLocalStorage('');
-    const pokeName = getSearchValue();
-    throw new Error(`Can\'t find this Pokemon: "${pokeName}"`);
-  } finally {
-    clearSearchInput();
-    setSectionState();
+  if (getSearchValue()) {
+    try {
+      await getPokemonDataByName(getSearchValue());
+      setSearchValueToLocalStorage(getSearchValue());
+      setPokemonCardState();
+    } catch {
+      setSearchValueToLocalStorage('');
+      const pokeName = getSearchValue();
+      throw new Error(`Can\'t find this Pokemon: "${pokeName}"`);
+    } finally {
+      setSectionState();
+    }
   }
 }
 
