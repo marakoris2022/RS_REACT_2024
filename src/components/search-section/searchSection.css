@@ -1,0 +1,12 @@
+.search__section {
+  background-color: rgba(0, 128, 0, 0.6);
+}
+
+.search__wrapper {
+  background: rgba(4, 78, 0, 0.8);
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}

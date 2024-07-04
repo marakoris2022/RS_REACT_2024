@@ -3,15 +3,12 @@ import './contentSection.css';
 import {
   bindSectionState,
   getSearchValueFromLocalStorage,
+  State,
 } from '../../store/state';
 import { PokemonCard } from '../pokemon-card/PokemonCard';
 import { PokemonList } from '../pokemon-list/PokemonList';
 
 type ContentSectionProps = {};
-
-type State = {
-  value: string;
-};
 
 export class ContentSection extends Component<ContentSectionProps, State> {
   constructor(props: ContentSectionProps) {
@@ -24,7 +21,11 @@ export class ContentSection extends Component<ContentSectionProps, State> {
 
   render(): ReactNode {
     return (
-      <section>{this.state.value ? <PokemonCard /> : <PokemonList />}</section>
+      <section>
+        <div className="container">
+          {this.state.value ? <PokemonCard /> : <PokemonList />}
+        </div>
+      </section>
     );
   }
 }

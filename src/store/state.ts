@@ -4,11 +4,11 @@ import {
   getPokemonDataByName,
 } from '../components/api/restApi';
 
-type State = {
+export type State = {
   value: string;
 };
 
-type PokemonState = {
+export type PokemonState = {
   pokemon: PokemonData | null;
 };
 

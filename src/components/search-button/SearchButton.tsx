@@ -1,3 +1,4 @@
+import './searchButton.css';
 import React from 'react';
 import {
   getSearchValue,
@@ -36,5 +37,9 @@ async function handleClick() {
 }
 
 export const SearchButton: React.FC<ButtonProps> = ({ label }) => {
-  return <button onClick={handleClick}>{label}</button>;
+  return (
+    <button className="search__button" onClick={handleClick}>
+      {label}
+    </button>
+  );
 };

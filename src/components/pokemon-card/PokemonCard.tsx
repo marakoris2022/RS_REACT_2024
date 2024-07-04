@@ -1,15 +1,11 @@
 import { Component } from 'react';
-import { PokemonData } from '../api/restApi';
 import {
   bindSetPokemonCardState,
+  PokemonState,
   setPokemonCardState,
 } from '../../store/state';
 
 type PokemonCardProps = {};
-
-type PokemonState = {
-  pokemon: PokemonData | null;
-};
 
 export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
   constructor(props: PokemonCardProps) {

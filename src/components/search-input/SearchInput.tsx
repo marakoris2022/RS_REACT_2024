@@ -1,17 +1,15 @@
+import './searchInput.css';
 import { BaseSyntheticEvent, Component, ReactNode } from 'react';
 import {
   bindSearchValueState,
   getSearchValue,
   setSearchValue,
   setSearchValueState,
+  State,
 } from '../../store/state';
 
 type InputProps = {
   placeholder?: string;
-};
-
-type State = {
-  value: string;
 };
 
 export class SearchInput extends Component<InputProps, State> {
@@ -31,6 +29,7 @@ export class SearchInput extends Component<InputProps, State> {
   render(): ReactNode {
     return (
       <input
+        className="search__input"
         type="text"
         onChange={this.handleChange}
         value={this.state.value}
