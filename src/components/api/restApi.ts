@@ -64,7 +64,6 @@ export const getPokemonDataByName = async (name: string) => {
 
   const fetchData = await fetch(paginationUrl);
   const respond: PokemonData = await fetchData.json();
-  console.log(respond);
 
   return respond;
 };

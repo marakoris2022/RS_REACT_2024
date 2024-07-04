@@ -19,26 +19,24 @@ function clearSearchInput() {
   setSearchValueState(getSearchValue());
 }
 
-async function handleClick() {
+export async function searchButtonClick() {
   try {
     const pokemonData = await getPokemonDataByName(getSearchValue());
-    console.log(pokemonData);
     setSearchValueToLocalStorage(getSearchValue());
-    setSectionState();
-    clearSearchInput();
     setPokemonCardState();
   } catch {
     setSearchValueToLocalStorage('');
     const pokeName = getSearchValue();
+    throw new Error(`Can\'t find this Pokemon: "${pokeName}"`);
+  } finally {
     clearSearchInput();
     setSectionState();
-    throw new Error(`Can\'t find this Pokemon: "${pokeName}"`);
   }
 }
 
 export const SearchButton: React.FC<ButtonProps> = ({ label }) => {
   return (
-    <button className="search__button" onClick={handleClick}>
+    <button className="search__button" onClick={searchButtonClick}>
       {label}
     </button>
   );

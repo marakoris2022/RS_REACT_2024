@@ -7,6 +7,7 @@ import {
   setSearchValueState,
   State,
 } from '../../store/state';
+import { searchButtonClick } from '../search-button/SearchButton';
 
 type InputProps = {
   placeholder?: string;
@@ -34,6 +35,11 @@ export class SearchInput extends Component<InputProps, State> {
         className="search__input"
         type="text"
         onChange={this.handleChange}
+        onKeyDown={(e) => {
+          if (e.code === 'NumpadEnter' || e.code === 'Enter') {
+            searchButtonClick();
+          }
+        }}
         value={this.state.value}
         placeholder={this.props.placeholder}
       />
