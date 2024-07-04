@@ -12,13 +12,14 @@ type PokemonState = {
   pokemon: PokemonData | null;
 };
 
-type PokemonListState = {
+export type PokemonListState = {
   pokemons:
     | {
         name: string;
         url: string;
       }[]
     | null;
+  additionalData: PokemonData[] | null;
 };
 
 type SetStateFunction = React.Dispatch<React.SetStateAction<State>>;
@@ -146,8 +147,22 @@ export const bindSetPokemonListState = (f: SetStatePokemonList) => {
 export const setPokemonListState = async (offset: string) => {
   if (_state.setPokemonListState) {
     const respond = await getPokemonData(offset);
+    let additionalDataUrlArray = respond.results.map((data) => {
+      return data.url;
+    });
 
-    _state.setPokemonListState({ pokemons: respond.results });
+    const promiseArr: Promise<PokemonData>[] = [];
+
+    for (let i = 0; i < additionalDataUrlArray.length; i++) {
+      promiseArr.push(getPokemonDataByName(respond.results[i].name));
+    }
+
+    let additionalDataRespond = await Promise.all(promiseArr);
+
+    _state.setPokemonListState({
+      pokemons: respond.results,
+      additionalData: additionalDataRespond,
+    });
   }
 };
 

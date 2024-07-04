@@ -2,26 +2,24 @@ import { Component } from 'react';
 import {
   bindSetPokemonListState,
   getPaginationSettings,
+  PokemonListState,
   setPokemonListState,
 } from '../../store/state';
+import { PokemonData } from '../api/restApi';
 
 type PokemonListProps = {};
 
-type PokemonListState = {
-  pokemons:
-    | {
-        name: string;
-        url: string;
-      }[]
-    | null;
-};
-
-export class PokemonList extends Component<PokemonListProps, PokemonListState> {
+export class PokemonList extends Component<
+  PokemonListProps,
+  PokemonListState,
+  PokemonData
+> {
   constructor(props: PokemonListProps) {
     super(props);
 
     this.state = {
       pokemons: null,
+      additionalData: null,
     };
 
     bindSetPokemonListState(this.setState.bind(this));
@@ -30,16 +28,16 @@ export class PokemonList extends Component<PokemonListProps, PokemonListState> {
   }
 
   render() {
-    const { pokemons } = this.state;
+    const { pokemons, additionalData } = this.state;
 
     return (
       <div>
         {pokemons ? (
-          pokemons.map((pokemon) => {
+          pokemons.map((pokemon, index) => {
             return (
               <div key={pokemon.name}>
                 <p>{pokemon.name}</p>
-                <p>{pokemon.url}</p>
+                <p>{additionalData ? additionalData[index].weight : ''}</p>
               </div>
             );
           })
