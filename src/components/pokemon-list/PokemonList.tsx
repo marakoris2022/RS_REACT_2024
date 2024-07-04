@@ -6,7 +6,7 @@ import {
   PokemonListState,
   setPokemonListState,
 } from '../../store/state';
-import { PokemonData } from '../api/restApi';
+import { PokemonData } from '../../api/restApi';
 import { firstLetterUppercase } from '../../utils/utils';
 import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
 

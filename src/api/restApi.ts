@@ -1,4 +1,4 @@
-import { getBaseUrl, getPaginationSettings } from '../../store/state';
+import { getBaseUrl, getPaginationSettings } from '../store/state';
 
 export type PokemonData = {
   abilities: {

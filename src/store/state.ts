@@ -2,7 +2,7 @@ import {
   PokemonData,
   getPokemonData,
   getPokemonDataByName,
-} from '../components/api/restApi';
+} from '../api/restApi';
 
 export type State = {
   value: string;

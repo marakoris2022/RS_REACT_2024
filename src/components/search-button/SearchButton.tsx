@@ -8,7 +8,7 @@ import {
   setSearchValueToLocalStorage,
   setSectionState,
 } from '../../store/state';
-import { getPokemonDataByName } from '../api/restApi';
+import { getPokemonDataByName } from '../../api/restApi';
 
 interface ButtonProps {
   label: string;
@@ -21,7 +21,7 @@ function clearSearchInput() {
 
 export async function searchButtonClick() {
   try {
-    const pokemonData = await getPokemonDataByName(getSearchValue());
+    await getPokemonDataByName(getSearchValue());
     setSearchValueToLocalStorage(getSearchValue());
     setPokemonCardState();
   } catch {
