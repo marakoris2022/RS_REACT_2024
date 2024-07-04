@@ -1,3 +1,4 @@
+import './pokemonList.css';
 import { Component } from 'react';
 import {
   bindSetPokemonListState,
@@ -6,6 +7,7 @@ import {
   setPokemonListState,
 } from '../../store/state';
 import { PokemonData } from '../api/restApi';
+import { firstLetterUppercase } from '../../utils/utils';
 
 type PokemonListProps = {};
 
@@ -35,8 +37,8 @@ export class PokemonList extends Component<
         {pokemons ? (
           pokemons.map((pokemon, index) => {
             return (
-              <div key={pokemon.name}>
-                <p>{pokemon.name}</p>
+              <div className="card__wrapper" key={pokemon.name}>
+                <p>{firstLetterUppercase(pokemon.name)}</p>
                 <p>{additionalData ? additionalData[index].weight : ''}</p>
               </div>
             );

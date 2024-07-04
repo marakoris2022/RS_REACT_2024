@@ -4,6 +4,8 @@ import {
   PokemonState,
   setPokemonCardState,
 } from '../../store/state';
+import { firstLetterUppercase } from '../../utils/utils';
+import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
 
 type PokemonCardProps = {};
 
@@ -27,9 +29,8 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
       <div>
         {pokemon ? (
           <>
-            <p>Name: {pokemon.name}</p>
-            <p>{}</p>
-            <img
+            <p>Name: {firstLetterUppercase(pokemon.name)}</p>
+            <PokemonIcon
               width={60}
               src={pokemon.sprites.front_default}
               alt="pokemon_img"
