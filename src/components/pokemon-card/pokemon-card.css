@@ -1,12 +1,11 @@
-.card__wrapper {
+.pokemon__card__wrapper {
   position: relative;
 
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
 
-  flex-direction: row;
-  gap: 15px;
+  gap: 10px;
 
   background: rgb(247, 147, 78);
   background: radial-gradient(
@@ -15,8 +14,8 @@
     rgba(253, 187, 72, 1) 100%
   );
 
-  border-radius: 5px;
-  border: outset 3px silver;
+  border-radius: 15px;
+  border: ridge 6px rgb(225, 126, 21);
 
   padding: 10px 20px;
 
@@ -27,7 +26,7 @@
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.card__wrapper::after {
+.pokemon__card__wrapper::after {
   content: '';
   position: absolute;
   top: 0;
@@ -38,31 +37,31 @@
   transform: rotateZ(2deg);
 
   border: 2px rgb(255, 255, 0) solid;
+  border-radius: 5px;
 
   background: transparent;
 
   pointer-events: none;
 }
 
-.card__wrapper p {
+.pokemon__card__wrapper p {
   margin: 0;
   padding: 0;
 }
 
-.icon__wrapper {
+.icons__wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
 
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
-  width: 40px;
-  height: 40px;
 }
 
-.card__title {
+.pokemon__card__title {
   letter-spacing: 2px;
   font-family: 'Prompt', sans-serif;
   font-weight: 600;
   font-style: normal;
+
+  font-size: 32px;
 }

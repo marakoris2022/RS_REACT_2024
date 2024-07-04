@@ -1,3 +1,4 @@
+import './pokemonIcon.css';
 import { Component } from 'react';
 
 type PokemonIconProps = {
@@ -13,7 +14,17 @@ export class PokemonIcon extends Component<PokemonIconProps> {
 
   render() {
     return (
-      <img width={this.props.width} src={this.props.src} alt={this.props.alt} />
+      <div
+        style={{ width: this.props.width, height: this.props.width }}
+        className="pokemon__icon-wrapper"
+      >
+        <img
+          className="pokemon__icon"
+          width={this.props.width}
+          src={this.props.src}
+          alt={this.props.alt}
+        />
+      </div>
     );
   }
 }

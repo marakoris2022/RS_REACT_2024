@@ -1,3 +1,4 @@
+import './pokemon-card.css';
 import { Component } from 'react';
 import {
   bindSetPokemonCardState,
@@ -28,15 +29,24 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
     return (
       <div>
         {pokemon ? (
-          <>
-            <p>Name: {firstLetterUppercase(pokemon.name)}</p>
-            <PokemonIcon
-              width={60}
-              src={pokemon.sprites.front_default}
-              alt="pokemon_img"
-            />
+          <div className="pokemon__card__wrapper">
+            <p className="pokemon__card__title">
+              {firstLetterUppercase(pokemon.name)}
+            </p>
+            <div className="icons__wrapper">
+              <PokemonIcon
+                width={120}
+                src={pokemon.sprites.front_default}
+                alt="pokemon_img"
+              />
+              <PokemonIcon
+                width={120}
+                src={pokemon.sprites.back_default}
+                alt="pokemon_img"
+              />
+            </div>
             <p>Weight: {pokemon.weight}</p>
-          </>
+          </div>
         ) : (
           <p>Loading...</p>
         )}
