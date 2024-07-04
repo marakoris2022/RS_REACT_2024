@@ -22,7 +22,9 @@ export class SearchInput extends Component<InputProps, State> {
   }
 
   handleChange = (e: BaseSyntheticEvent) => {
-    setSearchValue(e.target.value);
+    const cleanedValue: string = e.target.value.replace(/[^a-zA-Zа-яА-Я]/g, '');
+
+    setSearchValue(cleanedValue.toLocaleLowerCase());
     setSearchValueState(getSearchValue());
   };
 
