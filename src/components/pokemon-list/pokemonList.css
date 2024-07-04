@@ -1,6 +1,8 @@
 .card__wrapper {
   position: relative;
 
+  cursor: pointer;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -25,6 +27,8 @@
   box-shadow:
     rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  transition: all 0.3 ease;
 }
 
 .card__wrapper::after {
@@ -42,6 +46,21 @@
   background: transparent;
 
   pointer-events: none;
+
+  transition: all 0.3 ease;
+}
+
+.card__wrapper:hover::after {
+  transform: rotateZ(-2deg);
+  border-color: rgb(247, 147, 78);
+}
+.card__wrapper:hover {
+  background: rgb(169, 159, 50);
+  background: radial-gradient(
+    circle,
+    rgb(251, 255, 0) 0%,
+    rgb(196, 199, 0) 100%
+  );
 }
 
 .card__wrapper p {

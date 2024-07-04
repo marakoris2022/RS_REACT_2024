@@ -3,12 +3,16 @@ import { Component } from 'react';
 import {
   bindSetPokemonListState,
   getPaginationSettings,
+  getSearchValue,
   PokemonListState,
   setPokemonListState,
+  setSearchValue,
+  setSearchValueState,
 } from '../../store/state';
 import { PokemonData } from '../../api/restApi';
 import { firstLetterUppercase } from '../../utils/utils';
 import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
+import { searchButtonClick } from '../search-button/SearchButton';
 
 type PokemonListProps = {};
 
@@ -33,12 +37,22 @@ export class PokemonList extends Component<
   render() {
     const { pokemons, additionalData } = this.state;
 
+    function cardInListClicked(pokeName: string) {
+      setSearchValue(pokeName);
+      setSearchValueState(getSearchValue());
+      searchButtonClick();
+    }
+
     return (
       <div>
         {pokemons ? (
           pokemons.map((pokemon, index) => {
             return (
-              <div className="card__wrapper" key={pokemon.name}>
+              <div
+                className="card__wrapper"
+                key={pokemon.name}
+                onClick={() => cardInListClicked(pokemon.name)}
+              >
                 <p className="card__title">
                   {firstLetterUppercase(pokemon.name)}
                 </p>
