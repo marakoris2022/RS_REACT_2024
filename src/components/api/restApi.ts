@@ -30,8 +30,10 @@ export type PokemonData = {
     };
     base_stat: number;
   }[];
-  type: {
-    name: string;
+  types: {
+    type: {
+      name: string;
+    };
   }[];
 };
 

@@ -8,6 +8,7 @@ import {
 } from '../../store/state';
 import { PokemonData } from '../api/restApi';
 import { firstLetterUppercase } from '../../utils/utils';
+import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
 
 type PokemonListProps = {};
 
@@ -38,8 +39,35 @@ export class PokemonList extends Component<
           pokemons.map((pokemon, index) => {
             return (
               <div className="card__wrapper" key={pokemon.name}>
-                <p>{firstLetterUppercase(pokemon.name)}</p>
-                <p>{additionalData ? additionalData[index].weight : ''}</p>
+                <p className="card__title">
+                  {firstLetterUppercase(pokemon.name)}
+                </p>
+                <div className="icon__wrapper">
+                  <PokemonIcon
+                    width={30}
+                    src={
+                      additionalData
+                        ? additionalData[index].sprites.front_default
+                        : ''
+                    }
+                    alt={pokemon.name}
+                  />
+                </div>
+                <p>
+                  Type:
+                  {additionalData
+                    ? ` ${firstLetterUppercase(
+                        additionalData[index].types[0].type.name
+                      )}`
+                    : ''}
+                </p>
+                <p>
+                  Experience:{' '}
+                  {additionalData ? additionalData[index].base_experience : ''}
+                </p>
+                <p>
+                  Weight: {additionalData ? additionalData[index].weight : ''}
+                </p>
               </div>
             );
           })
