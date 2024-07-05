@@ -59,7 +59,3 @@ export class Dialog extends Component<DialogProps, DialogState> {
     );
   }
 }
-
-// export function useDialog() {
-//   return openDialog;
-// }
