@@ -64,7 +64,7 @@ const _state: _State = {
   pagination: {
     settings: {
       offset: 0,
-      limit: 40,
+      limit: 10,
     },
     data: {
       count: 0,
