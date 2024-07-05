@@ -36,7 +36,7 @@ export class Dialog extends Component<DialogProps, DialogState> {
         <p className="dialog__text">{this.state.dialogText}</p>
         <form className="dialog__button-wrapper" method="dialog">
           <button className="dialog__button" onClick={() => this.closeDialog()}>
-            OK
+            Close
           </button>
         </form>
       </dialog>

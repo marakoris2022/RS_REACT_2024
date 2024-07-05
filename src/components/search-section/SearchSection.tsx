@@ -9,7 +9,7 @@ export const SearchSection = () => {
       <div className="container">
         <div className="search__wrapper">
           <SearchInput placeholder="Search..." />
-          <SearchButton label="Click" />
+          <SearchButton label="Catch" />
           <ErrorButton title="Call Error" />
         </div>
       </div>
