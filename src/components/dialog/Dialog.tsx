@@ -8,9 +8,7 @@ export let openDialog: (
 
 export let closeDialog: () => void = () => {};
 
-type DialogProps = {
-  dialogType: DialogType;
-};
+type DialogProps = Record<string, never>;
 
 export enum DialogType {
   INFO = 'info',
