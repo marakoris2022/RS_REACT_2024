@@ -8,7 +8,7 @@ import {
 import { PokemonCard } from '../pokemon-card/PokemonCard';
 import { PokemonList } from '../pokemon-list/PokemonList';
 
-type ContentSectionProps = {};
+type ContentSectionProps = Record<string, never>;
 
 export class ContentSection extends Component<ContentSectionProps, State> {
   constructor(props: ContentSectionProps) {

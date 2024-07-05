@@ -3,7 +3,7 @@ import './dialog.css';
 
 let openDialog: (text: string) => void = () => {};
 
-type DialogProps = {};
+type DialogProps = Record<string, never>;
 
 type DialogState = {
   dialogState: boolean;

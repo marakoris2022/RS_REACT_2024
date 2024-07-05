@@ -7,7 +7,7 @@ import {
   setSearchValueState,
   State,
 } from '../../store/state';
-import { searchButtonClick } from '../search-button/SearchButton';
+import { searchButtonClick } from '../search-button/searchButtonClick';
 
 type InputProps = {
   placeholder?: string;

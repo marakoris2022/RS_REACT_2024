@@ -12,10 +12,10 @@ import {
 import { PokemonData } from '../../api/restApi';
 import { firstLetterUppercase } from '../../utils/utils';
 import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
-import { searchButtonClick } from '../search-button/SearchButton';
+import { searchButtonClick } from '../search-button/searchButtonClick';
 import { Loading } from '../loading/Loading';
 
-type PokemonListProps = {};
+type PokemonListProps = Record<string, never>;
 
 export class PokemonList extends Component<
   PokemonListProps,

@@ -3,7 +3,7 @@ import {
   setSearchValue,
   setSearchValueState,
 } from '../../store/state';
-import { searchButtonClick } from '../search-button/SearchButton';
+import { searchButtonClick } from '../search-button/searchButtonClick';
 import './errorButton.css';
 import { Component } from 'react';
 

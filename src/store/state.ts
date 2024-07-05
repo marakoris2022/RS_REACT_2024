@@ -147,7 +147,7 @@ export const bindSetPokemonListState = (f: SetStatePokemonList) => {
 export const setPokemonListState = async (offset: string) => {
   if (_state.setPokemonListState) {
     const respond = await getPokemonData(offset);
-    let additionalDataUrlArray = respond.results.map((data) => {
+    const additionalDataUrlArray = respond.results.map((data) => {
       return data.url;
     });
 
@@ -157,7 +157,7 @@ export const setPokemonListState = async (offset: string) => {
       promiseArr.push(getPokemonDataByName(respond.results[i].name));
     }
 
-    let additionalDataRespond = await Promise.all(promiseArr);
+    const additionalDataRespond = await Promise.all(promiseArr);
 
     _state.setPokemonListState({
       pokemons: respond.results,

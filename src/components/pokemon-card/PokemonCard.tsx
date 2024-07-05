@@ -14,7 +14,7 @@ import SpecialIco from '/special-ico.svg';
 import StatsIco from '/stats-ico.svg';
 import { Loading } from '../loading/Loading';
 
-type PokemonCardProps = {};
+type PokemonCardProps = Record<string, never>;
 
 export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
   constructor(props: PokemonCardProps) {
@@ -65,7 +65,10 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
               {pokemon.stats.length > 0 ? (
                 pokemon.stats.map((stat) => {
                   return (
-                    <li className="card__li">{`${firstLetterUppercase(stat.stat.name)}: ${stat.base_stat}`}</li>
+                    <li
+                      key={stat.stat.name}
+                      className="card__li"
+                    >{`${firstLetterUppercase(stat.stat.name)}: ${stat.base_stat}`}</li>
                   );
                 })
               ) : (
@@ -82,7 +85,7 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
                   {pokemon.abilities.length > 0 ? (
                     pokemon.abilities.map((abil) => {
                       return (
-                        <li className="card__li">
+                        <li key={abil.ability.name} className="card__li">
                           {firstLetterUppercase(abil.ability.name)}
                         </li>
                       );
@@ -101,7 +104,7 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
                   {pokemon.held_items.length > 0 ? (
                     pokemon.held_items.map((item) => {
                       return (
-                        <li className="card__li">
+                        <li key={item.item.name} className="card__li">
                           {firstLetterUppercase(item.item.name)}
                         </li>
                       );
@@ -122,7 +125,7 @@ export class PokemonCard extends Component<PokemonCardProps, PokemonState> {
                 {pokemon.moves.length > 0 ? (
                   pokemon.moves.map((move) => {
                     return (
-                      <li className="card__li">
+                      <li key={move.move.name} className="card__li">
                         {firstLetterUppercase(move.move.name)}
                       </li>
                     );
