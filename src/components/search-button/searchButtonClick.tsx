@@ -5,19 +5,20 @@ import {
   setPokemonCardState,
   setSectionState,
 } from '../../store/state';
-import { useDialog } from '../dialog/Dialog';
+import { closeDialog, DialogType, openDialog } from '../dialog/Dialog';
 
 export async function searchButtonClick() {
-  const openDialog = useDialog();
   if (getSearchValue()) {
     try {
+      openDialog('Loading...', DialogType.INFO);
       await getPokemonDataByName(getSearchValue());
+      closeDialog();
       setSearchValueToLocalStorage(getSearchValue());
       setPokemonCardState();
     } catch {
       setSearchValueToLocalStorage('');
       const pokeName = getSearchValue();
-      openDialog(`Can't find this Pokemon: "${pokeName}"`);
+      openDialog(`Can't find this Pokemon: "${pokeName}"`, DialogType.ERROR);
       throw new Error(`Can't find this Pokemon: "${pokeName}"`);
     } finally {
       setSectionState();

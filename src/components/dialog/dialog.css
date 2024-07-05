@@ -6,9 +6,16 @@
   padding: 20px 40px;
 
   border-radius: 15px;
+}
 
+.dialog__error {
   background-color: rgba(139, 0, 0, 0.9);
 }
+
+.dialog__info {
+  background-color: rgba(9, 139, 0, 0.9);
+}
+
 .dialog__text {
   color: azure;
   font-size: 18px;
