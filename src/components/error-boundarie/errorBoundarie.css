@@ -1,6 +1,5 @@
 .boundarie__wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -12,20 +11,35 @@
   background-position: center;
   background-size: cover;
 }
-.boundarie__title {
+
+.boundarie__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   padding: 10px;
   margin: 0px;
   background-color: rgba(255, 255, 255, 0.6);
-
   border-radius: 10px;
+}
 
+.boundarie__title {
   margin-bottom: 30px;
 }
 .boundarie__button {
+  cursor: pointer;
+
   border-radius: 5px;
+  margin-bottom: 30px;
 
   font-size: 20px;
 
   color: white;
   background-color: rgb(111, 0, 31);
+  transition: all 0.2s ease;
+}
+
+.boundarie__button:hover {
+  background-color: rgb(177, 17, 17);
 }

@@ -38,10 +38,14 @@ export class ErrorBoundary extends Component<
 
       return (
         <div className="boundarie__wrapper">
-          <h1 className="boundarie__title">Error Boundaries Implementation</h1>
-          <button className="boundarie__button" onClick={() => handleClick()}>
-            Return back
-          </button>
+          <div className="boundarie__container">
+            <h1 className="boundarie__title">
+              Error Boundaries Implementation
+            </h1>
+            <button className="boundarie__button" onClick={() => handleClick()}>
+              Return back
+            </button>
+          </div>
         </div>
       );
     }
