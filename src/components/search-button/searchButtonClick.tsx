@@ -6,21 +6,22 @@ import {
   setSectionState,
 } from '../../store/state';
 import { closeDialog, DialogType, openDialog } from '../dialog/Dialog';
+import { setErrorBoundaryState } from '../error-boundarie/ErrorBoundarie';
 
 export async function searchButtonClick() {
   if (getSearchValue()) {
     try {
       openDialog('Loading...', DialogType.INFO);
       await getPokemonDataByName(getSearchValue());
-      closeDialog();
       setSearchValueToLocalStorage(getSearchValue());
       setPokemonCardState();
     } catch {
+      setErrorBoundaryState(true);
       setSearchValueToLocalStorage('');
       const pokeName = getSearchValue();
-      openDialog(`Can't find this Pokemon: "${pokeName}"`, DialogType.ERROR);
       throw new Error(`Can't find this Pokemon: "${pokeName}"`);
     } finally {
+      closeDialog();
       setSectionState();
     }
   }

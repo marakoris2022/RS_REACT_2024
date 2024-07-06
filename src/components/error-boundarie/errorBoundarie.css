@@ -1,0 +1,31 @@
+.boundarie__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+
+  background-image: url('/error-b-back.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.boundarie__title {
+  padding: 10px;
+  margin: 0px;
+  background-color: rgba(255, 255, 255, 0.6);
+
+  border-radius: 10px;
+
+  margin-bottom: 30px;
+}
+.boundarie__button {
+  border-radius: 5px;
+
+  font-size: 20px;
+
+  color: white;
+  background-color: rgb(111, 0, 31);
+}
