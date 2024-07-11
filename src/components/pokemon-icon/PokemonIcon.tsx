@@ -1,5 +1,5 @@
 import style from './pokemonIcon.module.scss';
-import { Component } from 'react';
+import DEFAULT_IMAGE from '/pokeball.svg';
 
 type PokemonIconProps = {
   width: number;
@@ -7,24 +7,21 @@ type PokemonIconProps = {
   alt: string;
 };
 
-export class PokemonIcon extends Component<PokemonIconProps> {
-  constructor(props: PokemonIconProps) {
-    super(props);
-  }
+export const PokemonIcon = (props: PokemonIconProps) => {
+  const { width, src, alt } = props;
 
-  render() {
-    return (
-      <div
-        style={{ width: this.props.width, height: this.props.width }}
-        className={style.pokemonIconWrapper}
-      >
-        <img
-          className={style.pokemonIcon}
-          width={this.props.width}
-          src={this.props.src}
-          alt={this.props.alt}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div style={{ width, height: width }} className={style.pokemonIconWrapper}>
+      <img
+        className={style.pokemonIcon}
+        width={width}
+        src={src}
+        alt={alt}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = DEFAULT_IMAGE;
+        }}
+      />
+    </div>
+  );
+};
