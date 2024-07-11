@@ -1,29 +1,25 @@
-import { Component, ReactNode } from 'react';
-import './contentSection.css';
-import {
-  bindSectionState,
-  getSearchValueFromLocalStorage,
-  State,
-} from '../../store/state';
+import { useContext } from 'react';
+import { PokemonListContext } from '../../App';
+import { SectionCard } from './section-card/SectionCard';
+import style from './contentSection.module.scss';
+import { Loading } from '../loading/Loading';
 
-type ContentSectionProps = Record<string, never>;
+export const ContentSection = () => {
+  const data = useContext(PokemonListContext);
 
-export class ContentSection extends Component<ContentSectionProps, State> {
-  constructor(props: ContentSectionProps) {
-    super(props);
-
-    this.state = { value: getSearchValueFromLocalStorage() };
-
-    bindSectionState(this.setState.bind(this));
-  }
-
-  render(): ReactNode {
-    return (
-      <section>
-        <div className="container">
-          {/* {this.state.value ? <PokemonCard /> : <PokemonList />} */}
+  return (
+    <section>
+      <div className="container">
+        <div className={style.sectionCardsWrapper}>
+          {data.length > 0 ? (
+            data.map((pokemon) => {
+              return <SectionCard key={pokemon.name} pokemon={pokemon} />;
+            })
+          ) : (
+            <Loading />
+          )}
         </div>
-      </section>
-    );
-  }
-}
+      </div>
+    </section>
+  );
+};
