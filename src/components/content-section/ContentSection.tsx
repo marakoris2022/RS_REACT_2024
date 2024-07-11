@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { PokemonListContext } from '../../App';
 import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
-import { Loading } from '../loading/Loading';
+import { SearchFailed } from './search-failed/SearchFailed';
 
 export const ContentSection = () => {
   const data = useContext(PokemonListContext);
@@ -16,7 +16,7 @@ export const ContentSection = () => {
               return <SectionCard key={pokemon.name} pokemon={pokemon} />;
             })
           ) : (
-            <Loading />
+            <SearchFailed />
           )}
         </div>
       </div>
