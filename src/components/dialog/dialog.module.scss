@@ -1,41 +1,39 @@
-.dialog__wrapper {
+// dialog.module.scss
+.dialogWrapper {
   position: absolute;
   z-index: 999;
   margin-top: 60px;
-
   padding: 20px 40px;
-
   border-radius: 15px;
 }
 
-.dialog__error {
+.dialogError {
   background-color: rgba(139, 0, 0, 0.9);
 }
 
-.dialog__info {
+.dialogInfo {
   background-color: rgba(9, 139, 0, 0.9);
 }
 
-.dialog__text {
+.dialogText {
   color: azure;
   font-size: 18px;
 }
-.dialog__button-wrapper {
+
+.dialogButtonWrapper {
   width: 100%;
 }
-.dialog__button {
-  cursor: pointer;
 
+.dialogButton {
+  cursor: pointer;
   display: block;
   margin: 0 auto;
-
   border-radius: 5px;
-
   color: white;
   background-color: rgb(0, 49, 0);
   transition: all 0.2s ease;
 }
 
-.dialog__button:hover {
+.dialogButton:hover {
   background-color: rgb(0, 93, 0);
 }

@@ -1,7 +1,12 @@
 import { createContext, useEffect, useState } from 'react';
 import './App.css';
 import { ContentSection } from './components/content-section/ContentSection';
-import { Dialog } from './components/dialog/Dialog';
+import {
+  closeDialog,
+  Dialog,
+  DialogType,
+  openDialog,
+} from './components/dialog/Dialog';
 import { ErrorBoundary } from './components/error-boundarie/ErrorBoundarie';
 import { SearchSection } from './components/search-section/SearchSection';
 import { PokemonData, searchPokemonListByName } from './api/restApi';
@@ -29,6 +34,7 @@ function App() {
   }
 
   async function requestPokemonData(searchInput: string) {
+    openDialog('Loading', DialogType.INFO);
     setPokemonDataListState([]);
     const pokemonData = await searchPokemonListByName(
       searchInput,
@@ -36,6 +42,7 @@ function App() {
     );
     saveToLsIfSuccess(searchInput, pokemonData);
     setPokemonDataListState(pokemonData);
+    closeDialog();
   }
 
   useEffect(() => {
