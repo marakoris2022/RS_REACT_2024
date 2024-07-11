@@ -77,5 +77,13 @@ export const searchPokemonListByName = async (query: string) => {
     pokemon.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  return filteredPokemon;
+  const promiseArr: Promise<PokemonData>[] = [];
+
+  for (let i = 0; i < filteredPokemon.length; i++) {
+    promiseArr.push(getPokemonDataByName(filteredPokemon[i].name));
+  }
+
+  const pokemonDataList = await Promise.all(promiseArr);
+
+  return pokemonDataList;
 };
