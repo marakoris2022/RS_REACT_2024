@@ -13,8 +13,10 @@ export const SearchInput = ({ placeholder }: InputProps) => {
   const [value, setValue] = useState('');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value);
-    setSearchValue(e.target.value);
+    const cleanedValue: string = e.target.value.replace(/[^a-zA-Z]/g, '');
+
+    setValue(cleanedValue.toLocaleLowerCase());
+    setSearchValue(cleanedValue.toLocaleLowerCase());
   }
 
   useEffect(() => {

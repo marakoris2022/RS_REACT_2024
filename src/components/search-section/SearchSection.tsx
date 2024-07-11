@@ -1,7 +1,4 @@
-import {
-  getSearchValue,
-  setSearchValueToLocalStorage,
-} from '../../store/state';
+import { getSearchValue } from '../../store/state';
 import { Button, ButtonType } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import './searchSection.css';
@@ -12,7 +9,6 @@ export const SearchSection = ({ callback }: callbackProps) => {
   function handleClick() {
     const searchText = getSearchValue();
     if (searchText) {
-      setSearchValueToLocalStorage(searchText);
       callback(searchText);
     }
   }
