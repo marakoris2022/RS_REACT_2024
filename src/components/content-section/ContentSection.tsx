@@ -5,8 +5,6 @@ import {
   getSearchValueFromLocalStorage,
   State,
 } from '../../store/state';
-import { PokemonCard } from '../pokemon-card/PokemonCard';
-import { PokemonList } from '../pokemon-list/PokemonList';
 
 type ContentSectionProps = Record<string, never>;
 
@@ -23,7 +21,7 @@ export class ContentSection extends Component<ContentSectionProps, State> {
     return (
       <section>
         <div className="container">
-          {this.state.value ? <PokemonCard /> : <PokemonList />}
+          {/* {this.state.value ? <PokemonCard /> : <PokemonList />} */}
         </div>
       </section>
     );

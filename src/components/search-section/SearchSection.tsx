@@ -1,6 +1,4 @@
-import { ErrorButton } from '../error-button/ErrorButton';
-import { SearchButton } from '../search-button/SearchButton';
-import { SearchInput } from '../search-input/SearchInput';
+import { Button, ButtonType } from '../button/Button';
 import './searchSection.css';
 
 export const SearchSection = () => {
@@ -8,9 +6,11 @@ export const SearchSection = () => {
     <section className="search__section">
       <div className="container">
         <div className="search__wrapper">
-          <SearchInput placeholder="Search..." />
-          <SearchButton label="Catch" />
-          <ErrorButton title="Call Error" />
+          <Button
+            onClick={() => {}}
+            btnType={ButtonType.GREEN}
+            title="Search"
+          />
         </div>
       </div>
     </section>
