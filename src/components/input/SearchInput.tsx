@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import styles from './input.module.scss';
-import {
-  getSearchValueFromLocalStorage,
-  setSearchValue,
-} from '../../store/state';
+import { getSearchValueFromLocalStorage } from '../../utils/utils';
 
 type InputProps = {
   placeholder: string;
   onKeyDown: () => void;
 };
+
+let searchValue = '';
+
+export function getSearchValue() {
+  return searchValue;
+}
 
 export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
   const [value, setValue] = useState('');
@@ -17,7 +20,7 @@ export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
     const cleanedValue: string = e.target.value.replace(/[^a-zA-Z]/g, '');
 
     setValue(cleanedValue.toLocaleLowerCase());
-    setSearchValue(cleanedValue.toLocaleLowerCase());
+    searchValue = cleanedValue.toLocaleLowerCase();
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -30,7 +33,7 @@ export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
     const searchValueFromLS = getSearchValueFromLocalStorage();
     if (searchValueFromLS) {
       setValue(searchValueFromLS);
-      setSearchValue(searchValueFromLS);
+      searchValue = searchValueFromLS;
     }
   }, []);
 

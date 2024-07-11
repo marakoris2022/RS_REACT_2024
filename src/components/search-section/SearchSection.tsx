@@ -1,6 +1,5 @@
-import { getSearchValue } from '../../store/state';
 import { Button, ButtonType } from '../button/Button';
-import { SearchInput } from '../input/SearchInput';
+import { getSearchValue, SearchInput } from '../input/SearchInput';
 import './searchSection.css';
 
 type callbackProps = { callback: (searchInput: string) => void };

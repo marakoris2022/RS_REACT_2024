@@ -1,5 +1,3 @@
-import { getBaseUrl, getPaginationSettings } from '../store/state';
-
 export type PokemonData = {
   abilities: {
     ability: {
@@ -47,11 +45,10 @@ export type PokemonListData = {
   }[];
 };
 
-export const getPokemonData = async (offset: string) => {
-  const { limit } = getPaginationSettings();
+const URL = 'https://pokeapi.co/api/v2/';
 
-  const paginationUrl =
-    getBaseUrl() + `pokemon?offset=${offset}&limit=${limit}`;
+export const getPokemonData = async (offset: string, limit: number) => {
+  const paginationUrl = URL + `pokemon?offset=${offset}&limit=${limit}`;
 
   const fetchData = await fetch(paginationUrl);
   const respond: PokemonListData = await fetchData.json();
@@ -60,7 +57,7 @@ export const getPokemonData = async (offset: string) => {
 };
 
 export const getPokemonDataByName = async (name: string) => {
-  const paginationUrl = getBaseUrl() + `pokemon/${name}`;
+  const paginationUrl = URL + `pokemon/${name}`;
 
   const fetchData = await fetch(paginationUrl);
   const respond: PokemonData = await fetchData.json();
@@ -69,7 +66,7 @@ export const getPokemonDataByName = async (name: string) => {
 };
 
 export const searchPokemonListByName = async (query: string, limit: string) => {
-  const allPokemonUrl = getBaseUrl() + `pokemon?limit=${limit}`;
+  const allPokemonUrl = URL + `pokemon?limit=${limit}`;
   const fetchData = await fetch(allPokemonUrl);
   const respond: PokemonListData = await fetchData.json();
 

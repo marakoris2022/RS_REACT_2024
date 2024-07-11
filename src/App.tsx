@@ -13,7 +13,7 @@ import { PokemonData, searchPokemonListByName } from './api/restApi';
 import {
   getSearchValueFromLocalStorage,
   setSearchValueToLocalStorage,
-} from './store/state';
+} from './utils/utils';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 

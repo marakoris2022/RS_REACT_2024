@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { closeDialog, DialogType, openDialog } from '../dialog/Dialog';
 import './errorBoundarie.css';
-import { getSearchValue } from '../../store/state';
+import { getSearchValue } from '../input/SearchInput';
 
 type ErrorBoundaryProps = { children: JSX.Element };
 
