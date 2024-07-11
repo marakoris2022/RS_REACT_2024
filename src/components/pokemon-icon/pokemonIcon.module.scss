@@ -1,8 +1,8 @@
-.pokemon__icon-wrapper {
+.pokemonIconWrapper {
   position: relative;
 }
 
-.pokemon__icon {
+.pokemonIcon {
   position: absolute;
 
   animation: flyUpDown 1.5s ease-in-out infinite alternate; /* 3s - продолжительность анимации, вы можете изменить ее по своему усмотрению */
