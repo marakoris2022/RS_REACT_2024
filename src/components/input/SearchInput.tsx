@@ -7,9 +7,10 @@ import {
 
 type InputProps = {
   placeholder: string;
+  onKeyDown: () => void;
 };
 
-export const SearchInput = ({ placeholder }: InputProps) => {
+export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
   const [value, setValue] = useState('');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -17,6 +18,12 @@ export const SearchInput = ({ placeholder }: InputProps) => {
 
     setValue(cleanedValue.toLocaleLowerCase());
     setSearchValue(cleanedValue.toLocaleLowerCase());
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.code === 'NumpadEnter' || e.code === 'Enter') {
+      onKeyDown();
+    }
   }
 
   useEffect(() => {
@@ -30,6 +37,7 @@ export const SearchInput = ({ placeholder }: InputProps) => {
   return (
     <input
       value={value}
+      onKeyDown={handleKeyDown}
       onChange={handleChange}
       className={styles.defaultInput}
       placeholder={placeholder}

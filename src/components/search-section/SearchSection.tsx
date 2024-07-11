@@ -6,7 +6,7 @@ import './searchSection.css';
 type callbackProps = { callback: (searchInput: string) => void };
 
 export const SearchSection = ({ callback }: callbackProps) => {
-  function handleClick() {
+  function handleSearchRequest() {
     const searchText = getSearchValue();
     if (searchText) {
       callback(searchText);
@@ -17,9 +17,9 @@ export const SearchSection = ({ callback }: callbackProps) => {
     <section className="search__section">
       <div className="container">
         <div className="search__wrapper">
-          <SearchInput placeholder="Search" />
+          <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
           <Button
-            onClick={handleClick}
+            onClick={handleSearchRequest}
             btnType={ButtonType.GREEN}
             title="Search"
           />
