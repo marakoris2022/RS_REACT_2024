@@ -1,48 +1,41 @@
-import { Component } from 'react';
-import { closeDialog, DialogType, openDialog } from '../dialog/Dialog';
+import React, { ReactNode } from 'react';
 import './errorBoundarie.css';
-import { getSearchValue } from '../input/SearchInput';
 
-type ErrorBoundaryProps = { children: JSX.Element };
-
-type ErrorBoundaryState = { hasError: boolean };
-
-export let setErrorBoundaryState: (hasError: boolean) => void = () => {};
-
-function handleClick() {
-  setErrorBoundaryState(false);
-  closeDialog();
+interface ErrorBoundaryProps {
+  children: ReactNode;
 }
 
-export class ErrorBoundary extends Component<
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
-
-    setErrorBoundaryState = this.toggleBoundaryState.bind(this);
   }
 
-  toggleBoundaryState(hasError: boolean) {
-    this.setState({ hasError });
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
+
+  handleClick = () => {
+    this.setState({ hasError: false });
+    // Add any additional logic for returning back
+  };
 
   render() {
     if (this.state.hasError) {
-      openDialog(
-        `Can't find this Pokemon: "${getSearchValue()}"`,
-        DialogType.ERROR
-      );
-
       return (
         <div className="boundarie__wrapper">
           <div className="boundarie__container">
             <h1 className="boundarie__title">
               Error Boundaries Implementation
             </h1>
-            <button className="boundarie__button" onClick={() => handleClick()}>
+            <button className="boundarie__button" onClick={this.handleClick}>
               Return back
             </button>
           </div>
