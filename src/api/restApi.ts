@@ -65,34 +65,32 @@ export const getPokemonDataByName = async (name: string) => {
   return respond;
 };
 
-let pokemonDataList: PokemonData[] | null = null;
-
 export const searchPokemonListByName = async (query: string) => {
-  if (!pokemonDataList) {
-    const allPokemonUrl = URL + 'pokemon?limit=10000';
-    const fetchData = await fetch(allPokemonUrl);
-    const respond: PokemonListData = await fetchData.json();
+  const allPokemonUrl = URL + `pokemon?limit=10000`;
+  const fetchData = await fetch(allPokemonUrl);
+  const respond: PokemonListData = await fetchData.json();
 
-    let promiseArr: Promise<PokemonData>[] = [];
-
-    for (let i = 0; i < respond.results.length; i++) {
-      promiseArr.push(getPokemonDataByName(respond.results[i].name));
-    }
-
-    const settledRespond = await Promise.allSettled(promiseArr);
-
-    pokemonDataList = settledRespond
-      .filter((res) => res.status === 'fulfilled')
-      .map((res) => res.value);
-  }
+  let promiseArr: Promise<PokemonData>[] = [];
 
   if (query) {
-    const filteredPokemon = pokemonDataList.filter((pokemon) =>
+    const filteredPokemon = respond.results.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(query.toLowerCase())
     );
 
-    return filteredPokemon;
+    for (let i = 0; i < filteredPokemon.length; i++) {
+      promiseArr.push(getPokemonDataByName(filteredPokemon[i].name));
+    }
+  } else {
+    for (let i = 0; i < respond.results.length; i++) {
+      promiseArr.push(getPokemonDataByName(respond.results[i].name));
+    }
   }
+
+  const settledRespond = await Promise.allSettled(promiseArr);
+
+  const pokemonDataList = settledRespond
+    .filter((res) => res.status === 'fulfilled')
+    .map((res) => res.value);
 
   return pokemonDataList;
 };
