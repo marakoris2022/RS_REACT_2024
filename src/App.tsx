@@ -16,6 +16,7 @@ import {
 } from './utils/utils';
 import { Route, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
+import RunningPokemon from '/pikachu-running.gif';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
@@ -30,8 +31,14 @@ function App() {
     }
   }
 
+  const dialogContent = (
+    <div>
+      Loading... <img src={RunningPokemon} />
+    </div>
+  );
+
   async function requestPokemonData(searchInput: string) {
-    openDialog('Loading', DialogType.INFO);
+    openDialog(dialogContent, DialogType.INFO);
     setPokemonDataListState([]);
     const pokemonData = await searchPokemonListByName(searchInput);
     saveToLsIfSuccess(searchInput, pokemonData);

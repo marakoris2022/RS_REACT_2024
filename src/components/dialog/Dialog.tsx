@@ -10,12 +10,12 @@ type DialogProps = Record<string, never>;
 
 type DialogState = {
   dialogState: boolean;
-  dialogText: string;
+  dialogContent: JSX.Element;
   dialogType: DialogType;
 };
 
 export let openDialog: (
-  text: string,
+  dialogContentData: JSX.Element,
   dialogType: DialogType
 ) => void = () => {};
 export let closeDialog: () => void = () => {};
@@ -23,13 +23,17 @@ export let closeDialog: () => void = () => {};
 export const Dialog: React.FC<DialogProps> = () => {
   const [dialogState, setDialogState] = useState<DialogState>({
     dialogState: false,
-    dialogText: '',
+    dialogContent: <p></p>,
     dialogType: DialogType.INFO,
   });
 
   const openDialogHandler = useCallback(
-    (text: string, dialogType: DialogType) => {
-      setDialogState({ dialogState: true, dialogText: text, dialogType });
+    (dialogContentData: JSX.Element, dialogType: DialogType) => {
+      setDialogState({
+        dialogState: true,
+        dialogContent: dialogContentData,
+        dialogType,
+      });
     },
     []
   );
@@ -37,7 +41,7 @@ export const Dialog: React.FC<DialogProps> = () => {
   const closeDialogHandler = useCallback(() => {
     setDialogState({
       dialogState: false,
-      dialogText: '',
+      dialogContent: <p></p>,
       dialogType: DialogType.INFO,
     });
   }, []);
@@ -50,7 +54,7 @@ export const Dialog: React.FC<DialogProps> = () => {
       className={`${style.dialogWrapper} ${style[dialogState.dialogType]}`}
       open={dialogState.dialogState}
     >
-      <p className={style.dialogText}>{dialogState.dialogText}</p>
+      <div className={style.dialogContent}>{dialogState.dialogContent}</div>
       <form className={style.dialogButtonWrapper} method="dialog">
         <button className={style.dialogButton} onClick={closeDialogHandler}>
           Close
