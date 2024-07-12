@@ -6,10 +6,7 @@ type callbackProps = { callback: (searchInput: string) => void };
 
 export const SearchSection = ({ callback }: callbackProps) => {
   function handleSearchRequest() {
-    const searchText = getSearchValue();
-    if (searchText) {
-      callback(searchText);
-    }
+    callback(getSearchValue());
   }
 
   return (

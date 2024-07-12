@@ -19,11 +19,6 @@ import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
-enum SearchLimit {
-  NoLimit = '10000',
-  Limited = '100',
-}
-
 function App() {
   const [pokemonDataListState, setPokemonDataListState] = useState<
     PokemonData[]
@@ -38,10 +33,7 @@ function App() {
   async function requestPokemonData(searchInput: string) {
     openDialog('Loading', DialogType.INFO);
     setPokemonDataListState([]);
-    const pokemonData = await searchPokemonListByName(
-      searchInput,
-      searchInput ? SearchLimit.NoLimit : SearchLimit.Limited
-    );
+    const pokemonData = await searchPokemonListByName(searchInput);
     saveToLsIfSuccess(searchInput, pokemonData);
     setPokemonDataListState(pokemonData);
     closeDialog();
