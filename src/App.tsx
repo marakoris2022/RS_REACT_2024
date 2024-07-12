@@ -14,6 +14,8 @@ import {
   getSearchValueFromLocalStorage,
   setSearchValueToLocalStorage,
 } from './utils/utils';
+import { Route, Routes } from 'react-router-dom';
+import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
@@ -58,12 +60,14 @@ function App() {
     <>
       <Dialog />
       <ErrorBoundary>
-        <>
-          <PokemonListContext.Provider value={pokemonDataListState}>
-            <SearchSection callback={requestPokemonData} />
-            <ContentSection />
-          </PokemonListContext.Provider>
-        </>
+        <PokemonListContext.Provider value={pokemonDataListState}>
+          <SearchSection callback={requestPokemonData} />
+
+          <Routes>
+            <Route path="/" element={<ContentSection />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </PokemonListContext.Provider>
       </ErrorBoundary>
     </>
   );

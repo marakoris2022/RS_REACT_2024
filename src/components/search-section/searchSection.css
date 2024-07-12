@@ -14,4 +14,8 @@
   border: 1px solid white;
 
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }

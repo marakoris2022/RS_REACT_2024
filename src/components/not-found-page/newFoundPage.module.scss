@@ -1,0 +1,26 @@
+.imgWrapper {
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  border: outset 3px darkgreen;
+
+  background-color: #fbeca9;
+
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.errorImg {
+  width: 100%;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
