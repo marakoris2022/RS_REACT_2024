@@ -53,13 +53,12 @@ export const Pagination = ({
   };
 
   useEffect(() => {
-    if (frontpage) {
-      if (Number(frontpage) > calculateTotalPages(pokemonList.length)) {
-        frontpage = String(calculateTotalPages(pokemonList.length));
-      }
-      setPageNum(Number(frontpage));
-      updateQueryParams({ frontpage: frontpage }, navigate, location);
+    if (!frontpage) frontpage = '1';
+    if (Number(frontpage) > calculateTotalPages(pokemonList.length)) {
+      frontpage = String(calculateTotalPages(pokemonList.length));
     }
+    setPageNum(Number(frontpage));
+    updateQueryParams({ frontpage: frontpage }, navigate, location);
   }, []);
 
   return (

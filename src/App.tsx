@@ -14,7 +14,7 @@ import {
   getSearchValueFromLocalStorage,
   setSearchValueToLocalStorage,
 } from './utils/utils';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Router, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
 
@@ -55,18 +55,23 @@ function App() {
     requestPokemonData('');
   }, []);
 
+  const MainLayout = () => (
+    <PokemonListContext.Provider value={pokemonDataListState}>
+      <SearchSection callback={requestPokemonData} />
+      <Outlet />
+    </PokemonListContext.Provider>
+  );
+
   return (
     <>
       <Dialog />
       <ErrorBoundary>
-        <PokemonListContext.Provider value={pokemonDataListState}>
-          <SearchSection callback={requestPokemonData} />
-
-          <Routes>
-            <Route path="/" element={<ContentSection />} />
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<ContentSection />} />
             <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </PokemonListContext.Provider>
+          </Route>
+        </Routes>
       </ErrorBoundary>
     </>
   );
