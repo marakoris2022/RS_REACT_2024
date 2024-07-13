@@ -4,12 +4,17 @@ import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
 
 type SectionCardProps = {
+  setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
   pokemon: PokemonData;
 };
 
-export const SectionCard = ({ pokemon }: SectionCardProps) => {
+export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
+  function handleClick() {
+    setCardSelected(pokemon);
+  }
+
   return (
-    <div className={style.cardWrapper} onClick={() => {}}>
+    <div className={style.cardWrapper} onClick={handleClick}>
       <p className={style.cardTitle}>{firstLetterUppercase(pokemon.name)}</p>
       <div className={style.iconWrapper}>
         <PokemonIcon

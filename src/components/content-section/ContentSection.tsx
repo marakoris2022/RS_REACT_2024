@@ -6,7 +6,15 @@ import { SearchFailed } from './search-failed/SearchFailed';
 import { PokemonData } from '../../api/restApi';
 import { Pagination } from '../pagination/Pagination';
 
-export const ContentSection = () => {
+type ContentSectionProps = {
+  cardSelected: PokemonData | null;
+  setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
+};
+
+export const ContentSection = ({
+  cardSelected,
+  setCardSelected,
+}: ContentSectionProps) => {
   const pokemonList = useContext(PokemonListContext);
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
@@ -30,14 +38,29 @@ export const ContentSection = () => {
     prevPokemonList.current = pokemonList;
   }, [pageNum, pokemonList]);
 
+  function handleCLick() {
+    if (cardSelected) {
+      setCardSelected(null);
+    }
+  }
+
   return (
     <section>
       <div className="container">
-        <div className={style.sectionCardsWrapper}>
+        <div
+          className={`${style.sectionCardsWrapper} ${cardSelected ? style.dark : {}}`}
+          onClick={handleCLick}
+        >
           {viewPokemonList.length > 0 ? (
             <>
               {viewPokemonList.map((pokemon) => {
-                return <SectionCard key={pokemon.name} pokemon={pokemon} />;
+                return (
+                  <SectionCard
+                    setCardSelected={setCardSelected}
+                    key={pokemon.name}
+                    pokemon={pokemon}
+                  />
+                );
               })}
               <Pagination
                 pageNum={pageNum}

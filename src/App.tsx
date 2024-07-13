@@ -17,6 +17,8 @@ import {
 import { Outlet, Route, Router, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
+import { PokemonCard } from './components/card-section/PokemonCard';
+import { MainSection } from './components/main-section/MainSection';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
@@ -24,6 +26,8 @@ function App() {
   const [pokemonDataListState, setPokemonDataListState] = useState<
     PokemonData[]
   >([]);
+
+  const [cardSelected, setCardSelected] = useState<PokemonData | null>(null);
 
   function saveToLsIfSuccess(searchInput: string, pokemonData: PokemonData[]) {
     if (searchInput && pokemonData.length) {
@@ -58,7 +62,13 @@ function App() {
   const MainLayout = () => (
     <PokemonListContext.Provider value={pokemonDataListState}>
       <SearchSection callback={requestPokemonData} />
-      <Outlet />
+      <MainSection>
+        <Outlet />
+        <PokemonCard
+          cardSelected={cardSelected}
+          setCardSelected={setCardSelected}
+        />
+      </MainSection>
     </PokemonListContext.Provider>
   );
 
@@ -68,7 +78,15 @@ function App() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<ContentSection />} />
+            <Route
+              index
+              element={
+                <ContentSection
+                  cardSelected={cardSelected}
+                  setCardSelected={setCardSelected}
+                />
+              }
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
