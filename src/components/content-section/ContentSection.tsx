@@ -38,18 +38,11 @@ export const ContentSection = ({
     prevPokemonList.current = pokemonList;
   }, [pageNum, pokemonList]);
 
-  function handleCLick() {
-    if (cardSelected) {
-      setCardSelected(null);
-    }
-  }
-
   return (
     <section>
       <div className="container">
         <div
           className={`${style.sectionCardsWrapper} ${cardSelected ? style.dark : {}}`}
-          onClick={handleCLick}
         >
           {viewPokemonList.length > 0 ? (
             <>

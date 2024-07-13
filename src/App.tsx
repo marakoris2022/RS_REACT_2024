@@ -14,7 +14,7 @@ import {
   getSearchValueFromLocalStorage,
   setSearchValueToLocalStorage,
 } from './utils/utils';
-import { Outlet, Route, Router, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
 import { PokemonCard } from './components/card-section/PokemonCard';
@@ -30,7 +30,7 @@ function App() {
   const [cardSelected, setCardSelected] = useState<PokemonData | null>(null);
 
   function saveToLsIfSuccess(searchInput: string, pokemonData: PokemonData[]) {
-    if (searchInput && pokemonData.length) {
+    if (pokemonData.length) {
       setSearchValueToLocalStorage(searchInput);
     }
   }
