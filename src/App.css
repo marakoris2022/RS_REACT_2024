@@ -16,9 +16,14 @@ body {
 .container {
   margin: 0 auto;
   max-width: 1200px;
+  width: 100%;
   padding: 15px;
-  display: flex;
-  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 5px;
+  }
 }
 
 *::-webkit-scrollbar {

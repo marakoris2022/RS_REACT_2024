@@ -48,6 +48,24 @@
   box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
 }
 
+@media screen and (max-width: 800px) {
+  .wrapper {
+    width: 73%;
+  }
+  .pokemonCardWrapper {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 90%;
+  }
+  .pokemonCardWrapper {
+    margin: 0 auto;
+    width: 260px;
+  }
+}
+
 .pokemonCardWrapper::after {
   content: '';
   position: absolute;

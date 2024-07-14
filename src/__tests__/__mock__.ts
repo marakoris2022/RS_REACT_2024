@@ -1,4 +1,4 @@
-import { PokemonData } from '../api/restApi';
+import { PokemonData } from '../interface/interface';
 
 export const TestPokemon: PokemonData = {
   abilities: [

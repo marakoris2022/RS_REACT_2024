@@ -39,17 +39,32 @@ export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
       className={style.cardWrapper}
       onClick={handleClick}
     >
-      <p className={style.cardTitle}>{firstLetterUppercase(pokemon.name)}</p>
-      <div className={style.iconWrapper}>
-        <PokemonIcon
-          width={30}
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-        />
+      <div className={style.titleWrapper}>
+        <h2 className={style.cardTitle}>
+          {firstLetterUppercase(pokemon.name)}
+        </h2>
+        <div className={style.iconWrapper}>
+          <PokemonIcon
+            width={100}
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+          />
+        </div>
       </div>
-      <p>Type: {firstLetterUppercase(pokemon.types[0].type.name)}</p>
-      <p>Experience: {pokemon.base_experience}</p>
-      <p>Weight: {pokemon.weight}</p>
+      <div className={style.contentWrapper}>
+        <div>
+          <span className={style.contentTitle}>Type:</span>
+          {firstLetterUppercase(pokemon.types[0].type.name)}
+        </div>
+        <div>
+          <span className={style.contentTitle}>Experience:</span>
+          {pokemon.base_experience}
+        </div>
+        <div>
+          <span className={style.contentTitle}>Weight:</span>
+          {pokemon.weight}
+        </div>
+      </div>
     </div>
   );
 };

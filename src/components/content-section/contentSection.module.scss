@@ -1,9 +1,14 @@
 .sectionCardsWrapper {
+  width: 100%;
+
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap: 20px;
+
+  justify-content: center;
 }
 
-.sectionCardsWrapper.dark {
+.dark {
   filter: grayscale(80%);
 }

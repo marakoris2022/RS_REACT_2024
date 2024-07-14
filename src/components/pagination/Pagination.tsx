@@ -59,33 +59,37 @@ export const Pagination = ({
     <div className={style.wrapper}>
       <div>Pokes found: {pokemonList.length}</div>
 
-      <Button
-        onClick={() => handlePageClick(1)}
-        title="1"
-        btnType={ButtonType.GREEN}
-      />
+      <div className={style.paginationSettings}>
+        <Button
+          onClick={() => handlePageClick(1)}
+          title="1"
+          btnType={ButtonType.GREEN}
+        />
 
-      <Button
-        onClick={handlePrevClick}
-        title="Prev"
-        btnType={ButtonType.GREEN}
-      />
+        <Button
+          onClick={handlePrevClick}
+          title="Prev"
+          btnType={ButtonType.GREEN}
+        />
 
-      <div>
-        {pageNum} / {calculateTotalPages(pokemonList.length)}
+        <div>
+          {pageNum} / {calculateTotalPages(pokemonList.length)}
+        </div>
+
+        <Button
+          onClick={handleNextClick}
+          title="Next"
+          btnType={ButtonType.GREEN}
+        />
+
+        <Button
+          onClick={() =>
+            handlePageClick(calculateTotalPages(pokemonList.length))
+          }
+          title={String(calculateTotalPages(pokemonList.length))}
+          btnType={ButtonType.GREEN}
+        />
       </div>
-
-      <Button
-        onClick={handleNextClick}
-        title="Next"
-        btnType={ButtonType.GREEN}
-      />
-
-      <Button
-        onClick={() => handlePageClick(calculateTotalPages(pokemonList.length))}
-        title={String(calculateTotalPages(pokemonList.length))}
-        btnType={ButtonType.GREEN}
-      />
     </div>
   );
 };

@@ -39,27 +39,29 @@ export const ContentSection = ({
   }, [pageNum, pokemonList]);
 
   return (
-    <section>
+    <section style={{ width: '100%' }}>
       <div className="container">
-        <div
-          className={`${style.sectionCardsWrapper} ${cardSelected ? style.dark : {}}`}
-        >
+        <div className={cardSelected ? style.dark : ''}>
           {viewPokemonList.length > 0 ? (
             <>
-              {viewPokemonList.map((pokemon) => {
-                return (
-                  <SectionCard
-                    setCardSelected={setCardSelected}
-                    key={pokemon.name}
-                    pokemon={pokemon}
-                  />
-                );
-              })}
-              <Pagination
-                pageNum={pageNum}
-                setPageNum={setPageNum}
-                pokemonList={pokemonList}
-              />
+              <div className={style.sectionCardsWrapper}>
+                {viewPokemonList.map((pokemon) => {
+                  return (
+                    <SectionCard
+                      setCardSelected={setCardSelected}
+                      key={pokemon.name}
+                      pokemon={pokemon}
+                    />
+                  );
+                })}
+              </div>
+              <div>
+                <Pagination
+                  pageNum={pageNum}
+                  setPageNum={setPageNum}
+                  pokemonList={pokemonList}
+                />
+              </div>
             </>
           ) : (
             <SearchFailed />
