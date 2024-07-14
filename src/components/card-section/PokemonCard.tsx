@@ -45,7 +45,7 @@ export const PokemonCard = ({
   }
 
   return (
-    <div
+    <section
       onClick={handleClick}
       className={`${style.background} ${active ? style.backgroundActive : ''}`}
       id="close-card-back"
@@ -180,6 +180,6 @@ export const PokemonCard = ({
           <></>
         )}
       </div>
-    </div>
+    </section>
   );
 };
