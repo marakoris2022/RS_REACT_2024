@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './input.module.scss';
 import { getSearchValueFromLocalStorage } from '../../utils/utils';
+import useLocalStorage from '../../custom-hooks/useLocalStorage';
 
 type InputProps = {
   placeholder: string;
@@ -14,7 +15,7 @@ export function getSearchValue() {
 }
 
 export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useLocalStorage('searchValue', '');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const cleanedValue: string = e.target.value.replace(/[^a-zA-Z]/g, '');
