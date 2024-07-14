@@ -1,6 +1,7 @@
 import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
-import { getSearchValue, SearchInput } from '../input/SearchInput';
+import { SearchInput } from '../input/SearchInput';
+import { getSearchValue } from '../input/searchInputStore';
 import style from './searchSection..module.scss';
 
 type callbackProps = { callback: (searchInput: string) => void };

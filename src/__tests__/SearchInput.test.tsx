@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { getSearchValue, SearchInput } from '../components/input/SearchInput';
+import { SearchInput } from '../components/input/SearchInput';
 import { firstLetterUppercase } from '../utils/utils';
+import { getSearchValue } from '../components/input/searchInputStore';
 
 test('render test', () => {
   render(
