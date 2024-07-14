@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { Pagination } from '../components/pagination/Pagination';
 import { BrowserRouter } from 'react-router-dom';
 import { TestPokemon } from './__mock__';
-import { PokemonData } from '../api/restApi';
 import { useState } from 'react';
+import { PokemonData } from '../interface/interface';
 
 const pokemonList: PokemonData[] = Array.from(
   { length: 100 },
@@ -28,7 +28,7 @@ test('render test', () => {
       <TestComponent />
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/Pokemon's found/i);
+  const linkElement = screen.getByText(/Pokes found/i);
   expect(linkElement).toBeInTheDocument();
   const linkElement2 = screen.getByText(/100/i);
   expect(linkElement2).toBeInTheDocument();

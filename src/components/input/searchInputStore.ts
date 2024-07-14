@@ -1,4 +1,4 @@
-let _searchStore = {
+const _searchStore = {
   value: '',
 };
 

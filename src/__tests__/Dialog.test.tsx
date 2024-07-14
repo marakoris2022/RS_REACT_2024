@@ -1,11 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import {
-  closeDialog,
-  Dialog,
-  DialogType,
-  openDialog,
-} from '../components/dialog/Dialog';
+import { Dialog } from '../components/dialog/Dialog';
+import { closeDialog, openDialog } from '../components/dialog/dialogStore';
+import { DialogType } from '../interface/interface';
 
 test('render test', () => {
   render(
