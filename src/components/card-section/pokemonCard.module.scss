@@ -1,0 +1,165 @@
+.background {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
+  transform: translate(100%);
+}
+
+.backgroundActive {
+  transform: translate(0);
+}
+
+.wrapper {
+  padding: 15px;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  border-top-left-radius: 10px;
+  background-color: rgba(0, 128, 0, 0.8);
+  width: 55%;
+}
+
+.pokemonCardWrapper {
+  position: relative;
+
+  width: 300px;
+
+  margin: 15px 5vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: radial-gradient(
+    circle,
+    rgba(247, 147, 78, 1) 0%,
+    rgba(253, 187, 72, 1) 100%
+  );
+  border-radius: 15px;
+  border: ridge 6px rgb(225, 126, 21);
+  padding: 10px 20px;
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    width: 73%;
+  }
+  .pokemonCardWrapper {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 90%;
+  }
+  .pokemonCardWrapper {
+    margin: 0 auto;
+    width: 260px;
+  }
+}
+
+.pokemonCardWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  transform: rotateZ(1deg);
+  border: 2px rgb(255, 255, 0) solid;
+  border-radius: 5px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.pokemonCardWrapper p {
+  margin: 0;
+  padding: 0;
+}
+
+.iconsWrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.pokemonCardTitle {
+  letter-spacing: 2px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+}
+
+.bodyCharatWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.cardH3 {
+  text-align: center;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.cardUl {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: start;
+  margin: 0;
+  padding: 0;
+}
+
+.cardLi {
+  list-style: none;
+  margin-bottom: 3px;
+}
+
+.abilItemsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.specMovesWrapper {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 2px brown solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.statItemWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.statName {
+  width: 150px;
+}
+.statValue {
+  width: 60px;
+}
+
+.statValueHp {
+  width: 144px;
+  text-align: center;
+
+  background-color: red;
+  border-radius: 10px;
+  border: ridge 3px rgb(225, 126, 21);
+}
+.statNameHp {
+  width: 60px;
+}
