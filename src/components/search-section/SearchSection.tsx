@@ -1,6 +1,6 @@
 import { Button, ButtonType } from '../button/Button';
 import { getSearchValue, SearchInput } from '../input/SearchInput';
-import './searchSection.css';
+import style from './searchSection..module.scss';
 
 type callbackProps = { callback: (searchInput: string) => void };
 
@@ -10,9 +10,9 @@ export const SearchSection = ({ callback }: callbackProps) => {
   }
 
   return (
-    <section className="search__section">
+    <section className={style.searchSection}>
       <div className="container">
-        <div className="search__wrapper">
+        <div className={style.searchWrapper}>
           <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
           <Button
             onClick={handleSearchRequest}
