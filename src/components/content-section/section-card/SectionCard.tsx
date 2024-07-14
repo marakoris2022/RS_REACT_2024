@@ -10,6 +10,13 @@ type SectionCardProps = {
   pokemon: PokemonData;
 };
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
 export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -17,6 +24,7 @@ export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
 
   function handleClick() {
     setCardSelected(pokemon);
+    scrollToTop();
   }
 
   useEffect(() => {
