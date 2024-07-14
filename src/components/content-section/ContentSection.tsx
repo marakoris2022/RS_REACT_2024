@@ -3,8 +3,8 @@ import { PokemonListContext } from '../../App';
 import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
-import { PokemonData } from '../../api/restApi';
 import { Pagination } from '../pagination/Pagination';
+import { PokemonData } from '../../interface/interface';
 
 type ContentSectionProps = {
   cardSelected: PokemonData | null;

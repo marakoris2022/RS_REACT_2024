@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
-import { PokemonData } from '../../api/restApi';
-import { Button, ButtonType } from '../button/Button';
+import { useEffect } from 'react';
+import { Button } from '../button/Button';
 import style from './pagination.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { updateQueryParams } from '../../utils/utils';
-
-export type PaginationProps = {
-  pageNum: number;
-  setPageNum: React.Dispatch<React.SetStateAction<number>>;
-  pokemonList: PokemonData[];
-};
+import { ButtonType, PaginationProps } from '../../interface/interface';
 
 export const Pagination = ({
   pageNum,
@@ -63,7 +57,7 @@ export const Pagination = ({
 
   return (
     <div className={style.wrapper}>
-      <div>Pokemon's found: {pokemonList.length}</div>
+      <div>Pokes found: {pokemonList.length}</div>
 
       <Button
         onClick={() => handlePageClick(1)}

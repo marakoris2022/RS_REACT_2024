@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { PokemonData } from '../../../api/restApi';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
 import { useLocation } from 'react-router-dom';
+import { PokemonData } from '../../../interface/interface';
 
 type SectionCardProps = {
   setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
@@ -20,7 +20,7 @@ function scrollToTop() {
 export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  let pokename = queryParams.get('pokename');
+  const pokename = queryParams.get('pokename');
 
   function handleClick() {
     setCardSelected(pokemon);

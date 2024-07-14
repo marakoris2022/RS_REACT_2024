@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { PokemonData } from '../../api/restApi';
 import style from './pokemonCard.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { firstLetterUppercase, updateQueryParams } from '../../utils/utils';
-import { Button, ButtonType } from '../button/Button';
+import { Button } from '../button/Button';
 import { PokemonIcon } from '../pokemon-icon/PokemonIcon';
 import ExpIco from '/exp-ico.svg';
 import AbilIco from '/abil-ico.svg';
 import ItemsIco from '/items-ico.svg';
 import SpecialIco from '/special-ico.svg';
 import StatsIco from '/stats-ico.svg';
+import { ButtonType, PokemonData } from '../../interface/interface';
 
 type CardSectionProps = {
   cardSelected: PokemonData | null;
@@ -26,7 +26,7 @@ export const PokemonCard = ({
 
   useEffect(() => {
     if (cardSelected) {
-      updateQueryParams({ pokename: cardSelected?.name! }, navigate, location);
+      updateQueryParams({ pokename: cardSelected.name }, navigate, location);
       setActive(true);
     }
   }, [cardSelected]);

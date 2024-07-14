@@ -1,9 +1,5 @@
+import { ButtonType } from '../../interface/interface';
 import style from './button.module.scss';
-
-export enum ButtonType {
-  GREEN = 'greenButton',
-  RED = 'redButton',
-}
 
 type ButtonProps = {
   title: string;

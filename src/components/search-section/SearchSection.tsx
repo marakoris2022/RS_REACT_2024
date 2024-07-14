@@ -1,4 +1,5 @@
-import { Button, ButtonType } from '../button/Button';
+import { ButtonType } from '../../interface/interface';
+import { Button } from '../button/Button';
 import { getSearchValue, SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
 

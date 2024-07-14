@@ -1,15 +1,10 @@
 import { createContext, useEffect, useState } from 'react';
 import './App.css';
 import { ContentSection } from './components/content-section/ContentSection';
-import {
-  closeDialog,
-  Dialog,
-  DialogType,
-  openDialog,
-} from './components/dialog/Dialog';
+import { Dialog } from './components/dialog/Dialog';
 import { ErrorBoundary } from './components/error-boundarie/ErrorBoundarie';
 import { SearchSection } from './components/search-section/SearchSection';
-import { PokemonData, searchPokemonListByName } from './api/restApi';
+import { searchPokemonListByName } from './api/restApi';
 import {
   getSearchValueFromLocalStorage,
   setSearchValueToLocalStorage,
@@ -19,6 +14,8 @@ import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
 import { PokemonCard } from './components/card-section/PokemonCard';
 import { MainSection } from './components/main-section/MainSection';
+import { DialogType, PokemonData } from './interface/interface';
+import { closeDialog, openDialog } from './components/dialog/dialogStore';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 

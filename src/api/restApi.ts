@@ -1,49 +1,4 @@
-export type PokemonData = {
-  abilities: {
-    ability: {
-      name: string;
-    };
-  }[];
-  base_experience: number;
-  held_items: {
-    item: {
-      name: string;
-    };
-  }[];
-  moves: {
-    move: {
-      name: string;
-    };
-  }[];
-  name: string;
-  weight: number;
-  height: number;
-  sprites: {
-    front_default: string;
-    back_default: string;
-  };
-  stats: {
-    stat: {
-      name: string;
-    };
-    base_stat: number;
-  }[];
-  types: {
-    type: {
-      name: string;
-    };
-  }[];
-};
-
-export type PokemonListData = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: {
-    name: string;
-    url: string;
-  }[];
-};
+import { PokemonData, PokemonListData } from '../interface/interface';
 
 const URL = 'https://pokeapi.co/api/v2/';
 
@@ -70,7 +25,7 @@ export const searchPokemonListByName = async (query: string) => {
   const fetchData = await fetch(allPokemonUrl);
   const respond: PokemonListData = await fetchData.json();
 
-  let promiseArr: Promise<PokemonData>[] = [];
+  const promiseArr: Promise<PokemonData>[] = [];
 
   if (query) {
     const filteredPokemon = respond.results.filter((pokemon) =>
