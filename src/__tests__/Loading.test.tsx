@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import App from '../App';
-import { BrowserRouter } from 'react-router-dom'; // Import the appropriate router
+import { BrowserRouter } from 'react-router-dom';
+import { Loading } from '../components/loading/Loading';
 
 test('render test', () => {
   render(
     <BrowserRouter>
-      <App />
+      <Loading />
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/Search request/i);
+  const linkElement = screen.getByText(/Loading.../i);
   expect(linkElement).toBeInTheDocument();
 });

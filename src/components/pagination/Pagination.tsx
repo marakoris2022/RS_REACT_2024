@@ -5,7 +5,7 @@ import style from './pagination.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { updateQueryParams } from '../../utils/utils';
 
-type PaginationProps = {
+export type PaginationProps = {
   pageNum: number;
   setPageNum: React.Dispatch<React.SetStateAction<number>>;
   pokemonList: PokemonData[];

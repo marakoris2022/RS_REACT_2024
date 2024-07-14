@@ -34,7 +34,11 @@ export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
   }, []);
 
   return (
-    <div className={style.cardWrapper} onClick={handleClick}>
+    <div
+      data-testid="cardWrapper"
+      className={style.cardWrapper}
+      onClick={handleClick}
+    >
       <p className={style.cardTitle}>{firstLetterUppercase(pokemon.name)}</p>
       <div className={style.iconWrapper}>
         <PokemonIcon
