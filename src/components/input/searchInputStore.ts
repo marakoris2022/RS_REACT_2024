@@ -1,11 +1,11 @@
-const _searchStore = {
-  value: '',
-};
+// const _searchStore = {
+//   value: '',
+// };
 
-export function getSearchValue() {
-  return _searchStore.value;
-}
+// export function getSearchValue() {
+//   return _searchStore.value;
+// }
 
-export function setSerchValue(text: string) {
-  _searchStore.value = text;
-}
+// export function setSerchValue(text: string) {
+//   _searchStore.value = text;
+// }

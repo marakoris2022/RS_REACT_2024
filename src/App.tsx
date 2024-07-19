@@ -16,6 +16,8 @@ import { PokemonCard } from './components/card-section/PokemonCard';
 import { MainSection } from './components/main-section/MainSection';
 import { DialogType, PokemonData } from './interface/interface';
 import { closeDialog, openDialog } from './components/dialog/dialogStore';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
@@ -57,16 +59,18 @@ function App() {
   }, []);
 
   const MainLayout = () => (
-    <PokemonListContext.Provider value={pokemonDataListState}>
-      <SearchSection callback={requestPokemonData} />
-      <MainSection>
-        <Outlet />
-        <PokemonCard
-          cardSelected={cardSelected}
-          setCardSelected={setCardSelected}
-        />
-      </MainSection>
-    </PokemonListContext.Provider>
+    <Provider store={store}>
+      <PokemonListContext.Provider value={pokemonDataListState}>
+        <SearchSection callback={requestPokemonData} />
+        <MainSection>
+          <Outlet />
+          <PokemonCard
+            cardSelected={cardSelected}
+            setCardSelected={setCardSelected}
+          />
+        </MainSection>
+      </PokemonListContext.Provider>
+    </Provider>
   );
 
   return (

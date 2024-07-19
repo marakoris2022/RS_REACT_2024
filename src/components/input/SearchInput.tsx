@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import styles from './input.module.scss';
 import { getSearchValueFromLocalStorage } from '../../utils/utils';
 import useLocalStorage from '../../custom-hooks/useLocalStorage';
-import { setSerchValue } from './searchInputStore';
+import { useDispatch } from 'react-redux';
+import { setSearchValue } from '../../store/store';
+// import { setSerchValue } from './searchInputStore';
 
 type InputProps = {
   placeholder: string;
@@ -11,12 +13,14 @@ type InputProps = {
 
 export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
   const [value, setValue] = useLocalStorage('searchValue', '');
+  const dispatch = useDispatch();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const cleanedValue: string = e.target.value.replace(/[^a-zA-Z]/g, '');
 
     setValue(cleanedValue.toLocaleLowerCase());
-    setSerchValue(cleanedValue.toLocaleLowerCase());
+    dispatch(setSearchValue(cleanedValue.toLocaleLowerCase()));
+    // setSerchValue(cleanedValue.toLocaleLowerCase());
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -29,7 +33,9 @@ export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
     const searchValueFromLS = getSearchValueFromLocalStorage();
     if (searchValueFromLS) {
       setValue(searchValueFromLS);
-      setSerchValue(searchValueFromLS);
+      dispatch(setSearchValue(searchValueFromLS));
+
+      // setSerchValue(searchValueFromLS);
     }
   }, []);
 

@@ -1,14 +1,17 @@
+import { useSelector } from 'react-redux';
 import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
-import { getSearchValue } from '../input/searchInputStore';
 import style from './searchSection..module.scss';
+import { RootState } from '../../store/store';
 
 type callbackProps = { callback: (searchInput: string) => void };
 
 export const SearchSection = ({ callback }: callbackProps) => {
+  const searchValue = useSelector((state: RootState) => state.core.searchValue);
+
   function handleSearchRequest() {
-    callback(getSearchValue());
+    callback(searchValue);
   }
 
   return (
