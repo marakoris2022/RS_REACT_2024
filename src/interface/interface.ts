@@ -66,3 +66,14 @@ export type PaginationProps = {
   setPageNum: React.Dispatch<React.SetStateAction<number>>;
   pokemonList: PokemonData[];
 };
+
+export type CardComponent = {
+  cardSelected: PokemonData;
+};
+
+export interface CardWrapper extends CardComponent {
+  handleClick: (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+  ) => void;
+  children: JSX.Element;
+}

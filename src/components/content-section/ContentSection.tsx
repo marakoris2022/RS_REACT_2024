@@ -10,9 +10,9 @@ import { RootState } from '../../store/store';
 type ContentSectionProps = {};
 
 export const ContentSection = ({}: ContentSectionProps) => {
-  const pokemonList = useSelector((state: RootState) => {
-    return state.pokeList.pokemonDataList;
-  });
+  const pokemonList = useSelector(
+    (state: RootState) => state.pokeList.pokemonDataList
+  );
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
   const prevPokemonList = useRef(pokemonList);
