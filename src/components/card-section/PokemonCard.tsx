@@ -9,20 +9,20 @@ import AbilIco from '/abil-ico.svg';
 import ItemsIco from '/items-ico.svg';
 import SpecialIco from '/special-ico.svg';
 import StatsIco from '/stats-ico.svg';
-import { ButtonType, PokemonData } from '../../interface/interface';
+import { ButtonType } from '../../interface/interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState, setPokemonCard } from '../../store/store';
 
-type CardSectionProps = {
-  cardSelected: PokemonData | null;
-  setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
-};
+type CardSectionProps = {};
 
-export const PokemonCard = ({
-  cardSelected,
-  setCardSelected,
-}: CardSectionProps) => {
+export const PokemonCard = ({}: CardSectionProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
+  const cardSelected = useSelector(
+    (state: RootState) => state.pokeCard.pokemonCard
+  );
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     if (cardSelected) {
@@ -39,7 +39,7 @@ export const PokemonCard = ({
       setActive(false);
       updateQueryParams({ pokename: '' }, navigate, location);
       setTimeout(() => {
-        setCardSelected(null);
+        dispatch(setPokemonCard(null));
       }, 300);
     }
   }

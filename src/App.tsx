@@ -4,11 +4,7 @@ import { ContentSection } from './components/content-section/ContentSection';
 import { Dialog } from './components/dialog/Dialog';
 import { ErrorBoundary } from './components/error-boundarie/ErrorBoundarie';
 import { SearchSection } from './components/search-section/SearchSection';
-import { searchPokemonListByName } from './api/restApi';
-import {
-  getSearchValueFromLocalStorage,
-  setSearchValueToLocalStorage,
-} from './utils/utils';
+import { getSearchValueFromLocalStorage } from './utils/utils';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
@@ -16,23 +12,13 @@ import { PokemonCard } from './components/card-section/PokemonCard';
 import { MainSection } from './components/main-section/MainSection';
 import { DialogType, PokemonData } from './interface/interface';
 import { closeDialog, openDialog } from './components/dialog/dialogStore';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, fetchPokemonData } from './store/store';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
 function App() {
-  const [pokemonDataListState, setPokemonDataListState] = useState<
-    PokemonData[]
-  >([]);
-
-  const [cardSelected, setCardSelected] = useState<PokemonData | null>(null);
-
-  function saveToLsIfSuccess(searchInput: string, pokemonData: PokemonData[]) {
-    if (pokemonData.length) {
-      setSearchValueToLocalStorage(searchInput);
-    }
-  }
+  const dispatch: AppDispatch = useDispatch();
 
   const dialogContent = (
     <div>
@@ -42,35 +28,25 @@ function App() {
 
   async function requestPokemonData(searchInput: string) {
     openDialog(dialogContent, DialogType.INFO);
-    setPokemonDataListState([]);
-    const pokemonData = await searchPokemonListByName(searchInput);
-    saveToLsIfSuccess(searchInput, pokemonData);
-    setPokemonDataListState(pokemonData);
+    await dispatch(fetchPokemonData(searchInput));
     closeDialog();
   }
 
   useEffect(() => {
     const searchValue = getSearchValueFromLocalStorage();
-    if (searchValue) {
-      requestPokemonData(searchValue);
-      return;
-    }
-    requestPokemonData('');
+    requestPokemonData(searchValue ?? '');
   }, []);
 
   const MainLayout = () => (
-    <Provider store={store}>
-      <PokemonListContext.Provider value={pokemonDataListState}>
-        <SearchSection callback={requestPokemonData} />
-        <MainSection>
-          <Outlet />
-          <PokemonCard
-            cardSelected={cardSelected}
-            setCardSelected={setCardSelected}
-          />
-        </MainSection>
-      </PokemonListContext.Provider>
-    </Provider>
+    // <PokemonListContext.Provider value={pokemonDataList}>
+    <>
+      <SearchSection callback={requestPokemonData} />
+      <MainSection>
+        <Outlet />
+        <PokemonCard />
+      </MainSection>
+    </>
+    // </PokemonListContext.Provider>
   );
 
   return (
@@ -79,15 +55,7 @@ function App() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route
-              index
-              element={
-                <ContentSection
-                  cardSelected={cardSelected}
-                  setCardSelected={setCardSelected}
-                />
-              }
-            />
+            <Route index element={<ContentSection />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

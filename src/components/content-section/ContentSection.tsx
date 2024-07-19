@@ -1,24 +1,25 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { PokemonListContext } from '../../App';
+import { useEffect, useRef, useState } from 'react';
 import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
 import { PokemonData } from '../../interface/interface';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-type ContentSectionProps = {
-  cardSelected: PokemonData | null;
-  setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
-};
+type ContentSectionProps = {};
 
-export const ContentSection = ({
-  cardSelected,
-  setCardSelected,
-}: ContentSectionProps) => {
-  const pokemonList = useContext(PokemonListContext);
+export const ContentSection = ({}: ContentSectionProps) => {
+  const pokemonList = useSelector((state: RootState) => {
+    return state.pokeList.pokemonDataList;
+  });
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
   const prevPokemonList = useRef(pokemonList);
+
+  const cardSelected = useSelector(
+    (state: RootState) => state.pokeCard.pokemonCard
+  );
 
   function getPaginatePokemonList(pokemonList: PokemonData[], pageNum: number) {
     const totalPokes = pokemonList.length;
@@ -46,13 +47,7 @@ export const ContentSection = ({
             <>
               <div className={style.sectionCardsWrapper}>
                 {viewPokemonList.map((pokemon) => {
-                  return (
-                    <SectionCard
-                      setCardSelected={setCardSelected}
-                      key={pokemon.name}
-                      pokemon={pokemon}
-                    />
-                  );
+                  return <SectionCard pokemon={pokemon} key={pokemon.name} />;
                 })}
               </div>
               <div>

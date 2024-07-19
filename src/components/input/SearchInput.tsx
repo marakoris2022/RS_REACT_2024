@@ -4,7 +4,6 @@ import { getSearchValueFromLocalStorage } from '../../utils/utils';
 import useLocalStorage from '../../custom-hooks/useLocalStorage';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../store/store';
-// import { setSerchValue } from './searchInputStore';
 
 type InputProps = {
   placeholder: string;
@@ -20,7 +19,6 @@ export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
 
     setValue(cleanedValue.toLocaleLowerCase());
     dispatch(setSearchValue(cleanedValue.toLocaleLowerCase()));
-    // setSerchValue(cleanedValue.toLocaleLowerCase());
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -34,8 +32,6 @@ export const SearchInput = ({ placeholder, onKeyDown }: InputProps) => {
     if (searchValueFromLS) {
       setValue(searchValueFromLS);
       dispatch(setSearchValue(searchValueFromLS));
-
-      // setSerchValue(searchValueFromLS);
     }
   }, []);
 

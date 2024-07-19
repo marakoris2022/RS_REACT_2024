@@ -4,9 +4,10 @@ import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
 import { useLocation } from 'react-router-dom';
 import { PokemonData } from '../../../interface/interface';
+import { AppDispatch, setPokemonCard } from '../../../store/store';
+import { useDispatch } from 'react-redux';
 
 type SectionCardProps = {
-  setCardSelected: React.Dispatch<React.SetStateAction<PokemonData | null>>;
   pokemon: PokemonData;
 };
 
@@ -17,19 +18,21 @@ function scrollToTop() {
   });
 }
 
-export const SectionCard = ({ setCardSelected, pokemon }: SectionCardProps) => {
+export const SectionCard = ({ pokemon }: SectionCardProps) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const pokename = queryParams.get('pokename');
 
+  const dispatch: AppDispatch = useDispatch();
+
   function handleClick() {
-    setCardSelected(pokemon);
+    dispatch(setPokemonCard(pokemon));
     scrollToTop();
   }
 
   useEffect(() => {
     if (pokename && pokename === pokemon.name) {
-      setCardSelected(pokemon);
+      dispatch(setPokemonCard(pokemon));
     }
   }, []);
 
