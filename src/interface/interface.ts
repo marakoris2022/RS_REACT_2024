@@ -49,6 +49,7 @@ export type PokemonData = {
       name: string;
     };
   }[];
+  checked: boolean;
 };
 
 export type PokemonListData = {

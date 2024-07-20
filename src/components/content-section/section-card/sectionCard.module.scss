@@ -66,6 +66,39 @@
   gap: 10px;
 }
 
+.checkboxWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkboxWrapper label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.checkboxWrapper:hover {
+  background-color: rgba(255, 140, 0, 0.3);
+  border-radius: 5px;
+}
+
+.checkboxWrapper input {
+  margin-right: 15px;
+
+  appearance: none;
+  background-color: rgb(249, 181, 97);
+  border: 2px solid #415674;
+  height: 1em;
+  width: 1em;
+  border-radius: 5px;
+  vertical-align: text-bottom;
+  position: relative;
+}
+.checkboxWrapper input:checked {
+  background: red;
+}
+
 .contentWrapper {
   display: flex;
   flex-direction: column;

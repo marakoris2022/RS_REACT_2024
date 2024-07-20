@@ -4,8 +4,9 @@ import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
 import { useLocation } from 'react-router-dom';
 import { PokemonData } from '../../../interface/interface';
-import { AppDispatch, setPokemonCard } from '../../../store/store';
-import { useDispatch } from 'react-redux';
+import { AppDispatch, RootState, setPokemonCard } from '../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { CardCheckbox } from './card-checkbox/CardCheckbox';
 
 type SectionCardProps = {
   pokemon: PokemonData;
@@ -24,6 +25,9 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
   const pokename = queryParams.get('pokename');
 
   const dispatch: AppDispatch = useDispatch();
+  const chosenPokes = useSelector(
+    (state: RootState) => state.pokeList.chosenPokes
+  );
 
   function handleClick() {
     dispatch(setPokemonCard(pokemon));
@@ -35,6 +39,14 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
       dispatch(setPokemonCard(pokemon));
     }
   }, []);
+
+  function isPokemonChoosen(pokemon: PokemonData) {
+    if (!chosenPokes) return false;
+    for (let i = 0; i < chosenPokes.length; i++) {
+      if (chosenPokes[i].name === pokemon.name) return true;
+    }
+    return false;
+  }
 
   return (
     <div
@@ -55,6 +67,17 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
         </div>
       </div>
       <div className={style.contentWrapper}>
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={style.checkboxWrapper}
+        >
+          <CardCheckbox
+            label={isPokemonChoosen(pokemon) ? 'In Inventory.' : 'Catch!'}
+            isActive={isPokemonChoosen(pokemon)}
+            pokemon={pokemon}
+          />
+        </div>
+
         <div>
           <span className={style.contentTitle}>Type:</span>
           {firstLetterUppercase(pokemon.types[0].type.name)}

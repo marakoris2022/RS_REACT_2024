@@ -21,7 +21,7 @@ export const getPokemonDataByName = async (name: string) => {
 };
 
 export const searchPokemonListByName = async (query: string) => {
-  const allPokemonUrl = URL + `pokemon?limit=10000`;
+  const allPokemonUrl = URL + `pokemon?limit=${query.length < 2 ? 100 : 10000}`;
   const fetchData = await fetch(allPokemonUrl);
   const respond: PokemonListData = await fetchData.json();
 

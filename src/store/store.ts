@@ -11,6 +11,7 @@ enum FetchingDataStatus {
   FETCHING = 'Fetching',
   READY = 'Ready',
   IDLE = 'Idle',
+  ERROR = 'Error',
 }
 
 export const fetchPokemonData = createAsyncThunk<
@@ -37,9 +38,21 @@ const pokemonListSlice = createSlice({
   name: 'pokeList',
   initialState: {
     pokemonDataList: [] as PokemonData[],
+    chosenPokes: [] as PokemonData[],
     type: FetchingDataStatus.IDLE,
   },
-  reducers: {},
+  reducers: {
+    addPoke: (state, action) => {
+      if (!state.chosenPokes.find((poke) => poke.name === action.payload.name)) {
+        state.chosenPokes.push(action.payload);
+      }
+    },
+    removePoke: (state, action) => {
+      state.chosenPokes = state.chosenPokes.filter(
+        (poke) => poke.name !== action.payload.name
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPokemonData.pending, (state) => {
@@ -49,6 +62,9 @@ const pokemonListSlice = createSlice({
       .addCase(fetchPokemonData.fulfilled, (state, action) => {
         state.pokemonDataList = action.payload;
         state.type = FetchingDataStatus.READY;
+      })
+      .addCase(fetchPokemonData.rejected, (state) => {
+        state.type = FetchingDataStatus.ERROR;
       });
   },
 });
@@ -66,7 +82,7 @@ const pokemonCardSlice = createSlice({
 });
 
 export const { setSearchValue } = coreSlice.actions;
-export const {} = pokemonListSlice.actions;
+export const { addPoke, removePoke } = pokemonListSlice.actions;
 export const { setPokemonCard } = pokemonCardSlice.actions;
 
 export const store = configureStore({
