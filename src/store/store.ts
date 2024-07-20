@@ -7,6 +7,11 @@ import { searchPokemonListByName } from '../api/restApi';
 import { PokemonData } from '../interface/interface';
 
 type AsyncThunkConfig = {};
+enum FetchingDataStatus {
+  FETCHING = 'Fetching',
+  READY = 'Ready',
+  IDLE = 'Idle',
+}
 
 export const fetchPokemonData = createAsyncThunk<
   PokemonData[],
@@ -32,12 +37,19 @@ const pokemonListSlice = createSlice({
   name: 'pokeList',
   initialState: {
     pokemonDataList: [] as PokemonData[],
+    type: FetchingDataStatus.IDLE,
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchPokemonData.fulfilled, (state, action) => {
-      state.pokemonDataList = action.payload;
-    });
+    builder
+      .addCase(fetchPokemonData.pending, (state) => {
+        state.pokemonDataList = [];
+        state.type = FetchingDataStatus.FETCHING;
+      })
+      .addCase(fetchPokemonData.fulfilled, (state, action) => {
+        state.pokemonDataList = action.payload;
+        state.type = FetchingDataStatus.READY;
+      });
   },
 });
 
