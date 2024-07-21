@@ -14,6 +14,7 @@ import { DialogType, PokemonData } from './interface/interface';
 import { closeDialog, openDialog } from './components/dialog/dialogStore';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, fetchPokemonData } from './store/store';
+import { Inventory } from './components/inventory/Inventory';
 
 export const PokemonListContext = createContext<PokemonData[]>([]);
 
@@ -41,6 +42,7 @@ function App() {
     // <PokemonListContext.Provider value={pokemonDataList}>
     <>
       <SearchSection callback={requestPokemonData} />
+      <Inventory />
       <MainSection>
         <Outlet />
         <PokemonCard />

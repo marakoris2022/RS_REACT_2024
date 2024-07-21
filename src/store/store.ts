@@ -43,7 +43,9 @@ const pokemonListSlice = createSlice({
   },
   reducers: {
     addPoke: (state, action) => {
-      if (!state.chosenPokes.find((poke) => poke.name === action.payload.name)) {
+      if (
+        !state.chosenPokes.find((poke) => poke.name === action.payload.name)
+      ) {
         state.chosenPokes.push(action.payload);
       }
     },
@@ -51,6 +53,9 @@ const pokemonListSlice = createSlice({
       state.chosenPokes = state.chosenPokes.filter(
         (poke) => poke.name !== action.payload.name
       );
+    },
+    clearPokes: (state) => {
+      state.chosenPokes = [];
     },
   },
   extraReducers: (builder) => {
@@ -82,7 +87,7 @@ const pokemonCardSlice = createSlice({
 });
 
 export const { setSearchValue } = coreSlice.actions;
-export const { addPoke, removePoke } = pokemonListSlice.actions;
+export const { addPoke, removePoke, clearPokes } = pokemonListSlice.actions;
 export const { setPokemonCard } = pokemonCardSlice.actions;
 
 export const store = configureStore({
