@@ -4,6 +4,7 @@ import { Button } from '../button/Button';
 import { ButtonType } from '../../interface/interface';
 import { AppDispatch, clearPokes, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
+import { DownloadButton } from './download-button/DownloadButton';
 
 export const Inventory = () => {
   const [isButtonsActive, setIsButtonsActive] = useState(false);
@@ -24,11 +25,7 @@ export const Inventory = () => {
       <div
         className={`${style.buttonsWrapper} ${isButtonsActive && style.active}`}
       >
-        <Button
-          title="Download"
-          btnType={ButtonType.GREEN}
-          onClick={() => {}}
-        />
+        <DownloadButton />
         <Button
           title="Clear"
           btnType={ButtonType.RED}
