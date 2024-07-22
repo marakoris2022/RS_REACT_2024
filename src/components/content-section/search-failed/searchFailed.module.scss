@@ -11,12 +11,11 @@
   flex-direction: row;
   gap: 15px;
 
-  background: rgb(247, 147, 78);
-  background: radial-gradient(
-    circle,
-    rgba(247, 147, 78, 1) 0%,
-    rgba(253, 187, 72, 1) 100%
-  );
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(247, 147, 78, 1) 0%,
+  //   rgba(253, 187, 72, 1) 100%
+  // );
 
   border-radius: 10px;
   border: outset 3px silver;

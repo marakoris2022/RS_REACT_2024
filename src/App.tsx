@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { ContentSection } from './components/content-section/ContentSection';
 import { Dialog } from './components/dialog/Dialog';
@@ -10,16 +10,16 @@ import { NotFoundPage } from './components/not-found-page/NotFoundPage';
 import RunningPokemon from '/pikachu-running.gif';
 import { PokemonCard } from './components/card-section/PokemonCard';
 import { MainSection } from './components/main-section/MainSection';
-import { DialogType, PokemonData } from './interface/interface';
+import { DialogType } from './interface/interface';
 import { closeDialog, openDialog } from './components/dialog/dialogStore';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, fetchPokemonData } from './store/store';
 import { Inventory } from './components/inventory/Inventory';
-
-export const PokemonListContext = createContext<PokemonData[]>([]);
+import { ThemeContext, themeSettings } from './store/theme';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
+  const [isLightTheme, toggleIsLightTheme] = useState(true);
 
   const dialogContent = (
     <div>
@@ -39,30 +39,39 @@ function App() {
   }, []);
 
   const MainLayout = () => (
-    // <PokemonListContext.Provider value={pokemonDataList}>
     <>
-      <SearchSection callback={requestPokemonData} />
+      <SearchSection
+        requestPokemonData={requestPokemonData}
+        toggleIsLightTheme={toggleIsLightTheme}
+      />
       <Inventory />
       <MainSection>
         <Outlet />
         <PokemonCard />
       </MainSection>
     </>
-    // </PokemonListContext.Provider>
   );
 
+  const themePicker = isLightTheme ? themeSettings.light : themeSettings.dark;
+  const appStyle = {
+    color: themePicker.color,
+    backgroundImage: themePicker.mainBackground,
+  };
+
   return (
-    <>
-      <Dialog />
-      <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<ContentSection />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </ErrorBoundary>
-    </>
+    <ThemeContext.Provider value={themePicker}>
+      <div className="app" style={appStyle}>
+        <Dialog />
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<ContentSection />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </ErrorBoundary>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

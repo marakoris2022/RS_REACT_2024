@@ -5,12 +5,16 @@ body {
   font-weight: 400;
   font-style: normal;
 
-  background-image: url(/back.jpg);
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-
-  overflow-x: hidden;
 }
 
 .container {

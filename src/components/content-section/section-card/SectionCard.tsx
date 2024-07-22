@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
@@ -7,6 +7,7 @@ import { PokemonData } from '../../../interface/interface';
 import { AppDispatch, setPokemonCard } from '../../../store/store';
 import { useDispatch } from 'react-redux';
 import { CardCheckbox } from './card-checkbox/CardCheckbox';
+import { ThemeContext } from '../../../store/theme';
 
 type SectionCardProps = {
   pokemon: PokemonData;
@@ -23,6 +24,7 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const pokename = queryParams.get('pokename');
+  const theme = useContext(ThemeContext);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -39,6 +41,7 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
 
   return (
     <div
+      style={{ background: theme.cardBackground, border: theme.cardBorder }}
       data-testid="cardWrapper"
       className={style.cardWrapper}
       onClick={handleClick}
@@ -47,7 +50,10 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
         <h2 className={style.cardTitle}>
           {firstLetterUppercase(pokemon.name)}
         </h2>
-        <div className={style.iconWrapper}>
+        <div
+          style={{ background: theme.iconBackground }}
+          className={style.iconWrapper}
+        >
           <PokemonIcon
             width={100}
             src={pokemon.sprites.front_default}

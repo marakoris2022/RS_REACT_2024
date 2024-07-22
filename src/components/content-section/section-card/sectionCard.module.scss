@@ -11,12 +11,11 @@
   gap: 15px;
   width: 300px;
 
-  background: rgb(247, 147, 78);
-  background: radial-gradient(
-    circle,
-    rgba(247, 147, 78, 1) 0%,
-    rgba(253, 187, 72, 1) 100%
-  );
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(247, 147, 78, 1) 0%,
+  //   rgba(253, 187, 72, 1) 100%
+  // );
 
   border-radius: 5px;
   border: outset 3px silver;
@@ -117,14 +116,13 @@
   transform: rotateZ(-2deg);
   border-color: rgb(247, 147, 78);
 }
-.cardWrapper:hover {
-  background: rgb(169, 159, 50);
-  background: radial-gradient(
-    circle,
-    rgb(251, 255, 0) 0%,
-    rgb(196, 199, 0) 100%
-  );
-}
+// .cardWrapper:hover {
+//   background: radial-gradient(
+//     circle,
+//     rgb(251, 255, 0) 0%,
+//     rgb(196, 199, 0) 100%
+//   );
+// }
 
 .iconWrapper {
   display: flex;
@@ -138,6 +136,7 @@
 }
 
 .cardTitle {
+  text-align: center;
   letter-spacing: 2px;
   font-family: 'Prompt', sans-serif;
   font-weight: 600;

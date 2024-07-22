@@ -37,11 +37,11 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background: radial-gradient(
-    circle,
-    rgba(247, 147, 78, 1) 0%,
-    rgba(253, 187, 72, 1) 100%
-  );
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(247, 147, 78, 1) 0%,
+  //   rgba(253, 187, 72, 1) 100%
+  // );
   border-radius: 15px;
   border: ridge 6px rgb(225, 126, 21);
   padding: 10px 20px;
@@ -90,11 +90,12 @@
 .iconsWrapper {
   display: flex;
   flex-direction: row;
-  background-color: rgba(255, 255, 255, 0.5);
+  // background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
 }
 
 .pokemonCardTitle {
+  text-align: center;
   letter-spacing: 2px;
   font-family: 'Prompt', sans-serif;
   font-weight: 600;

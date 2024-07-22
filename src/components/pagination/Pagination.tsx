@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button } from '../button/Button';
 import style from './pagination.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { updateQueryParams } from '../../utils/utils';
 import { ButtonType, PaginationProps } from '../../interface/interface';
+import { ThemeContext } from '../../store/theme';
 
 export const Pagination = ({
   pageNum,
@@ -13,6 +14,7 @@ export const Pagination = ({
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
+  const theme = useContext(ThemeContext);
   let frontpage = queryParams.get('frontpage');
 
   const calculateTotalPages = (totalPokes: number) => {
@@ -56,7 +58,7 @@ export const Pagination = ({
   }, []);
 
   return (
-    <div className={style.wrapper}>
+    <div style={{ background: theme.menuBackground }} className={style.wrapper}>
       <div>Pokes found: {pokemonList.length}</div>
 
       <div className={style.paginationSettings}>

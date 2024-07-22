@@ -4,20 +4,38 @@ import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
 import { RootState } from '../../store/store';
+import { ThemeToggle } from '../theme-toggle/ThemeToggle';
+import { useContext } from 'react';
+import { ThemeContext } from '../../store/theme';
 
-type callbackProps = { callback: (searchInput: string) => void };
+type callbackProps = {
+  requestPokemonData: (searchInput: string) => void;
+  toggleIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export const SearchSection = ({ callback }: callbackProps) => {
+export const SearchSection = ({
+  requestPokemonData,
+  toggleIsLightTheme,
+}: callbackProps) => {
   const searchValue = useSelector((state: RootState) => state.core.searchValue);
 
   function handleSearchRequest() {
-    callback(searchValue);
+    requestPokemonData(searchValue);
   }
 
+  const theme = useContext(ThemeContext);
+
   return (
-    <section className={style.searchSection}>
+    <section
+      style={{ backgroundColor: theme.searchWrapperBackground }}
+      className={style.searchSection}
+    >
       <div className="container">
-        <div className={style.searchWrapper}>
+        <div
+          style={{ backgroundColor: theme.menuBackground }}
+          className={style.searchWrapper}
+        >
+          <ThemeToggle toggleIsLightTheme={toggleIsLightTheme} />
           <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
           <Button
             onClick={handleSearchRequest}
