@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { PokemonCard } from '../components/card-section/PokemonCard';
-import { TestPokemon } from './__mock__';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 test('render test', () => {
   render(
     <BrowserRouter>
-      <PokemonCard cardSelected={TestPokemon} setCardSelected={() => {}} />
+      <Provider store={store}>
+        <PokemonCard />
+      </Provider>
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/squirtle/i);
+
+  const linkElement = screen.getByTestId('close-card-back');
   expect(linkElement).toBeInTheDocument();
 });

@@ -24,4 +24,5 @@ export const TestPokemon: PokemonData = {
     { stat: { name: 'speed' }, base_stat: 43 },
   ],
   types: [{ type: { name: 'water' } }],
+  checked: false,
 };

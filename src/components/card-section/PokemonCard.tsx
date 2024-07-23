@@ -43,6 +43,7 @@ export const PokemonCard = ({}: CardSectionProps) => {
       onClick={handleClick}
       className={`${style.background} ${cardSelected ? style.backgroundActive : ''}`}
       id="close-card-back"
+      data-testid="close-card-back"
     >
       {cardSelected ? (
         <CardHeader cardSelected={cardSelected} handleClick={handleClick}>

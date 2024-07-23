@@ -2,12 +2,16 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { SearchInput } from '../components/input/SearchInput';
 import { firstLetterUppercase } from '../utils/utils';
-import { getSearchValue } from '../components/input/searchInputStore';
+import { Provider, useSelector } from 'react-redux';
+import { RootState, store } from '../store/store';
+import React from 'react';
 
 test('render test', () => {
   render(
     <BrowserRouter>
-      <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      <Provider store={store}>
+        <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      </Provider>
     </BrowserRouter>
   );
   const linkElement = screen.getByPlaceholderText('Test Search...');
@@ -17,7 +21,9 @@ test('render test', () => {
 test('function test', () => {
   render(
     <BrowserRouter>
-      <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      <Provider store={store}>
+        <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      </Provider>
     </BrowserRouter>
   );
 
@@ -26,21 +32,32 @@ test('function test', () => {
   fireEvent.keyDown(inputElement, { key: 'Enter', code: 'Enter' });
 });
 
+const TestComponent = () => {
+  const value = useSelector((state: RootState) => state.core.searchValue);
+  return <div data-testid="search-value">{value}</div>;
+};
+
 test('getSearchValue function test', () => {
   render(
     <BrowserRouter>
-      <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      <Provider store={store}>
+        <>
+          <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+          <TestComponent />
+        </>
+      </Provider>
     </BrowserRouter>
   );
 
-  let value = getSearchValue();
-  expect(value).toEqual('');
+  const searchValueElement = screen.getByTestId('search-value');
+  expect(searchValueElement.textContent).toEqual('');
 
   const testText = firstLetterUppercase('Test input');
 
   const inputElement = screen.getByPlaceholderText('Test Search...');
   fireEvent.change(inputElement, { target: { value: testText } });
 
-  value = getSearchValue();
-  expect(value).toEqual('testinput');
+  fireEvent.keyDown(inputElement, { key: 'Enter', code: 'Enter' });
+
+  expect(searchValueElement.textContent).toEqual('testinput');
 });
