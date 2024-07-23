@@ -22,26 +22,30 @@ export const Inventory = () => {
 
   return (
     <div
-      onClick={handleClick}
-      className={`${style.inventoryWrapper} ${isButtonsActive && style.active} ${chosenPokes.length < 1 && style.hidden}`}
+      className={`${style.backgroundWrapper} ${chosenPokes.length < 1 && style.hidden}`}
     >
       <div
-        style={{ backgroundColor: theme.menuBackground }}
-        className={`${style.buttonsWrapper} ${isButtonsActive && style.active}`}
+        onClick={handleClick}
+        className={`${style.inventoryWrapper} ${isButtonsActive && style.active}`}
       >
-        <DownloadButton />
-        <Button
-          title="Clear"
-          btnType={ButtonType.RED}
-          onClick={() => {
-            dispatch(clearPokes());
-          }}
-        />
-      </div>
-      <div className={style.counterWrapper}>
-        <span style={{ color: 'black' }} className={style.counter}>
-          {chosenPokes.length}
-        </span>
+        <div
+          style={{ backgroundColor: theme.menuBackground }}
+          className={`${style.buttonsWrapper} ${isButtonsActive && style.active}`}
+        >
+          <DownloadButton />
+          <Button
+            title="Clear"
+            btnType={ButtonType.RED}
+            onClick={() => {
+              dispatch(clearPokes());
+            }}
+          />
+        </div>
+        <div className={style.counterWrapper}>
+          <span style={{ color: 'black' }} className={style.counter}>
+            {chosenPokes.length}
+          </span>
+        </div>
       </div>
     </div>
   );

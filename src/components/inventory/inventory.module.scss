@@ -1,9 +1,44 @@
-.inventoryWrapper {
+.backgroundWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 93px;
+  height: 93px;
+
   position: fixed;
-
-  cursor: pointer;
-
   z-index: 999;
+  bottom: 80px;
+  right: 20px;
+
+  border-radius: 50%;
+
+  animation: rainbow-animation 2000ms linear infinite;
+}
+
+@keyframes rainbow-animation {
+  0% {
+    background-color: red;
+  }
+  20% {
+    background-color: orange;
+  }
+  40% {
+    background-color: yellow;
+  }
+  60% {
+    background-color: green;
+  }
+  80% {
+    background-color: blue;
+  }
+  100% {
+    background-color: violet;
+  }
+}
+
+.inventoryWrapper {
+  cursor: pointer;
 
   width: 80px;
   height: 80px;
@@ -11,15 +46,12 @@
   background-image: url('/pokeball-pokemon-svgrepo-com.svg');
   background-size: cover;
 
-  bottom: 80px;
-  right: 20px;
-
   animation: 0.3s linear 0s infinite alternate pulse;
 
   filter: drop-shadow(7px 7px 7px #000000);
 }
 
-.inventoryWrapper.hidden {
+.backgroundWrapper.hidden {
   display: none;
 }
 
