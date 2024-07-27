@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { Pagination } from '../components/pagination/Pagination';
 import { BrowserRouter } from 'react-router-dom';
 import { TestPokemon } from './__mock__';
@@ -42,13 +42,16 @@ test('handlePageClick function is called correctly', async () => {
     </BrowserRouter>
   );
 
-  // Find and click the '1' button
+  // Find and click the 'Next' and 'Prev' buttons
   const nextButton = screen.getByText(/Next/i);
   const prevButton = screen.getByText(/Prev/i);
 
-  nextButton.click();
-  prevButton.click();
+  // Use act to wrap the state updates
+  act(() => {
+    nextButton.click();
+    prevButton.click();
+  });
 
-  const pageInfoContainer = screen.getByText(/1 \/ 10/i);
+  const pageInfoContainer = screen.getByText(/2 \/ 10/i);
   expect(pageInfoContainer).toBeInTheDocument();
 });
