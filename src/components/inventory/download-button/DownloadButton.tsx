@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { Button } from '../../button/Button';
 import { ButtonType } from '../../../interface/interface';
+import { saveAs } from 'file-saver';
 
 export const DownloadButton = () => {
   const chosenPokes = useSelector(
@@ -34,13 +35,8 @@ export const DownloadButton = () => {
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
 
-    const link = document.createElement('a');
     const numberOfItems = chosenPokes.length;
-    link.href = URL.createObjectURL(blob);
-    link.download = `${numberOfItems}_pokemons.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    saveAs(blob, `${numberOfItems}_pokemons.csv`);
   };
 
   return (
