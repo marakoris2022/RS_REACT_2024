@@ -12,9 +12,7 @@ import { CardItems } from './components/CardItems';
 import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
 
-type CardSectionProps = {};
-
-export const PokemonCard = ({}: CardSectionProps) => {
+export const PokemonCard = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const cardSelected = useSelector(

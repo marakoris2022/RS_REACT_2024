@@ -7,9 +7,7 @@ import { PokemonData } from '../../interface/interface';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-type ContentSectionProps = {};
-
-export const ContentSection = ({}: ContentSectionProps) => {
+export const ContentSection = () => {
   const pokemonList = useSelector(
     (state: RootState) => state.pokeList.pokemonDataList
   );

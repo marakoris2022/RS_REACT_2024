@@ -6,7 +6,6 @@ import {
 import { searchPokemonListByName } from '../api/restApi';
 import { PokemonData } from '../interface/interface';
 
-type AsyncThunkConfig = {};
 enum FetchingDataStatus {
   FETCHING = 'Fetching',
   READY = 'Ready',
@@ -17,7 +16,7 @@ enum FetchingDataStatus {
 export const fetchPokemonData = createAsyncThunk<
   PokemonData[],
   string,
-  AsyncThunkConfig
+  Record<string, never>
 >('pokeList/fetchPokemonData', async (name: string) => {
   return await searchPokemonListByName(name);
 });
