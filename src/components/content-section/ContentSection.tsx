@@ -13,8 +13,8 @@ export const ContentSection = () => {
 
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
-  const prevPokemonList = useRef(items?.results);
   const searchValue = useSelector((state: RootState) => state.core.searchValue);
+  const prevPokemonList = useRef(searchValue);
 
   const cardSelected = useSelector(
     (state: RootState) => state.pokeCard.pokemonCard
@@ -56,14 +56,12 @@ export const ContentSection = () => {
 
       setViewPokemonList(getPaginatePokemonList(pokemonsData, pageNum));
 
-      if (prevPokemonList.current !== items?.results) {
+      if (prevPokemonList.current !== searchValue) {
         setPageNum(1);
       }
 
-      prevPokemonList.current = items?.results;
+      prevPokemonList.current = searchValue;
     }
-
-    console.log('isLoading', isLoading);
 
     if (items) {
       test();

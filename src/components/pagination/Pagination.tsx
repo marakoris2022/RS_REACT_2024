@@ -55,7 +55,7 @@ export const Pagination = ({
     }
     setPageNum(Number(frontpage));
     updateQueryParams({ frontpage: frontpage }, navigate, location);
-  }, []);
+  }, [pageNum]);
 
   return (
     <div style={{ background: theme.menuBackground }} className={style.wrapper}>
