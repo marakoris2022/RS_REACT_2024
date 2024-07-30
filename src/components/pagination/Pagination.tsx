@@ -9,7 +9,7 @@ import { ThemeContext } from '../../store/theme';
 export const Pagination = ({
   pageNum,
   setPageNum,
-  pokemonList,
+  pokemonListLength,
 }: PaginationProps) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export const Pagination = ({
   };
 
   const handleNextClick = () => {
-    if (pageNum < calculateTotalPages(pokemonList.length)) {
+    if (pageNum < calculateTotalPages(pokemonListLength)) {
       setPageNum((prev) => prev + 1);
       updateQueryParams(
         { frontpage: String(Number(frontpage) + 1) },
@@ -50,8 +50,8 @@ export const Pagination = ({
 
   useEffect(() => {
     if (!frontpage) frontpage = '1';
-    if (Number(frontpage) > calculateTotalPages(pokemonList.length)) {
-      frontpage = String(calculateTotalPages(pokemonList.length));
+    if (Number(frontpage) > calculateTotalPages(pokemonListLength)) {
+      frontpage = String(calculateTotalPages(pokemonListLength));
     }
     setPageNum(Number(frontpage));
     updateQueryParams({ frontpage: frontpage }, navigate, location);
@@ -59,7 +59,7 @@ export const Pagination = ({
 
   return (
     <div style={{ background: theme.menuBackground }} className={style.wrapper}>
-      <div>Pokes found: {pokemonList.length}</div>
+      <div>Pokes found: {pokemonListLength}</div>
 
       <div className={style.paginationSettings}>
         <Button
@@ -75,7 +75,7 @@ export const Pagination = ({
         />
 
         <div>
-          {pageNum} / {calculateTotalPages(pokemonList.length)}
+          {pageNum} / {calculateTotalPages(pokemonListLength)}
         </div>
 
         <Button
@@ -86,9 +86,9 @@ export const Pagination = ({
 
         <Button
           onClick={() =>
-            handlePageClick(calculateTotalPages(pokemonList.length))
+            handlePageClick(calculateTotalPages(pokemonListLength))
           }
-          title={String(calculateTotalPages(pokemonList.length))}
+          title={String(calculateTotalPages(pokemonListLength))}
           btnType={ButtonType.GREEN}
         />
       </div>

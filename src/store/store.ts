@@ -4,7 +4,8 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { searchPokemonListByName } from '../api/restApi';
-import { PokemonData } from '../interface/interface';
+import { PokemonData, PokemonListData } from '../interface/interface';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 enum FetchingDataStatus {
   FETCHING = 'Fetching',
@@ -20,6 +21,18 @@ export const fetchPokemonData = createAsyncThunk<
 >('pokeList/fetchPokemonData', async (name: string) => {
   return await searchPokemonListByName(name);
 });
+
+export const apiSlice = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  endpoints: (builder) => ({
+    getItems: builder.query<PokemonListData, void>({
+      query: () => 'pokemon?limit=300',
+    }),
+  }),
+});
+
+export const { useGetItemsQuery } = apiSlice;
 
 const coreSlice = createSlice({
   name: 'core',
@@ -94,7 +107,10 @@ export const store = configureStore({
     core: coreSlice.reducer,
     pokeList: pokemonListSlice.reducer,
     pokeCard: pokemonCardSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

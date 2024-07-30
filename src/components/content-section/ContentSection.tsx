@@ -3,17 +3,18 @@ import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
-import { PokemonData } from '../../interface/interface';
+import { PokemonData, PokemonListData } from '../../interface/interface';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState, useGetItemsQuery } from '../../store/store';
+import { getPokemonDataByNames } from '../../api/restApi';
 
 export const ContentSection = () => {
-  const pokemonList = useSelector(
-    (state: RootState) => state.pokeList.pokemonDataList
-  );
+  const { data: items, isLoading } = useGetItemsQuery();
+
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
-  const prevPokemonList = useRef(pokemonList);
+  const prevPokemonList = useRef(items);
+  const searchValue = useSelector((state: RootState) => state.core.searchValue);
 
   const cardSelected = useSelector(
     (state: RootState) => state.pokeCard.pokemonCard
@@ -27,15 +28,46 @@ export const ContentSection = () => {
     return pokemonList.slice((pageNum - 1) * 10, (pageNum - 1) * 10 + 10);
   }
 
-  useEffect(() => {
-    setViewPokemonList(getPaginatePokemonList(pokemonList, pageNum));
+  function getNamesArray(items: PokemonListData) {
+    const namesArr: string[] = [];
+    items.results.forEach((item) => namesArr.push(item.name));
+    return namesArr;
+  }
 
-    if (prevPokemonList.current !== pokemonList) {
-      setPageNum(1);
+  function filterPokemonsFromSearch(pokemons: PokemonListData) {
+    const tempListData: PokemonListData = {
+      count: 0,
+      next: null,
+      previous: null,
+      results: pokemons.results.filter((item) => {
+        return item.name.toLowerCase().includes(searchValue.toLowerCase());
+      }),
+    };
+    tempListData.count = tempListData.results.length;
+    return tempListData;
+  }
+
+  useEffect(() => {
+    async function test() {
+      const pokemonsData = await getPokemonDataByNames(
+        getNamesArray(filterPokemonsFromSearch(items!))
+      );
+
+      setViewPokemonList(getPaginatePokemonList(pokemonsData, pageNum));
+
+      if (prevPokemonList.current !== items) {
+        setPageNum(1);
+      }
+
+      prevPokemonList.current = items;
     }
 
-    prevPokemonList.current = pokemonList;
-  }, [pageNum, pokemonList]);
+    if (items) {
+      test();
+    }
+  }, [pageNum, items, searchValue]);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <section style={{ width: '100%' }}>
@@ -52,7 +84,7 @@ export const ContentSection = () => {
                 <Pagination
                   pageNum={pageNum}
                   setPageNum={setPageNum}
-                  pokemonList={pokemonList}
+                  pokemonListLength={filterPokemonsFromSearch(items!).count}
                 />
               </div>
             </>

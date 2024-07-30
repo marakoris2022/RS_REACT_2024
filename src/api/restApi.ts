@@ -20,6 +20,15 @@ export const getPokemonDataByName = async (name: string) => {
   return respond;
 };
 
+export const getPokemonDataByNames = async (names: string[]) => {
+  const promiseArr: Promise<PokemonData>[] = [];
+  for (let i = 0; i < names.length; i++) {
+    promiseArr.push(getPokemonDataByName(names[i]));
+  }
+
+  return Promise.all(promiseArr);
+};
+
 export const searchPokemonListByName = async (query: string) => {
   const allPokemonUrl = URL + `pokemon?limit=${query.length < 2 ? 100 : 10000}`;
   const fetchData = await fetch(allPokemonUrl);
