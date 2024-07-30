@@ -3,10 +3,15 @@ import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
-import { PokemonData, PokemonListData } from '../../interface/interface';
+import {
+  DialogType,
+  PokemonData,
+  PokemonListData,
+} from '../../interface/interface';
 import { useSelector } from 'react-redux';
 import { RootState, useGetItemsQuery } from '../../store/store';
 import { getPokemonDataByNames } from '../../api/restApi';
+import { closeDialog, openDialog } from '../dialog/dialogStore';
 
 export const ContentSection = () => {
   const { data: items, isLoading } = useGetItemsQuery();
@@ -50,6 +55,7 @@ export const ContentSection = () => {
 
   useEffect(() => {
     async function test() {
+      openDialog(<div>Loading...</div>, DialogType.INFO);
       const pokemonsData = await getPokemonDataByNames(
         getNamesArray(filterPokemonsFromSearch(items!))
       );
@@ -61,6 +67,7 @@ export const ContentSection = () => {
       }
 
       prevPokemonList.current = searchValue;
+      closeDialog();
     }
 
     if (items) {
