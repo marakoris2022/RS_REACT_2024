@@ -12,6 +12,6 @@ test('render test', () => {
       </Provider>
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/Search request/i);
+  const linkElement = screen.getByText(/Search/i);
   expect(linkElement).toBeInTheDocument();
 });

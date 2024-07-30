@@ -5,7 +5,7 @@ import { TestPokemon } from './__mock__';
 import { useState } from 'react';
 import { PokemonData } from '../interface/interface';
 
-const pokemonList: PokemonData[] = Array.from(
+const pokemonMockList: PokemonData[] = Array.from(
   { length: 100 },
   () => TestPokemon
 );
@@ -17,7 +17,7 @@ function TestComponent() {
     <Pagination
       pageNum={pageNum}
       setPageNum={setPageNum}
-      pokemonList={pokemonList}
+      pokemonListLength={pokemonMockList.length}
     />
   );
 }
