@@ -1,27 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
-import { RootState } from '../../store/store';
+import { fetchPokemonData, RootState } from '../../store/store';
 import { ThemeToggle } from '../theme-toggle/ThemeToggle';
 import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
 
 type callbackProps = {
-  requestPokemonData: (searchInput: string) => void;
   toggleIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const SearchSection = ({
-  requestPokemonData,
-  toggleIsLightTheme,
-}: callbackProps) => {
+export const SearchSection = ({ toggleIsLightTheme }: callbackProps) => {
   const searchValue = useSelector((state: RootState) => state.core.searchValue);
+  const dispatch = useDispatch();
 
-  function handleSearchRequest() {
-    requestPokemonData(searchValue);
-  }
+  function handleSearchRequest() {}
 
   const theme = useContext(ThemeContext);
 

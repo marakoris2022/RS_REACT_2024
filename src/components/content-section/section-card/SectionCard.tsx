@@ -2,7 +2,6 @@ import { useContext, useEffect } from 'react';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
-import { useLocation } from 'react-router-dom';
 import { PokemonData } from '../../../interface/interface';
 import { AppDispatch, setPokemonCard } from '../../../store/store';
 import { useDispatch } from 'react-redux';
@@ -21,7 +20,6 @@ function scrollToTop() {
 }
 
 export const SectionCard = ({ pokemon }: SectionCardProps) => {
-  const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const pokename = queryParams.get('pokename');
   const theme = useContext(ThemeContext);
