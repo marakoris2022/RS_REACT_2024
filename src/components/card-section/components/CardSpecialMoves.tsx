@@ -7,7 +7,7 @@ import style from '../pokemonCard.module.scss';
 export const CardSpecialMoves = ({ cardSelected }: CardComponent) => (
   <div className={style.specMovesWrapper}>
     <h3 className={style.cardH3}>
-      Special Moves <img width={14} src={SpecialIco} alt="Special" /> :
+      Special Moves <img width={14} src={SpecialIco.src} alt="Special" /> :
     </h3>
     <ul className={style.cardUl}>
       {cardSelected.moves.length > 0 ? (

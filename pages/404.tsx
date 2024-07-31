@@ -1,14 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../button/Button';
-import style from './newFoundPage.module.scss';
-import ErrPoke from '../../../public/404page.png';
-import { ButtonType } from '../../interface/interface';
+import { Button } from '../src/components/button/Button';
+import style from '../styles/404.module.scss';
+import ErrPoke from '../public/404page.png';
+import { ButtonType } from '../src/interface/interface';
+import { useRouter } from 'next/router';
 
-export const NotFoundPage = () => {
-  const navigate = useNavigate();
-
+const NotFoundPage = () => {
+  const router = useRouter();
   function handleClick() {
-    navigate('/');
+    router.push('/');
   }
 
   return (
@@ -16,7 +15,7 @@ export const NotFoundPage = () => {
       <div className={style.imgWrapper}>
         <img
           className={style.errorImg}
-          src={ErrPoke}
+          src={ErrPoke.src}
           alt="404 Page Not Found"
         />
         <div className={style.btnContainer}>
@@ -30,3 +29,5 @@ export const NotFoundPage = () => {
     </div>
   );
 };
+
+export default NotFoundPage;

@@ -6,7 +6,7 @@ import ItemsIco from '../../../../public/items-ico.svg';
 export const CardItems = ({ cardSelected }: CardComponent) => (
   <div style={{ width: '100%' }}>
     <h3 className={style.cardH3}>
-      Items <img width={14} src={ItemsIco} alt="Items" /> :
+      Items <img width={14} src={ItemsIco.src} alt="Items" /> :
     </h3>
     <ul className={style.cardUl}>
       {cardSelected.held_items.length > 0 ? (

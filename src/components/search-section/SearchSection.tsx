@@ -3,9 +3,9 @@ import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
-import { fetchPokemonData, RootState } from '../../store/store';
+import { AppDispatch, fetchPokemonData, RootState } from '../../store/store';
 import { ThemeToggle } from '../theme-toggle/ThemeToggle';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ThemeContext } from '../../store/theme';
 
 type callbackProps = {
@@ -14,11 +14,17 @@ type callbackProps = {
 
 export const SearchSection = ({ toggleIsLightTheme }: callbackProps) => {
   const searchValue = useSelector((state: RootState) => state.core.searchValue);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  function handleSearchRequest() {}
+  function handleSearchRequest() {
+    dispatch(fetchPokemonData(searchValue));
+  }
 
   const theme = useContext(ThemeContext);
+
+  useEffect(() => {
+    dispatch(fetchPokemonData(searchValue));
+  }, []);
 
   return (
     <section

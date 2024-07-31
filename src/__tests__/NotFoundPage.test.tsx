@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { NotFoundPage } from '../components/not-found-page/NotFoundPage';
+import { NotFoundPage } from '../../pages/404';
 import { BrowserRouter } from 'react-router-dom';
 
 test('render test', () => {

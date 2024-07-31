@@ -6,7 +6,7 @@ import { firstLetterUppercase } from '../../../utils/utils';
 export const CardAbilities = ({ cardSelected }: CardComponent) => (
   <div style={{ width: '100%' }}>
     <h3 className={style.cardH3}>
-      Abilities <img width={14} src={AbilIco} alt="Abil" /> :
+      Abilities <img width={14} src={AbilIco.src} alt="Abil" /> :
     </h3>
     <ul className={style.cardUl}>
       {cardSelected.abilities.length > 0 ? (

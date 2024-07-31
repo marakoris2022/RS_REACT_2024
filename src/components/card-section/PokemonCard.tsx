@@ -1,9 +1,6 @@
 import style from './pokemonCard.module.scss';
-import { useEffect } from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setPokemonCard } from '../../store/store';
-import { updateQueryParams } from '../../utils/utils';
 import { CardHeader } from './components/CardHeader';
 import { CardIcons } from './components/CardIcons';
 import { CardStats } from './components/CardStats';

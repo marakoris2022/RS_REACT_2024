@@ -3,39 +3,58 @@ import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
-import { PokemonData } from '../../interface/interface';
+import { DialogType, PokemonData } from '../../interface/interface';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { closeDialog, openDialog } from '../dialog/dialogStore';
+import runningPokemon from '../../../public/pikachu-running.gif';
 
 export const ContentSection = () => {
-  const pokemonList = useSelector(
-    (state: RootState) => state.pokeList.pokemonDataList
+  const { pokemonDataList, type } = useSelector(
+    (state: RootState) => state.pokeList
   );
   const [pageNum, setPageNum] = useState(1);
   const [viewPokemonList, setViewPokemonList] = useState<PokemonData[]>([]);
-  const prevPokemonList = useRef(pokemonList);
+  const prevPokemonList = useRef(pokemonDataList);
 
   const cardSelected = useSelector(
     (state: RootState) => state.pokeCard.pokemonCard
   );
 
-  function getPaginatePokemonList(pokemonList: PokemonData[], pageNum: number) {
-    const totalPokes = pokemonList.length;
+  function getPaginatePokemonList(
+    pokemonDataList: PokemonData[],
+    pageNum: number
+  ) {
+    const totalPokes = pokemonDataList.length;
     if (pageNum * 10 > totalPokes) {
-      return pokemonList.slice((pageNum - 1) * 10);
+      return pokemonDataList.slice((pageNum - 1) * 10);
     }
-    return pokemonList.slice((pageNum - 1) * 10, (pageNum - 1) * 10 + 10);
+    return pokemonDataList.slice((pageNum - 1) * 10, (pageNum - 1) * 10 + 10);
   }
 
   useEffect(() => {
-    setViewPokemonList(getPaginatePokemonList(pokemonList, pageNum));
+    setViewPokemonList(getPaginatePokemonList(pokemonDataList, pageNum));
 
-    if (prevPokemonList.current !== pokemonList) {
+    if (prevPokemonList.current !== pokemonDataList) {
       setPageNum(1);
     }
 
-    prevPokemonList.current = pokemonList;
-  }, [pageNum, pokemonList]);
+    prevPokemonList.current = pokemonDataList;
+  }, [pageNum, pokemonDataList]);
+
+  useEffect(() => {
+    if (type === 'Fetching') {
+      openDialog(
+        <div>
+          Loading...
+          <img src={runningPokemon.src} />
+        </div>,
+        DialogType.INFO
+      );
+    } else {
+      closeDialog();
+    }
+  }, [type]);
 
   return (
     <section style={{ width: '100%' }}>
@@ -52,7 +71,7 @@ export const ContentSection = () => {
                 <Pagination
                   pageNum={pageNum}
                   setPageNum={setPageNum}
-                  pokemonList={pokemonList}
+                  pokemonList={pokemonDataList}
                 />
               </div>
             </>

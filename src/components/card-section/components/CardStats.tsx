@@ -8,10 +8,10 @@ export const CardStats = ({ cardSelected }: CardComponent) => (
   <div>
     <p>
       Experience: {cardSelected.base_experience}{' '}
-      <img width={12} src={ExpIco} alt="Exp" />
+      <img width={12} src={ExpIco.src} alt="Exp" />
     </p>
     <h3 className={style.cardH3}>
-      Stats <img width={14} src={StatsIco} alt="Stats" /> :
+      Stats <img width={14} src={StatsIco.src} alt="Stats" /> :
     </h3>
     <ul className={style.cardUl}>
       {cardSelected.stats.length > 0 ? (
