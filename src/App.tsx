@@ -5,9 +5,8 @@ import { Dialog } from './components/dialog/Dialog';
 import { ErrorBoundary } from './components/error-boundarie/ErrorBoundarie';
 import { SearchSection } from './components/search-section/SearchSection';
 import { getSearchValueFromLocalStorage } from './utils/utils';
-import { Outlet, Route, Routes } from 'react-router-dom';
 import { NotFoundPage } from './components/not-found-page/NotFoundPage';
-import RunningPokemon from '/pikachu-running.gif';
+import RunningPokemon from '../public/pikachu-running.gif';
 import { PokemonCard } from './components/card-section/PokemonCard';
 import { MainSection } from './components/main-section/MainSection';
 import { DialogType } from './interface/interface';
@@ -23,7 +22,7 @@ function App() {
 
   const dialogContent = (
     <div>
-      Loading... <img src={RunningPokemon} />
+      Loading... <img src={RunningPokemon.src} />
     </div>
   );
 
@@ -38,20 +37,6 @@ function App() {
     requestPokemonData(searchValue ?? '');
   }, []);
 
-  const MainLayout = () => (
-    <>
-      <SearchSection
-        requestPokemonData={requestPokemonData}
-        toggleIsLightTheme={toggleIsLightTheme}
-      />
-      <Inventory />
-      <MainSection>
-        <Outlet />
-        <PokemonCard />
-      </MainSection>
-    </>
-  );
-
   const themePicker = isLightTheme ? themeSettings.light : themeSettings.dark;
   const appStyle = {
     color: themePicker.color,
@@ -63,12 +48,18 @@ function App() {
       <div className="app" style={appStyle}>
         <Dialog />
         <ErrorBoundary>
-          <Routes>
-            <Route path="/" element={<MainLayout />}>
-              <Route index element={<ContentSection />} />
+          <SearchSection
+            requestPokemonData={requestPokemonData}
+            toggleIsLightTheme={toggleIsLightTheme}
+          />
+          <Inventory />
+          <MainSection>
+            <Routes>
+              <Route path="/" element={<ContentSection />} />
               <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
+            </Routes>
+            <PokemonCard />
+          </MainSection>
         </ErrorBoundary>
       </div>
     </ThemeContext.Provider>

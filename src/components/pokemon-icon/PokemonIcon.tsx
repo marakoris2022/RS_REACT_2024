@@ -1,5 +1,5 @@
 import style from './pokemonIcon.module.scss';
-import DEFAULT_IMAGE from '/pokeball.svg';
+import DEFAULT_IMAGE from '../../../public/pokeball.svg';
 
 type PokemonIconProps = {
   width: number;

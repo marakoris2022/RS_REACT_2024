@@ -1,5 +1,5 @@
 import style from '../pokemonCard.module.scss';
-import AbilIco from '/abil-ico.svg';
+import AbilIco from '../../../../public/abil-ico.svg';
 import { CardComponent } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
 

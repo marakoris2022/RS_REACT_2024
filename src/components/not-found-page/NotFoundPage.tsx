@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../button/Button';
 import style from './newFoundPage.module.scss';
-import ErrPoke from '/404page.png';
+import ErrPoke from '../../../public/404page.png';
 import { ButtonType } from '../../interface/interface';
 
 export const NotFoundPage = () => {

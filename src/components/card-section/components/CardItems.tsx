@@ -1,7 +1,7 @@
 import { CardComponent } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
 import style from '../pokemonCard.module.scss';
-import ItemsIco from '/items-ico.svg';
+import ItemsIco from '../../../../public/items-ico.svg';
 
 export const CardItems = ({ cardSelected }: CardComponent) => (
   <div style={{ width: '100%' }}>

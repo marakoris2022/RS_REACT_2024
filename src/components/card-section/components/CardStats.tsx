@@ -1,8 +1,8 @@
 import { CardComponent } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
 import style from '../pokemonCard.module.scss';
-import ExpIco from '/exp-ico.svg';
-import StatsIco from '/stats-ico.svg';
+import ExpIco from '../../../../public/exp-ico.svg';
+import StatsIco from '../../../../public/stats-ico.svg';
 
 export const CardStats = ({ cardSelected }: CardComponent) => (
   <div>
