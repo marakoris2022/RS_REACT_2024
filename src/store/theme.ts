@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, SetStateAction, Dispatch } from 'react';
 
 export const themeSettings = {
   light: {
@@ -35,4 +35,14 @@ export const themeSettings = {
   },
 };
 
-export const ThemeContext = createContext(themeSettings.light);
+type themeSetting = typeof themeSettings.light;
+
+type ThemeContextType = {
+  themePicker: themeSetting;
+  toggleIsLightTheme: Dispatch<SetStateAction<boolean>>;
+};
+
+// export const ThemeContext = createContext(themeSettings.light);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined
+);

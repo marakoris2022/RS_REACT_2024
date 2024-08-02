@@ -11,7 +11,14 @@ export const Pagination = ({
   pokemonList,
 }: PaginationProps) => {
   const queryParams = new URLSearchParams(location.search);
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme } = themeContext;
+
   let frontpage = queryParams.get('frontpage');
 
   const calculateTotalPages = (totalPokes: number) => {

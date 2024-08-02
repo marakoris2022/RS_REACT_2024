@@ -22,7 +22,13 @@ function scrollToTop() {
 export const SectionCard = ({ pokemon }: SectionCardProps) => {
   const queryParams = new URLSearchParams(location.search);
   const pokename = queryParams.get('pokename');
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme } = themeContext;
 
   const dispatch: AppDispatch = useDispatch();
 

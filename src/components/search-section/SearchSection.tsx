@@ -8,11 +8,7 @@ import { ThemeToggle } from '../theme-toggle/ThemeToggle';
 import { useContext, useEffect } from 'react';
 import { ThemeContext } from '../../store/theme';
 
-type callbackProps = {
-  toggleIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const SearchSection = ({ toggleIsLightTheme }: callbackProps) => {
+export const SearchSection = () => {
   const searchValue = useSelector((state: RootState) => state.core.searchValue);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -20,7 +16,13 @@ export const SearchSection = ({ toggleIsLightTheme }: callbackProps) => {
     dispatch(fetchPokemonData(searchValue));
   }
 
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme, toggleIsLightTheme } = themeContext;
 
   useEffect(() => {
     dispatch(fetchPokemonData(searchValue));
@@ -36,7 +38,7 @@ export const SearchSection = ({ toggleIsLightTheme }: callbackProps) => {
           style={{ backgroundColor: theme.menuBackground }}
           className={style.searchWrapper}
         >
-          <ThemeToggle toggleIsLightTheme={toggleIsLightTheme} />
+          <ThemeToggle />
           <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
           <Button
             onClick={handleSearchRequest}

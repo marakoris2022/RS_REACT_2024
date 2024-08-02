@@ -2,12 +2,14 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
 import style from './theme-toggle.module.scss';
 
-export const ThemeToggle = ({
-  toggleIsLightTheme,
-}: {
-  toggleIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  const theme = useContext(ThemeContext);
+export const ThemeToggle = () => {
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme, toggleIsLightTheme } = themeContext;
 
   function handleChange() {
     toggleIsLightTheme((state) => !state);
@@ -20,7 +22,7 @@ export const ThemeToggle = ({
       onClick={handleChange}
     >
       {theme.theme}
-      {theme.themeIcon}{' '}
+      {theme.themeIcon}
     </button>
   );
 };

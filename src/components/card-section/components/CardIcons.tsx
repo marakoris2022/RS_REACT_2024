@@ -5,7 +5,13 @@ import style from '../pokemonCard.module.scss';
 import { ThemeContext } from '../../../store/theme';
 
 export const CardIcons = ({ cardSelected }: CardComponent) => {
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme } = themeContext;
 
   return (
     <div

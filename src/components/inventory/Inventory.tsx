@@ -18,8 +18,13 @@ export const Inventory = () => {
     setIsButtonsActive((state) => !state);
   }
 
-  const theme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
+  if (!themeContext) {
+    throw new Error('ThemeContext must be used within a ThemeProvider');
+  }
+
+  const { themePicker: theme } = themeContext;
   return (
     <div
       className={`${style.backgroundWrapper} ${chosenPokes.length < 1 && style.hidden}`}
