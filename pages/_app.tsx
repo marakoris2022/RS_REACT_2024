@@ -1,26 +1,20 @@
 import '../styles/globals.css'; // Import global styles
 
 import { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
-import { store } from '../src/store/store';
-import { ThemeContext, themeSettings } from '../src/store/theme';
-import { useState } from 'react';
-import { Dialog } from '../src/components/dialog/Dialog';
-import { Inventory } from '../src/components/inventory/Inventory';
+
+import Layout from '../src/components/layout/layout';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isLightTheme, toggleIsLightTheme] = useState(true);
-
-  const themePicker = isLightTheme ? themeSettings.light : themeSettings.dark;
-
   return (
-    <Provider store={store}>
-      <ThemeContext.Provider value={{ themePicker, toggleIsLightTheme }}>
-        <Dialog />
-        <Inventory />
+    <>
+      <Head>
+        <title>React NextJS Pokemon</title>
+      </Head>
+      <Layout>
         <Component {...pageProps} />
-      </ThemeContext.Provider>
-    </Provider>
+      </Layout>
+    </>
   );
 }
 
