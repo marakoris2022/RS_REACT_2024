@@ -7,7 +7,7 @@ import { MainSection } from '../src/components/main-section/MainSection';
 
 import { ThemeContext } from '../src/store/theme';
 import { GetStaticProps } from 'next';
-import { PokemonData, PokemonListData } from '../src/interface/interface';
+import { PokemonListData } from '../src/interface/interface';
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPokemonUrl = `https://pokeapi.co/api/v2/pokemon?limit=10000`;

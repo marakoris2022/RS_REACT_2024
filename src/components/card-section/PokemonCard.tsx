@@ -8,19 +8,20 @@ import { CardAbilities } from './components/CardAbilities';
 import { CardItems } from './components/CardItems';
 import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
+import { useGlobalState } from '../../store/GlobalStateContext';
 
 export const PokemonCard = () => {
-  const cardSelected = useSelector(
-    (state: RootState) => state.pokeCard.pokemonCard
-  );
-  const dispatch: AppDispatch = useDispatch();
+  const { state, setState } = useGlobalState();
+  let cardSelected = state.choosenCard;
 
   function handleClick(
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) {
     const target = e.target as HTMLElement;
     if (target.id === 'close-card-back' || target.id === 'close-card-btn') {
-      dispatch(setPokemonCard(null));
+      setState((state) => {
+        return { ...state, choosenCard: null };
+      });
     }
   }
 

@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
 import { Button } from '../../button/Button';
 import { ButtonType } from '../../../interface/interface';
 import { saveAs } from 'file-saver';
+import { useGlobalState } from '../../../store/GlobalStateContext';
 
 export const DownloadButton = () => {
-  const chosenPokes = useSelector(
-    (state: RootState) => state.pokeList.chosenPokes
-  );
+  const { state } = useGlobalState();
+  const chosenPokes = state.chosenPokes;
 
   const handleDownload = () => {
     const headers = [

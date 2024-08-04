@@ -3,83 +3,80 @@ import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
-import {
-  DialogType,
-  PokemonData,
-  PokemonListData,
-} from '../../interface/interface';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { closeDialog, openDialog } from '../dialog/dialogStore';
-import runningPokemon from '../../../public/pikachu-running.gif';
+import { PokemonListData } from '../../interface/interface';
+import { useGlobalState } from '../../store/GlobalStateContext';
 
-export const ContentSection = ({
-  allPokemonNames,
-}: {
+type ContentSectionType = {
   allPokemonNames: PokemonListData;
-}) => {
-  // const { pokemonDataList, type } = useSelector(
-  //   (state: RootState) => state.pokeList
-  // );
+};
+
+function filterPokemonsBySearchValue(
+  pokemons: PokemonListData,
+  serachRequest: string
+) {
+  const newResult = pokemons.results.filter((item) =>
+    item.name.includes(serachRequest)
+  );
+  return {
+    count: newResult.length,
+    next: null,
+    previous: null,
+    results: newResult,
+  };
+}
+
+function getPaginatePokemonList(
+  pokemonDataList: PokemonListData,
+  pageNum: number
+) {
+  const newList = { ...pokemonDataList };
+  const totalPokes = newList.results.length;
+  if (pageNum * 10 > totalPokes) {
+    const newResults = newList.results.slice((pageNum - 1) * 10);
+    newList.results = newResults;
+    return newList;
+  }
+
+  const newResults = newList.results.slice(
+    (pageNum - 1) * 10,
+    (pageNum - 1) * 10 + 10
+  );
+  newList.results = newResults;
+  return newList;
+}
+
+export const ContentSection = ({ allPokemonNames }: ContentSectionType) => {
   const [pageNum, setPageNum] = useState(1);
+  const { state } = useGlobalState();
+
+  const [filteredPokemons, setFilteredPokemons] =
+    useState<PokemonListData>(allPokemonNames);
 
   const [viewPokemonList, setViewPokemonList] =
     useState<PokemonListData | null>(null);
 
   const prevPokemonList = useRef(allPokemonNames);
 
-  const cardSelected = useSelector(
-    (state: RootState) => state.pokeCard.pokemonCard
-  );
-
-  function getPaginatePokemonList(
-    pokemonDataList: PokemonListData,
-    pageNum: number
-  ) {
-    const newList = { ...pokemonDataList };
-    const totalPokes = newList.results.length;
-    if (pageNum * 10 > totalPokes) {
-      const newResults = newList.results.slice((pageNum - 1) * 10);
-      newList.results = newResults;
-      return newList;
-    }
-
-    const newResults = newList.results.slice(
-      (pageNum - 1) * 10,
-      (pageNum - 1) * 10 + 10
+  useEffect(() => {
+    setFilteredPokemons(
+      filterPokemonsBySearchValue(allPokemonNames, state.filterName)
     );
-    newList.results = newResults;
-    return newList;
-  }
+  }, [state.filterName]);
 
   useEffect(() => {
-    setViewPokemonList(getPaginatePokemonList(allPokemonNames, pageNum));
+    setViewPokemonList(getPaginatePokemonList(filteredPokemons, pageNum));
 
-    if (prevPokemonList.current !== allPokemonNames) {
+    if (prevPokemonList.current !== filteredPokemons) {
       setPageNum(1);
     }
 
-    prevPokemonList.current = allPokemonNames;
-  }, [pageNum, allPokemonNames]);
-
-  // useEffect(() => {
-  //   if (type === 'Fetching') {
-  //     openDialog(
-  //       <div>
-  //         Loading...
-  //         <img src={runningPokemon.src} />
-  //       </div>,
-  //       DialogType.INFO
-  //     );
-  //   } else {
-  //     closeDialog();
-  //   }
-  // }, [type]);
+    prevPokemonList.current = filteredPokemons;
+  }, [pageNum, filteredPokemons]);
 
   return (
     <section style={{ width: '100%' }}>
       <div className="container">
-        <div className={cardSelected ? style.dark : ''}>
+        <div className={state.choosenCard ? style.dark : ''}>
           {viewPokemonList && viewPokemonList.results.length > 0 ? (
             <>
               <div className={style.sectionCardsWrapper}>
@@ -97,7 +94,7 @@ export const ContentSection = ({
                 <Pagination
                   pageNum={pageNum}
                   setPageNum={setPageNum}
-                  totalPokes={allPokemonNames.results.length}
+                  totalPokes={filteredPokemons.results.length}
                 />
               </div>
             </>

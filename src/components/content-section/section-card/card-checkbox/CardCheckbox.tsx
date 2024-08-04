@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PokemonData } from '../../../../interface/interface';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPoke, removePoke, RootState } from '../../../../store/store';
+import { useGlobalState } from '../../../../store/GlobalStateContext';
 
 type CheckboxProps = {
   pokemon: PokemonData;
@@ -16,30 +15,38 @@ function isPokemonChosen(pokemon: PokemonData, chosenPokes: PokemonData[]) {
 }
 
 export const CardCheckbox = ({ pokemon }: CheckboxProps) => {
-  const dispatch = useDispatch();
-  const chosenPokes = useSelector(
-    (state: RootState) => state.pokeList.chosenPokes
+  const { state, setState } = useGlobalState();
+  const [checked, setChecked] = useState(
+    isPokemonChosen(pokemon, state.chosenPokes)
   );
-  const [checked, setChecked] = useState(isPokemonChosen(pokemon, chosenPokes));
 
   useEffect(() => {
-    setChecked(isPokemonChosen(pokemon, chosenPokes));
-  }, [chosenPokes]);
+    setChecked(isPokemonChosen(pokemon, state.chosenPokes));
+  }, [state.chosenPokes]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     setChecked(isChecked);
+
     if (isChecked) {
-      dispatch(addPoke(pokemon));
+      setState((prevState) => ({
+        ...prevState,
+        chosenPokes: [...prevState.chosenPokes, pokemon],
+      }));
     } else {
-      dispatch(removePoke(pokemon));
+      setState((prevState) => ({
+        ...prevState,
+        chosenPokes: prevState.chosenPokes.filter(
+          (poke) => poke.name !== pokemon.name
+        ),
+      }));
     }
   };
 
   return (
     <label>
       <input type="checkbox" checked={checked} onChange={handleChange} />
-      {isPokemonChosen(pokemon, chosenPokes) ? 'In Inventory.' : 'Catch!'}
+      {isPokemonChosen(pokemon, state.chosenPokes) ? 'In Inventory.' : 'Catch!'}
     </label>
   );
 };

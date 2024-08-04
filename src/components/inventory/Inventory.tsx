@@ -6,13 +6,16 @@ import { AppDispatch, clearPokes, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { DownloadButton } from './download-button/DownloadButton';
 import { ThemeContext } from '../../store/theme';
+import { useGlobalState } from '../../store/GlobalStateContext';
 
 export const Inventory = () => {
   const [isButtonsActive, setIsButtonsActive] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const chosenPokes = useSelector(
-    (state: RootState) => state.pokeList.chosenPokes
-  );
+  // const dispatch: AppDispatch = useDispatch();
+  // const chosenPokes = useSelector(
+  //   (state: RootState) => state.pokeList.chosenPokes
+  // );
+
+  const { state, setState } = useGlobalState();
 
   function handleClick() {
     setIsButtonsActive((state) => !state);
@@ -27,7 +30,7 @@ export const Inventory = () => {
   const { themePicker: theme } = themeContext;
   return (
     <div
-      className={`${style.backgroundWrapper} ${chosenPokes.length < 1 && style.hidden}`}
+      className={`${style.backgroundWrapper} ${state.chosenPokes.length < 1 && style.hidden}`}
     >
       <div
         onClick={handleClick}
@@ -42,13 +45,18 @@ export const Inventory = () => {
             title="Clear"
             btnType={ButtonType.RED}
             onClick={() => {
-              dispatch(clearPokes());
+              setState((state) => {
+                return {
+                  ...state,
+                  chosenPokes: [],
+                };
+              });
             }}
           />
         </div>
         <div className={style.counterWrapper}>
           <span style={{ color: 'black' }} className={style.counter}>
-            {chosenPokes.length}
+            {state.chosenPokes.length}
           </span>
         </div>
       </div>

@@ -6,8 +6,8 @@ import { CardCheckbox } from './card-checkbox/CardCheckbox';
 import { ThemeContext } from '../../../store/theme';
 import { getPokemonDataByName } from '../../../api/restApi';
 import { PokemonData } from '../../../interface/interface';
-import RunningPokemon from '../../../../public/pikachu-running.gif';
-import Image from 'next/image';
+import { SkeletonSectionCard } from './skeleton-section-card/SkeletonSectionCard';
+import { useGlobalState } from '../../../store/GlobalStateContext';
 type SectionCardProps = {
   pokemonName: string;
 };
@@ -22,6 +22,7 @@ function scrollToTop() {
 export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const themeContext = useContext(ThemeContext);
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
+  const { setState } = useGlobalState();
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
@@ -30,6 +31,9 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const { themePicker: theme } = themeContext;
 
   function handleClick() {
+    setState((state) => {
+      return { ...state, choosenCard: pokemon };
+    });
     scrollToTop();
   }
 
@@ -41,27 +45,7 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
     getPokemonData();
   }, [pokemonName]);
 
-  if (!pokemon)
-    return (
-      <div
-        style={{ background: theme.cardBackground, border: theme.cardBorder }}
-        data-testid="cardWrapper"
-        className={style.cardWrapper}
-        onClick={handleClick}
-      >
-        <div
-          style={{
-            height: '150px',
-            width: '300px',
-            fontSize: '30px',
-            textAlign: 'center',
-          }}
-        >
-          <p>Loading...</p>
-          <Image width={60} height={60} src={RunningPokemon.src} alt="poke" />
-        </div>
-      </div>
-    );
+  if (!pokemon) return <SkeletonSectionCard theme={theme} />;
 
   return (
     <div

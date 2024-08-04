@@ -1,19 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
-import { AppDispatch, fetchPokemonData, RootState } from '../../store/store';
 import { ThemeToggle } from '../theme-toggle/ThemeToggle';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
+import { useGlobalState } from '../../store/GlobalStateContext';
 
 export const SearchSection = () => {
-  const searchValue = useSelector((state: RootState) => state.core.searchValue);
-  const dispatch = useDispatch<AppDispatch>();
+  const { setState } = useGlobalState();
 
   function handleSearchRequest() {
-    dispatch(fetchPokemonData(searchValue));
+    setState((state) => {
+      return {
+        ...state,
+        filterName: state.searchValue,
+      };
+    });
   }
 
   const themeContext = useContext(ThemeContext);
@@ -22,11 +25,7 @@ export const SearchSection = () => {
     throw new Error('ThemeContext must be used within a ThemeProvider');
   }
 
-  const { themePicker: theme, toggleIsLightTheme } = themeContext;
-
-  useEffect(() => {
-    dispatch(fetchPokemonData(searchValue));
-  }, []);
+  const { themePicker: theme } = themeContext;
 
   return (
     <section
