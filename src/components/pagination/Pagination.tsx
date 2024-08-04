@@ -8,7 +8,7 @@ import { ThemeContext } from '../../store/theme';
 export const Pagination = ({
   pageNum,
   setPageNum,
-  pokemonList,
+  totalPokes,
 }: PaginationProps) => {
   const queryParams = new URLSearchParams(location.search);
   const themeContext = useContext(ThemeContext);
@@ -36,22 +36,22 @@ export const Pagination = ({
   };
 
   const handleNextClick = () => {
-    if (pageNum < calculateTotalPages(pokemonList.length)) {
+    if (pageNum < calculateTotalPages(totalPokes)) {
       setPageNum((prev) => prev + 1);
     }
   };
 
   useEffect(() => {
     if (!frontpage) frontpage = '1';
-    if (Number(frontpage) > calculateTotalPages(pokemonList.length)) {
-      frontpage = String(calculateTotalPages(pokemonList.length));
+    if (Number(frontpage) > calculateTotalPages(totalPokes)) {
+      frontpage = String(calculateTotalPages(totalPokes));
     }
     setPageNum(Number(frontpage));
   }, []);
 
   return (
     <div style={{ background: theme.menuBackground }} className={style.wrapper}>
-      <div>Pokes found: {pokemonList.length}</div>
+      <div>Pokes found: {totalPokes}</div>
 
       <div className={style.paginationSettings}>
         <Button
@@ -67,7 +67,7 @@ export const Pagination = ({
         />
 
         <div>
-          {pageNum} / {calculateTotalPages(pokemonList.length)}
+          {pageNum} / {calculateTotalPages(totalPokes)}
         </div>
 
         <Button
@@ -77,10 +77,8 @@ export const Pagination = ({
         />
 
         <Button
-          onClick={() =>
-            handlePageClick(calculateTotalPages(pokemonList.length))
-          }
-          title={String(calculateTotalPages(pokemonList.length))}
+          onClick={() => handlePageClick(calculateTotalPages(totalPokes))}
+          title={String(calculateTotalPages(totalPokes))}
           btnType={ButtonType.GREEN}
         />
       </div>

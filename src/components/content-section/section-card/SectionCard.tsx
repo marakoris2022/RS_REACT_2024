@@ -1,15 +1,15 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
-import { PokemonData } from '../../../interface/interface';
-import { AppDispatch, setPokemonCard } from '../../../store/store';
-import { useDispatch } from 'react-redux';
 import { CardCheckbox } from './card-checkbox/CardCheckbox';
 import { ThemeContext } from '../../../store/theme';
-
+import { getPokemonDataByName } from '../../../api/restApi';
+import { PokemonData } from '../../../interface/interface';
+import RunningPokemon from '../../../../public/pikachu-running.gif';
+import Image from 'next/image';
 type SectionCardProps = {
-  pokemon: PokemonData;
+  pokemonName: string;
 };
 
 function scrollToTop() {
@@ -19,10 +19,9 @@ function scrollToTop() {
   });
 }
 
-export const SectionCard = ({ pokemon }: SectionCardProps) => {
-  const queryParams = new URLSearchParams(location.search);
-  const pokename = queryParams.get('pokename');
+export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const themeContext = useContext(ThemeContext);
+  const [pokemon, setPokemon] = useState<PokemonData | null>(null);
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
@@ -30,18 +29,39 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
 
   const { themePicker: theme } = themeContext;
 
-  const dispatch: AppDispatch = useDispatch();
-
   function handleClick() {
-    dispatch(setPokemonCard(pokemon));
     scrollToTop();
   }
 
   useEffect(() => {
-    if (pokename && pokename === pokemon.name) {
-      dispatch(setPokemonCard(pokemon));
+    async function getPokemonData() {
+      const pokemonData = await getPokemonDataByName(pokemonName);
+      setPokemon(pokemonData);
     }
-  }, []);
+    getPokemonData();
+  }, [pokemonName]);
+
+  if (!pokemon)
+    return (
+      <div
+        style={{ background: theme.cardBackground, border: theme.cardBorder }}
+        data-testid="cardWrapper"
+        className={style.cardWrapper}
+        onClick={handleClick}
+      >
+        <div
+          style={{
+            height: '150px',
+            width: '300px',
+            fontSize: '30px',
+            textAlign: 'center',
+          }}
+        >
+          <p>Loading...</p>
+          <Image width={60} height={60} src={RunningPokemon.src} alt="poke" />
+        </div>
+      </div>
+    );
 
   return (
     <div

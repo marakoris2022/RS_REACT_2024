@@ -6,8 +6,22 @@ import { PokemonCard } from '../src/components/card-section/PokemonCard';
 import { MainSection } from '../src/components/main-section/MainSection';
 
 import { ThemeContext } from '../src/store/theme';
+import { GetStaticProps } from 'next';
+import { PokemonData, PokemonListData } from '../src/interface/interface';
 
-function App() {
+export const getStaticProps: GetStaticProps = async () => {
+  const allPokemonUrl = `https://pokeapi.co/api/v2/pokemon?limit=10000`;
+  const fetchData = await fetch(allPokemonUrl);
+  const allPokemonNames: PokemonListData = await fetchData.json();
+
+  return {
+    props: {
+      allPokemonNames,
+    },
+  };
+};
+
+function App({ allPokemonNames }: { allPokemonNames: PokemonListData }) {
   const themeContext = useContext(ThemeContext);
 
   if (!themeContext) {
@@ -25,7 +39,7 @@ function App() {
     <div className="app" style={appStyle}>
       <SearchSection />
       <MainSection>
-        <ContentSection />
+        <ContentSection allPokemonNames={allPokemonNames} />
         <PokemonCard />
       </MainSection>
     </div>
