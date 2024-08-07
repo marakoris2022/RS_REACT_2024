@@ -15,6 +15,13 @@ body {
   background-size: cover;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: 15px;
+}
+
 *::-webkit-scrollbar {
   height: 10px;
   width: 10px;

@@ -1,26 +1,25 @@
 import style from './pokemonIcon.module.scss';
 import DEFAULT_IMAGE from '../../../public/pokeball.svg';
+import Image from 'next/image';
 
 type PokemonIconProps = {
   width: number;
+  height: number;
   src: string;
   alt: string;
 };
 
 export const PokemonIcon = (props: PokemonIconProps) => {
-  const { width, src, alt } = props;
+  const { width, height, src, alt } = props;
 
   return (
     <div style={{ width, height: width }} className={style.pokemonIconWrapper}>
-      <img
+      <Image
         className={style.pokemonIcon}
-        width={width}
-        src={src}
+        width={src ? width : width * 0.3}
+        height={height}
+        src={src ?? DEFAULT_IMAGE.src}
         alt={alt}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = DEFAULT_IMAGE;
-        }}
       />
     </div>
   );

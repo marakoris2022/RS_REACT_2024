@@ -1,6 +1,4 @@
 import style from './pokemonCard.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setPokemonCard } from '../../store/store';
 import { CardHeader } from './components/CardHeader';
 import { CardIcons } from './components/CardIcons';
 import { CardStats } from './components/CardStats';
@@ -8,30 +6,22 @@ import { CardAbilities } from './components/CardAbilities';
 import { CardItems } from './components/CardItems';
 import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
-import { useGlobalState } from '../../store/GlobalStateContext';
+import { PokemonData } from '../../interface/interface';
+import { useRouter } from 'next/router';
 
-export const PokemonCard = () => {
-  const { state, setState } = useGlobalState();
-  let cardSelected = state.choosenCard;
+type PokemonCardType = {
+  cardSelected: PokemonData;
+};
 
-  function handleClick(
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
-  ) {
-    const target = e.target as HTMLElement;
-    if (target.id === 'close-card-back' || target.id === 'close-card-btn') {
-      setState((state) => {
-        return { ...state, choosenCard: null };
-      });
-    }
+export const PokemonCard = ({ cardSelected }: PokemonCardType) => {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push('/');
   }
 
   return (
-    <section
-      onClick={handleClick}
-      className={`${style.background} ${cardSelected ? style.backgroundActive : ''}`}
-      id="close-card-back"
-      data-testid="close-card-back"
-    >
+    <section className={style.sectionWrapper}>
       {cardSelected ? (
         <CardHeader cardSelected={cardSelected} handleClick={handleClick}>
           <>

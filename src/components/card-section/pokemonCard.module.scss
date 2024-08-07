@@ -16,16 +16,17 @@
   transform: translate(0);
 }
 
+.sectionWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .wrapper {
   padding: 15px;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-bottom: 1px solid white;
-  border-top-left-radius: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
   background-color: rgba(0, 128, 0, 0.8);
-  width: 55%;
-
-  min-height: 850px;
+  width: fit-content;
 }
 
 .pokemonCardWrapper {

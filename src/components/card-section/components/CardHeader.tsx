@@ -25,7 +25,7 @@ export const CardHeader = ({
     >
       <Button
         id="close-card-btn"
-        title="X"
+        title="Return"
         onClick={handleClick}
         btnType={ButtonType.RED}
       />

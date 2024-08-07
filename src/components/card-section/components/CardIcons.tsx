@@ -20,11 +20,13 @@ export const CardIcons = ({ cardSelected }: CardComponent) => {
     >
       <PokemonIcon
         width={120}
+        height={120}
         src={cardSelected.sprites.front_default}
         alt="pokemon_img"
       />
       <PokemonIcon
         width={120}
+        height={120}
         src={cardSelected.sprites.back_default}
         alt="pokemon_img"
       />

@@ -8,6 +8,7 @@ import { getPokemonDataByName } from '../../../api/restApi';
 import { PokemonData } from '../../../interface/interface';
 import { SkeletonSectionCard } from './skeleton-section-card/SkeletonSectionCard';
 import { useGlobalState } from '../../../store/GlobalStateContext';
+import { useRouter } from 'next/router';
 type SectionCardProps = {
   pokemonName: string;
 };
@@ -22,7 +23,8 @@ function scrollToTop() {
 export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const themeContext = useContext(ThemeContext);
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
-  const { setState } = useGlobalState();
+  const route = useRouter();
+  // const { setState } = useGlobalState();
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
@@ -31,11 +33,14 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const { themePicker: theme } = themeContext;
 
   function handleClick() {
-    setState((state) => {
-      return { ...state, choosenCard: pokemon };
-    });
-    scrollToTop();
+    route.push(`/pokemons/${pokemon?.name}`);
   }
+  // function handleClick() {
+  //   setState((state) => {
+  //     return { ...state, choosenCard: pokemon };
+  //   });
+  //   scrollToTop();
+  // }
 
   useEffect(() => {
     async function getPokemonData() {
@@ -64,6 +69,7 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
         >
           <PokemonIcon
             width={100}
+            height={100}
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
           />
