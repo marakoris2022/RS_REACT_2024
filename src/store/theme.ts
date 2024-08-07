@@ -42,7 +42,6 @@ type ThemeContextType = {
   toggleIsLightTheme: Dispatch<SetStateAction<boolean>>;
 };
 
-// export const ThemeContext = createContext(themeSettings.light);
 export const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined
 );

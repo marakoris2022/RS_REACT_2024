@@ -2,18 +2,12 @@ import { useContext, useState } from 'react';
 import style from './inventory.module.scss';
 import { Button } from '../button/Button';
 import { ButtonType } from '../../interface/interface';
-import { AppDispatch, clearPokes, RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
 import { DownloadButton } from './download-button/DownloadButton';
 import { ThemeContext } from '../../store/theme';
 import { useGlobalState } from '../../store/GlobalStateContext';
 
 export const Inventory = () => {
   const [isButtonsActive, setIsButtonsActive] = useState(false);
-  // const dispatch: AppDispatch = useDispatch();
-  // const chosenPokes = useSelector(
-  //   (state: RootState) => state.pokeList.chosenPokes
-  // );
 
   const { state, setState } = useGlobalState();
 

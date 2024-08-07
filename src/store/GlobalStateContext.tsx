@@ -4,6 +4,7 @@ import { PokemonData } from '../interface/interface';
 type GlobalStateProviderType = {
   searchValue: string;
   filterName: string;
+  pageNumber: number;
   chosenPokes: PokemonData[];
   choosenCard: PokemonData | null;
 };
@@ -25,6 +26,7 @@ export const GlobalStateProvider = ({ children }: GlobalStateProviderProps) => {
   const [state, setState] = useState<GlobalStateProviderType>({
     searchValue: '',
     filterName: '',
+    pageNumber: 1,
     chosenPokes: [],
     choosenCard: null,
   });

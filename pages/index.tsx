@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import '../styles/App.module.css';
 import { ContentSection } from '../src/components/content-section/ContentSection';
 import { SearchSection } from '../src/components/search-section/SearchSection';
-import { PokemonCard } from '../src/components/card-section/PokemonCard';
 import { MainSection } from '../src/components/main-section/MainSection';
 
 import { ThemeContext } from '../src/store/theme';
@@ -40,7 +39,6 @@ function App({ allPokemonNames }: { allPokemonNames: PokemonListData }) {
       <SearchSection />
       <MainSection>
         <ContentSection allPokemonNames={allPokemonNames} />
-        <PokemonCard />
       </MainSection>
     </div>
   );

@@ -1,17 +1,15 @@
 import { useContext, useEffect } from 'react';
 import { Button } from '../button/Button';
 import style from './pagination.module.scss';
-import { updateQueryParams } from '../../utils/utils';
 import { ButtonType, PaginationProps } from '../../interface/interface';
 import { ThemeContext } from '../../store/theme';
+import { useGlobalState } from '../../store/GlobalStateContext';
 
-export const Pagination = ({
-  pageNum,
-  setPageNum,
-  totalPokes,
-}: PaginationProps) => {
-  const queryParams = new URLSearchParams(location.search);
+export const Pagination = ({ totalPokes }: PaginationProps) => {
   const themeContext = useContext(ThemeContext);
+  const { state, setState } = useGlobalState();
+
+  let frontpage = state.pageNumber;
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
@@ -19,34 +17,52 @@ export const Pagination = ({
 
   const { themePicker: theme } = themeContext;
 
-  let frontpage = queryParams.get('frontpage');
-
   const calculateTotalPages = (totalPokes: number) => {
     return Math.ceil(totalPokes / 10);
   };
 
   const handlePageClick = (num: number) => {
-    setPageNum(num);
+    setState((state) => {
+      return {
+        ...state,
+        pageNumber: num,
+      };
+    });
   };
 
   const handlePrevClick = () => {
-    if (pageNum > 1) {
-      setPageNum((prev) => prev - 1);
+    if (state.pageNumber > 1) {
+      setState((state) => {
+        return {
+          ...state,
+          pageNumber: state.pageNumber - 1,
+        };
+      });
     }
   };
 
   const handleNextClick = () => {
-    if (pageNum < calculateTotalPages(totalPokes)) {
-      setPageNum((prev) => prev + 1);
+    if (state.pageNumber < calculateTotalPages(totalPokes)) {
+      setState((state) => {
+        return {
+          ...state,
+          pageNumber: state.pageNumber + 1,
+        };
+      });
     }
   };
 
   useEffect(() => {
-    if (!frontpage) frontpage = '1';
-    if (Number(frontpage) > calculateTotalPages(totalPokes)) {
-      frontpage = String(calculateTotalPages(totalPokes));
+    if (frontpage > calculateTotalPages(totalPokes)) {
+      frontpage = calculateTotalPages(totalPokes);
     }
-    setPageNum(Number(frontpage));
+
+    setState((state) => {
+      return {
+        ...state,
+        pageNumber: frontpage,
+      };
+    });
   }, []);
 
   return (
@@ -67,7 +83,7 @@ export const Pagination = ({
         />
 
         <div>
-          {pageNum} / {calculateTotalPages(totalPokes)}
+          {state.pageNumber} / {calculateTotalPages(totalPokes)}
         </div>
 
         <Button

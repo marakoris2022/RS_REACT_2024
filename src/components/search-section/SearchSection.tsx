@@ -15,6 +15,7 @@ export const SearchSection = () => {
       return {
         ...state,
         filterName: state.searchValue,
+        pageNumber: 1,
       };
     });
   }

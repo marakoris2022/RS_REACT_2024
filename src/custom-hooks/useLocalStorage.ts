@@ -14,7 +14,6 @@ const useLocalStorage = (
         return defaultValue;
       }
     } catch (error) {
-      // localStorage.setItem(key, defaultValue);
       return defaultValue;
     }
   });

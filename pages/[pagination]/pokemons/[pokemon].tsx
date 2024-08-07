@@ -1,10 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { getPokemonDataByName } from '../../src/api/restApi';
-import style from '../../styles/pokemon.module.scss';
+import { getPokemonDataByName } from '../../../src/api/restApi';
+import style from '../../../styles/pokemon.module.scss';
 import { useContext } from 'react';
-import { ThemeContext } from '../../src/store/theme';
-import { PokemonCard } from '../../src/components/card-section/PokemonCard';
-import { PokemonData } from '../../src/interface/interface';
+import { ThemeContext } from '../../../src/store/theme';
+import { PokemonCard } from '../../../src/components/card-section/PokemonCard';
+import { PokemonData } from '../../../src/interface/interface';
 
 interface CardProps {
   pokemon: PokemonData;

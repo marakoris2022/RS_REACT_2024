@@ -24,7 +24,6 @@ export class ErrorBoundary extends React.Component<
 
   handleClick = () => {
     this.setState({ hasError: false });
-    // Add any additional logic for returning back
   };
 
   render() {

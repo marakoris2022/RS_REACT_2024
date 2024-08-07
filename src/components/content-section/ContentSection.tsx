@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';
 import { SearchFailed } from './search-failed/SearchFailed';
@@ -46,7 +46,6 @@ function getPaginatePokemonList(
 }
 
 export const ContentSection = ({ allPokemonNames }: ContentSectionType) => {
-  const [pageNum, setPageNum] = useState(1);
   const { state } = useGlobalState();
 
   const [filteredPokemons, setFilteredPokemons] =
@@ -55,8 +54,6 @@ export const ContentSection = ({ allPokemonNames }: ContentSectionType) => {
   const [viewPokemonList, setViewPokemonList] =
     useState<PokemonListData | null>(null);
 
-  const prevPokemonList = useRef(allPokemonNames);
-
   useEffect(() => {
     setFilteredPokemons(
       filterPokemonsBySearchValue(allPokemonNames, state.filterName)
@@ -64,14 +61,10 @@ export const ContentSection = ({ allPokemonNames }: ContentSectionType) => {
   }, [state.filterName]);
 
   useEffect(() => {
-    setViewPokemonList(getPaginatePokemonList(filteredPokemons, pageNum));
-
-    if (prevPokemonList.current !== filteredPokemons) {
-      setPageNum(1);
-    }
-
-    prevPokemonList.current = filteredPokemons;
-  }, [pageNum, filteredPokemons]);
+    setViewPokemonList(
+      getPaginatePokemonList(filteredPokemons, state.pageNumber)
+    );
+  }, [state.pageNumber, filteredPokemons]);
 
   return (
     <section style={{ width: '100%' }}>
@@ -91,11 +84,7 @@ export const ContentSection = ({ allPokemonNames }: ContentSectionType) => {
                   })}
               </div>
               <div>
-                <Pagination
-                  pageNum={pageNum}
-                  setPageNum={setPageNum}
-                  totalPokes={filteredPokemons.results.length}
-                />
+                <Pagination totalPokes={filteredPokemons.results.length} />
               </div>
             </>
           ) : (

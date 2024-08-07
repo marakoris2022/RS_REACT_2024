@@ -63,8 +63,6 @@ export type PokemonListData = {
 };
 
 export type PaginationProps = {
-  pageNum: number;
-  setPageNum: React.Dispatch<React.SetStateAction<number>>;
   totalPokes: number;
 };
 

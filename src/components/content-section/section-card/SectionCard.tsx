@@ -13,18 +13,11 @@ type SectionCardProps = {
   pokemonName: string;
 };
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-
 export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const themeContext = useContext(ThemeContext);
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
+  const { state } = useGlobalState();
   const route = useRouter();
-  // const { setState } = useGlobalState();
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
@@ -33,14 +26,8 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const { themePicker: theme } = themeContext;
 
   function handleClick() {
-    route.push(`/pokemons/${pokemon?.name}`);
+    route.push(`/${state.pageNumber}/pokemons/${pokemon?.name}`);
   }
-  // function handleClick() {
-  //   setState((state) => {
-  //     return { ...state, choosenCard: pokemon };
-  //   });
-  //   scrollToTop();
-  // }
 
   useEffect(() => {
     async function getPokemonData() {
