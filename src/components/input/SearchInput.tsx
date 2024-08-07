@@ -3,6 +3,7 @@ import styles from './input.module.scss';
 import { getSearchValueFromLocalStorage } from '../../utils/utils';
 import useLocalStorage from '../../custom-hooks/useLocalStorage';
 import { useGlobalState } from '../../store/GlobalStateContext';
+import React from 'react';
 
 type InputProps = {
   placeholder: string;

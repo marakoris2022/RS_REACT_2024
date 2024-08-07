@@ -3,7 +3,7 @@ import '../styles/App.module.css';
 import { ContentSection } from '../src/components/content-section/ContentSection';
 import { SearchSection } from '../src/components/search-section/SearchSection';
 import { MainSection } from '../src/components/main-section/MainSection';
-
+import React from 'react';
 import { ThemeContext } from '../src/store/theme';
 import { GetStaticProps } from 'next';
 import { PokemonListData } from '../src/interface/interface';

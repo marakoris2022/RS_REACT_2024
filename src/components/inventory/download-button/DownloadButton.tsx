@@ -2,6 +2,7 @@ import { Button } from '../../button/Button';
 import { ButtonType } from '../../../interface/interface';
 import { saveAs } from 'file-saver';
 import { useGlobalState } from '../../../store/GlobalStateContext';
+import React from 'react';
 
 export const DownloadButton = () => {
   const { state } = useGlobalState();

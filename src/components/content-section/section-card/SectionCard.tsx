@@ -9,6 +9,8 @@ import { PokemonData } from '../../../interface/interface';
 import { SkeletonSectionCard } from './skeleton-section-card/SkeletonSectionCard';
 import { useGlobalState } from '../../../store/GlobalStateContext';
 import { useRouter } from 'next/router';
+import React from 'react';
+
 type SectionCardProps = {
   pokemonName: string;
 };

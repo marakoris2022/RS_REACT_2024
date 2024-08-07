@@ -1,16 +1,15 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../../pages';
-import { BrowserRouter } from 'react-router-dom'; // Import the appropriate router
-import { Provider } from 'react-redux';
-import { store } from '../store/store';
+import { test, expect } from 'vitest';
+import App from '../../pages/index';
+import { allPokemonNames } from './__mock__';
+import Layout from '../components/layout/layout';
 
 test('render test', () => {
   render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <Layout>
+      <App allPokemonNames={allPokemonNames} />
+    </Layout>
   );
   const linkElement = screen.getByText(/Search request/i);
   expect(linkElement).toBeInTheDocument();

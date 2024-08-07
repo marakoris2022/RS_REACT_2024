@@ -5,6 +5,7 @@ import { ButtonType } from '../../interface/interface';
 import { DownloadButton } from './download-button/DownloadButton';
 import { ThemeContext } from '../../store/theme';
 import { useGlobalState } from '../../store/GlobalStateContext';
+import React from 'react';
 
 export const Inventory = () => {
   const [isButtonsActive, setIsButtonsActive] = useState(false);

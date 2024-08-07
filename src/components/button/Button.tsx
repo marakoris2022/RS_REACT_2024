@@ -1,5 +1,6 @@
 import { ButtonType } from '../../interface/interface';
 import style from './button.module.scss';
+import React from 'react';
 
 type ButtonProps = {
   title: string;

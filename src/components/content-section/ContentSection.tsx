@@ -5,6 +5,7 @@ import { SearchFailed } from './search-failed/SearchFailed';
 import { Pagination } from '../pagination/Pagination';
 import { PokemonListData } from '../../interface/interface';
 import { useGlobalState } from '../../store/GlobalStateContext';
+import React from 'react';
 
 type ContentSectionType = {
   allPokemonNames: PokemonListData;

@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
 import { PokemonData } from '../interface/interface';
+import React from 'react';
 
 type GlobalStateProviderType = {
   searchValue: string;

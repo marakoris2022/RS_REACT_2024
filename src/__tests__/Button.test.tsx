@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Button } from '../components/button/Button';
 import { ButtonType } from '../interface/interface';
+import React from 'react';
 
 test('render test', () => {
   render(

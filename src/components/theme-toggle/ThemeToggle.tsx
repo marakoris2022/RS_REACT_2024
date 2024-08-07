@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
 import style from './theme-toggle.module.scss';
+import React from 'react';
 
 export const ThemeToggle = () => {
   const themeContext = useContext(ThemeContext);

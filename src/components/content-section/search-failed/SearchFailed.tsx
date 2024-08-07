@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import style from './searchFailed.module.scss';
 import { ThemeContext } from '../../../store/theme';
+import React from 'react';
 
 export const SearchFailed = () => {
   const themeContext = useContext(ThemeContext);

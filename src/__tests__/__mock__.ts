@@ -1,4 +1,4 @@
-import { PokemonData } from '../interface/interface';
+import { PokemonData, PokemonListData } from '../interface/interface';
 
 export const TestPokemon: PokemonData = {
   abilities: [
@@ -25,4 +25,17 @@ export const TestPokemon: PokemonData = {
   ],
   types: [{ type: { name: 'water' } }],
   checked: false,
+};
+
+export const allPokemonNames: PokemonListData = {
+  count: 5,
+  next: null,
+  previous: null,
+  results: [
+    { name: 'test1', url: '' },
+    { name: 'test2', url: '' },
+    { name: 'test3', url: '' },
+    { name: 'test4', url: '' },
+    { name: 'test5', url: '' },
+  ],
 };

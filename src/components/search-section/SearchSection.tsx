@@ -6,6 +6,7 @@ import { ThemeToggle } from '../theme-toggle/ThemeToggle';
 import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
 import { useGlobalState } from '../../store/GlobalStateContext';
+import React from 'react';
 
 export const SearchSection = () => {
   const { setState } = useGlobalState();
