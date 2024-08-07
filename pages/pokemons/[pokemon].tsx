@@ -14,11 +14,16 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const { pokemon } = context.params!;
-  const response = await getPokemonDataByName(pokemon as string);
-
-  return {
-    props: { pokemon: response },
-  };
+  try {
+    const response = await getPokemonDataByName(pokemon as string);
+    return {
+      props: { pokemon: response },
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 const Card: React.FC<CardProps> = ({ pokemon }) => {
