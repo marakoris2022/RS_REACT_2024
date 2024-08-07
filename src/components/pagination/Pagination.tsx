@@ -9,8 +9,6 @@ export const Pagination = ({ totalPokes }: PaginationProps) => {
   const themeContext = useContext(ThemeContext);
   const { state, setState } = useGlobalState();
 
-  let frontpage = state.pageNumber;
-
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
   }
@@ -53,17 +51,15 @@ export const Pagination = ({ totalPokes }: PaginationProps) => {
   };
 
   useEffect(() => {
-    if (frontpage > calculateTotalPages(totalPokes)) {
-      frontpage = calculateTotalPages(totalPokes);
+    if (state.pageNumber > calculateTotalPages(totalPokes)) {
+      setState((state) => {
+        return {
+          ...state,
+          pageNumber: 1,
+        };
+      });
     }
-
-    setState((state) => {
-      return {
-        ...state,
-        pageNumber: frontpage,
-      };
-    });
-  }, []);
+  }, [state.pageNumber]);
 
   return (
     <div style={{ background: theme.menuBackground }} className={style.wrapper}>

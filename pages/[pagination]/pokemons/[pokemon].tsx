@@ -1,23 +1,25 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { getPokemonDataByName } from '../../../src/api/restApi';
 import style from '../../../styles/pokemon.module.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ThemeContext } from '../../../src/store/theme';
 import { PokemonCard } from '../../../src/components/card-section/PokemonCard';
 import { PokemonData } from '../../../src/interface/interface';
+import { useGlobalState } from '../../../src/store/GlobalStateContext';
 
 interface CardProps {
   pokemon: PokemonData;
+  pagination: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { pokemon } = context.params!;
+  const { pokemon, pagination } = context.params!;
   try {
     const response = await getPokemonDataByName(pokemon as string);
     return {
-      props: { pokemon: response },
+      props: { pokemon: response, pagination },
     };
   } catch {
     return {
@@ -26,8 +28,18 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 };
 
-const Card: React.FC<CardProps> = ({ pokemon }) => {
+const Card: React.FC<CardProps> = ({ pokemon, pagination }) => {
   const themeContext = useContext(ThemeContext);
+  const { setState } = useGlobalState();
+
+  useEffect(() => {
+    setState((state) => {
+      return {
+        ...state,
+        pageNumber: Number(pagination),
+      };
+    });
+  }, []);
 
   if (!themeContext) {
     throw new Error('ThemeContext must be used within a ThemeProvider');
