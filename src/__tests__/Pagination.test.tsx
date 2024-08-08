@@ -1,7 +1,7 @@
 import { render, screen, act } from '@testing-library/react';
 import { Pagination } from '../components/pagination/Pagination';
 import { BrowserRouter } from 'react-router-dom';
-import { TestPokemon } from './__mock__';
+import { TestPokemon } from './__mocks__/constants';
 import { useState } from 'react';
 import { PokemonData } from '../interface/interface';
 

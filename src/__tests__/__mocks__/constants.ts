@@ -1,4 +1,4 @@
-import { PokemonData, PokemonListData } from '../interface/interface';
+import { PokemonData, PokemonListData } from '../../interface/interface';
 
 export const TestPokemon: PokemonData = {
   abilities: [

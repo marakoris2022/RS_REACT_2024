@@ -1,31 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import { SearchInput } from '../components/input/SearchInput';
 import { firstLetterUppercase } from '../utils/utils';
 import { Provider, useSelector } from 'react-redux';
-import { RootState, store } from '../store/store';
 import React from 'react';
 
 test('render test', () => {
-  render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
-      </Provider>
-    </BrowserRouter>
-  );
+  render(<SearchInput placeholder="Test Search..." onKeyDown={() => {}} />);
   const linkElement = screen.getByPlaceholderText('Test Search...');
   expect(linkElement).toBeInTheDocument();
 });
 
 test('function test', () => {
-  render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
-      </Provider>
-    </BrowserRouter>
-  );
+  render(<SearchInput placeholder="Test Search..." onKeyDown={() => {}} />);
 
   const inputElement = screen.getByPlaceholderText('Test Search...');
 
@@ -33,20 +19,15 @@ test('function test', () => {
 });
 
 const TestComponent = () => {
-  const value = useSelector((state: RootState) => state.core.searchValue);
   return <div data-testid="search-value">{value}</div>;
 };
 
 test('getSearchValue function test', () => {
   render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <>
-          <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
-          <TestComponent />
-        </>
-      </Provider>
-    </BrowserRouter>
+    <>
+      <SearchInput placeholder="Test Search..." onKeyDown={() => {}} />
+      <TestComponent />
+    </>
   );
 
   const searchValueElement = screen.getByTestId('search-value');

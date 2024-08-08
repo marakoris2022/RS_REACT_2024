@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { TestPokemon } from './__mock__';
+import { TestPokemon } from './__mocks__/constants';
 import { SectionCard } from '../components/content-section/section-card/SectionCard';
 import { ContentSection } from '../components/content-section/ContentSection';
 import { Provider } from 'react-redux';

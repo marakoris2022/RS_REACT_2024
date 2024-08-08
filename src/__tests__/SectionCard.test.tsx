@@ -1,32 +1,41 @@
+// src/__tests__/SectionCard.test.tsx
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { TestPokemon } from './__mock__';
 import { SectionCard } from '../components/content-section/section-card/SectionCard';
-import { Provider } from 'react-redux';
-import { store } from '../store/store';
+import { vi } from 'vitest';
+import React from 'react';
 
-test('render test', () => {
-  render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <SectionCard pokemon={TestPokemon} />
-      </Provider>
-    </BrowserRouter>
-  );
-  const linkElement = screen.getByText(/squirtle/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// Мокируем next/router напрямую в тесте
+vi.mock('next/router', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    prefetch: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    reload: vi.fn(),
+    events: {
+      on: vi.fn(),
+      off: vi.fn(),
+      emit: vi.fn(),
+    },
+    isFallback: false,
+  }),
+}));
 
-test('function test', () => {
-  render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <SectionCard pokemon={TestPokemon} />
-      </Provider>
-    </BrowserRouter>
-  );
+// Мокируем API вызовы
+vi.mock('../../../api/restApi', () => ({
+  getPokemonDataByName: vi.fn().mockResolvedValue({
+    name: 'squirtle',
+    sprites: { front_default: 'some-url' },
+    types: [{ type: { name: 'water' } }],
+    base_experience: 63,
+    weight: 90,
+  }),
+}));
 
-  const linkElement = screen.getByTestId(/cardWrapper/i);
-  linkElement.click();
-  expect(linkElement).toBeInTheDocument();
+test('renders SectionCard with pokemon name', async () => {
+  render(<SectionCard pokemonName="squirtle" />);
+
+  // Ожидаем, что данные о покемоне будут отображены
+  const nameElement = await screen.findByText(/squirtle/i);
+  expect(nameElement).toBeInTheDocument();
 });

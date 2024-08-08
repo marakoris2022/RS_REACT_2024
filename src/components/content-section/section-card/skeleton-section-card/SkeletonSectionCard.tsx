@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import RunningPokemon from '../../../../../public/pikachu-running.gif';
 import style from './skeletonSectionCard.module.scss';
+import React from 'react';
 
 type SkeletonSectionCardType = {
   theme: {

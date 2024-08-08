@@ -4,6 +4,7 @@ import style from './pagination.module.scss';
 import { ButtonType, PaginationProps } from '../../interface/interface';
 import { ThemeContext } from '../../store/theme';
 import { useGlobalState } from '../../store/GlobalStateContext';
+import React from 'react';
 
 export const Pagination = ({ totalPokes }: PaginationProps) => {
   const themeContext = useContext(ThemeContext);
