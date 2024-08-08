@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from '../store/store';
+import React, { act } from 'react';
+
 import { Inventory } from '../components/inventory/Inventory';
+import Layout from '../components/layout/layout';
 
 beforeAll(() => {
   global.URL.createObjectURL = function () {
@@ -12,13 +12,13 @@ beforeAll(() => {
 
 test('render test', () => {
   render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <Inventory />
-      </Provider>
-    </BrowserRouter>
+    <Layout>
+      <Inventory />
+    </Layout>
   );
-  const linkElement = screen.getByText(/Download/i);
-  linkElement.click();
-  expect(linkElement).toBeInTheDocument();
+  act(() => {
+    const linkElement = screen.getAllByText(/Download/i);
+    linkElement[0].click();
+    expect(linkElement[0]).toBeInTheDocument();
+  });
 });

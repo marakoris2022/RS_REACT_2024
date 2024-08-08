@@ -1,6 +1,7 @@
 import style from './pokemonIcon.module.scss';
 import DEFAULT_IMAGE from '../../../public/pokeball.svg';
 import Image from 'next/image';
+import React from 'react';
 
 type PokemonIconProps = {
   width: number;

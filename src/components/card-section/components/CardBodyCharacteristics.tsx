@@ -1,4 +1,5 @@
 import { CardComponent } from '../../../interface/interface';
+import React from 'react';
 
 import style from '../pokemonCard.module.scss';
 

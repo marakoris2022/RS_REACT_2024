@@ -2,6 +2,7 @@ import style from '../pokemonCard.module.scss';
 import AbilIco from '../../../../public/abil-ico.svg';
 import { CardComponent } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
+import React from 'react';
 
 export const CardAbilities = ({ cardSelected }: CardComponent) => (
   <div style={{ width: '100%' }}>

@@ -1,40 +1,29 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { closeDialog, openDialog } from '../components/dialog/dialogStore';
+import { DialogType } from '../interface/interface';
+import React, { act } from 'react';
+import Layout from '../components/layout/layout';
 import { PokemonCard } from '../components/card-section/PokemonCard';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import { RootState } from '../store/store';
 import { TestPokemon } from './__mocks__/constants';
-
-enum FetchingDataStatus {
-  READY = 'Ready',
-}
-
-// Mock the initial state if necessary
-const mockStore = configureStore([]);
-const initialState: RootState = {
-  pokeCard: { pokemonCard: TestPokemon },
-  core: {
-    searchValue: '',
-  },
-  pokeList: {
-    pokemonDataList: [TestPokemon, TestPokemon],
-    chosenPokes: [TestPokemon, TestPokemon],
-    type: FetchingDataStatus.READY,
-  },
-};
-
-const store = mockStore(initialState);
+import Card from '../../pages/[pagination]/pokemons/[pokemon]';
 
 test('render test', () => {
+  const pokemon = TestPokemon;
+  const pagination = '1';
+  const props = { pokemon, pagination };
   render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <PokemonCard />
-      </Provider>
-    </BrowserRouter>
+    <Layout>
+      <PokemonCard cardSelected={TestPokemon} />
+      <Card {...props} />
+    </Layout>
   );
 
-  const linkElement = screen.getByTestId('close-card-back');
-  expect(linkElement).toBeInTheDocument();
+  act(() => {
+    openDialog(<p>TestDialog</p>, DialogType.INFO);
+    closeDialog();
+
+    const linkElement = screen.getByText(/Close/i);
+
+    expect(linkElement).toBeInTheDocument();
+  });
 });

@@ -1,32 +1,17 @@
 import { render, screen, act } from '@testing-library/react';
 import { Pagination } from '../components/pagination/Pagination';
-import { BrowserRouter } from 'react-router-dom';
-import { TestPokemon } from './__mocks__/constants';
-import { useState } from 'react';
-import { PokemonData } from '../interface/interface';
-
-const pokemonList: PokemonData[] = Array.from(
-  { length: 100 },
-  () => TestPokemon
-);
+import Layout from '../components/layout/layout';
+import React from 'react';
 
 function TestComponent() {
-  const [pageNum, setPageNum] = useState(1);
-
-  return (
-    <Pagination
-      pageNum={pageNum}
-      setPageNum={setPageNum}
-      pokemonList={pokemonList}
-    />
-  );
+  return <Pagination totalPokes={100} />;
 }
 
 test('render test', () => {
   render(
-    <BrowserRouter>
+    <Layout>
       <TestComponent />
-    </BrowserRouter>
+    </Layout>
   );
   const linkElement = screen.getByText(/Pokes found/i);
   expect(linkElement).toBeInTheDocument();
@@ -37,9 +22,9 @@ test('render test', () => {
 test('handlePageClick function is called correctly', async () => {
   // Render the Pagination component
   render(
-    <BrowserRouter>
+    <Layout>
       <TestComponent />
-    </BrowserRouter>
+    </Layout>
   );
 
   // Find and click the 'Next' and 'Prev' buttons

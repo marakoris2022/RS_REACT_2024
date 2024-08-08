@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { SectionCard } from '../components/content-section/section-card/SectionCard';
 import { vi } from 'vitest';
 import React from 'react';
+import Layout from '../components/layout/layout';
 
-// Мокируем next/router напрямую в тесте
 vi.mock('next/router', () => ({
   useRouter: () => ({
     push: vi.fn(),
@@ -21,7 +21,6 @@ vi.mock('next/router', () => ({
   }),
 }));
 
-// Мокируем API вызовы
 vi.mock('../../../api/restApi', () => ({
   getPokemonDataByName: vi.fn().mockResolvedValue({
     name: 'squirtle',
@@ -33,9 +32,12 @@ vi.mock('../../../api/restApi', () => ({
 }));
 
 test('renders SectionCard with pokemon name', async () => {
-  render(<SectionCard pokemonName="squirtle" />);
+  render(
+    <Layout>
+      <SectionCard pokemonName="squirtle" />
+    </Layout>
+  );
 
-  // Ожидаем, что данные о покемоне будут отображены
   const nameElement = await screen.findByText(/squirtle/i);
   expect(nameElement).toBeInTheDocument();
 });

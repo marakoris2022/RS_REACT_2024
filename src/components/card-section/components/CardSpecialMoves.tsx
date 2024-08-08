@@ -1,6 +1,7 @@
 import { CardComponent } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
 import SpecialIco from '../../../../public/special-ico.svg';
+import React from 'react';
 
 import style from '../pokemonCard.module.scss';
 

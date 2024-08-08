@@ -3,6 +3,7 @@ import { CardComponent } from '../../../interface/interface';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from '../pokemonCard.module.scss';
 import { ThemeContext } from '../../../store/theme';
+import React from 'react';
 
 export const CardIcons = ({ cardSelected }: CardComponent) => {
   const themeContext = useContext(ThemeContext);

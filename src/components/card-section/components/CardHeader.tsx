@@ -4,6 +4,7 @@ import { firstLetterUppercase } from '../../../utils/utils';
 import { Button } from '../../button/Button';
 import style from '../pokemonCard.module.scss';
 import { ThemeContext } from '../../../store/theme';
+import React from 'react';
 
 export const CardHeader = ({
   cardSelected,

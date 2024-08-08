@@ -6,6 +6,7 @@ import { ThemeContext } from '../../../src/store/theme';
 import { PokemonCard } from '../../../src/components/card-section/PokemonCard';
 import { PokemonData } from '../../../src/interface/interface';
 import { useGlobalState } from '../../../src/store/GlobalStateContext';
+import React from 'react';
 
 interface CardProps {
   pokemon: PokemonData;

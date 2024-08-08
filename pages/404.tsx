@@ -3,6 +3,7 @@ import style from '../styles/404.module.scss';
 import ErrPoke from '../public/404page.png';
 import { ButtonType } from '../src/interface/interface';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 const NotFoundPage = () => {
   const router = useRouter();

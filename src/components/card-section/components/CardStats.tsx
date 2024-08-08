@@ -3,6 +3,7 @@ import { firstLetterUppercase } from '../../../utils/utils';
 import style from '../pokemonCard.module.scss';
 import ExpIco from '../../../../public/exp-ico.svg';
 import StatsIco from '../../../../public/stats-ico.svg';
+import React from 'react';
 
 export const CardStats = ({ cardSelected }: CardComponent) => (
   <div>

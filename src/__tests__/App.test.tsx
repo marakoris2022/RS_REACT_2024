@@ -1,4 +1,3 @@
-// src/__tests__/App.test.tsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { test, expect, vi } from 'vitest';
@@ -6,7 +5,6 @@ import App from '../../pages/index';
 import { allPokemonNames } from './__mocks__/constants';
 import Layout from '../components/layout/layout';
 
-// Мокируем next/router напрямую в тесте
 vi.mock('next/router', () => ({
   useRouter: () => ({
     route: '/',

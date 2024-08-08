@@ -8,6 +8,7 @@ import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
 import { PokemonData } from '../../interface/interface';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 type PokemonCardType = {
   cardSelected: PokemonData;
