@@ -7,7 +7,7 @@ import React from 'react';
 
 export const CardStats = ({ cardSelected }: CardComponent) => (
   <div>
-    <p>
+    <p className={style.cardExp}>
       Experience: {cardSelected.base_experience}{' '}
       <img width={12} src={ExpIco.src} alt="Exp" />
     </p>

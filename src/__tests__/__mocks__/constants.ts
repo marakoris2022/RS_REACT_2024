@@ -32,10 +32,10 @@ export const allPokemonNames: PokemonListData = {
   next: null,
   previous: null,
   results: [
-    { name: 'test1', url: '' },
-    { name: 'test2', url: '' },
-    { name: 'test3', url: '' },
-    { name: 'test4', url: '' },
-    { name: 'test5', url: '' },
+    { name: 'squirtle', url: '' },
+    { name: 'squirtle', url: '' },
+    { name: 'squirtle', url: '' },
+    { name: 'squirtle', url: '' },
+    { name: 'squirtle', url: '' },
   ],
 };

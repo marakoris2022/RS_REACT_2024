@@ -4,6 +4,7 @@ import { Dialog } from '../dialog/Dialog';
 import { Inventory } from '../inventory/Inventory';
 import { GlobalStateProvider } from '../../store/GlobalStateContext';
 import React from 'react';
+import { ErrorBoundary } from '../error-boundarie/ErrorBoundarie';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,13 +15,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const themePicker = isLightTheme ? themeSettings.light : themeSettings.dark;
   return (
-    <GlobalStateProvider>
-      <ThemeContext.Provider value={{ themePicker, toggleIsLightTheme }}>
-        <Dialog />
-        <Inventory />
-        {children}
-      </ThemeContext.Provider>
-    </GlobalStateProvider>
+    <ErrorBoundary>
+      <GlobalStateProvider>
+        <ThemeContext.Provider value={{ themePicker, toggleIsLightTheme }}>
+          <Dialog />
+          <Inventory />
+          {children}
+        </ThemeContext.Provider>
+      </GlobalStateProvider>
+    </ErrorBoundary>
   );
 };
 

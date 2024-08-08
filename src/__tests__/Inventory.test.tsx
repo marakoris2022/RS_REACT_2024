@@ -3,12 +3,17 @@ import React, { act } from 'react';
 
 import { Inventory } from '../components/inventory/Inventory';
 import Layout from '../components/layout/layout';
+import { vitest } from 'vitest';
 
 beforeAll(() => {
   global.URL.createObjectURL = function () {
     return 'blob:mock';
   };
 });
+
+vitest.mock('file-saver', () => ({
+  saveAs: vitest.fn(),
+}));
 
 test('render test', () => {
   render(
