@@ -1,0 +1,303 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/pokemon-icon/pokemonIcon.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.pokemonIcon_pokemonIconWrapper__YdRTx {
+  position: relative;
+}
+
+.pokemonIcon_pokemonIcon__ozlIl {
+  position: absolute;
+  animation: pokemonIcon_flyUpDown__8cyBD 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pokemonIcon_flyUpDown__8cyBD {
+  0% {
+    top: -3px;
+  }
+  100% {
+    top: 3px;
+  }
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/content-section/section-card/sectionCard.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.sectionCard_cardWrapper__3g_A0 {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  width: 300px;
+  border-radius: 5px;
+  border: outset 3px silver;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  transition: all 0.3 ease;
+}
+
+@media screen and (max-width: 600px) {
+  .sectionCard_cardWrapper__3g_A0 {
+    width: 260px;
+  }
+}
+.sectionCard_cardWrapper__3g_A0::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: rotateZ(2deg);
+  border: 2px rgb(255, 255, 0) solid;
+  background: transparent;
+  pointer-events: none;
+  transition: all 0.3 ease;
+}
+
+.sectionCard_titleWrapper__HOjpd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionCard_checkboxWrapper__rHh1Y {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionCard_checkboxWrapper__rHh1Y label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.sectionCard_checkboxWrapper__rHh1Y:hover {
+  background-color: rgba(255, 140, 0, 0.3);
+  border-radius: 5px;
+}
+
+.sectionCard_checkboxWrapper__rHh1Y input {
+  margin-right: 15px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: rgb(249, 181, 97);
+  border: 2px solid #415674;
+  height: 1em;
+  width: 1em;
+  border-radius: 5px;
+  vertical-align: text-bottom;
+  position: relative;
+}
+
+.sectionCard_checkboxWrapper__rHh1Y input:checked {
+  background: red;
+}
+
+.sectionCard_contentWrapper__jTD_C {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionCard_contentTitle__HEtvD {
+  display: inline-block;
+  width: 100px;
+  font-weight: 600;
+}
+
+.sectionCard_cardWrapper__3g_A0:hover::after {
+  transform: rotateZ(-2deg);
+  border-color: rgb(247, 147, 78);
+}
+
+.sectionCard_iconWrapper__bNZih {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+.sectionCard_cardTitle__8_8KF {
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: "Prompt", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  margin: 0;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/content-section/section-card/skeleton-section-card/skeletonSectionCard.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.skeletonSectionCard_cardWrapper__HlJLO {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  width: 300px;
+  border-radius: 5px;
+  border: outset 3px silver;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  transition: all 0.3 ease;
+}
+
+.skeletonSectionCard_contentWrapper__I_xWe {
+  height: 150px;
+  width: 300px;
+  font-size: 30px;
+  text-align: center;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/content-section/contentSection.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.contentSection_sectionCardsWrapper__0e7pY {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.contentSection_dark__hLpCM {
+  filter: grayscale(80%);
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/content-section/search-failed/searchFailed.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.searchFailed_wrapper__Ffxr_ {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  border-radius: 10px;
+  border: outset 3px silver;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: all 0.3 ease;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/button/button.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.button_defaultButton__KLmn3 {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button_greenButton__07B97 {
+  color: white;
+  background-color: rgb(0, 49, 0);
+  transition: all 0.2s ease;
+}
+.button_greenButton__07B97:hover {
+  background-color: rgb(0, 109, 0);
+}
+
+.button_redButton__mydWj {
+  color: white;
+  font-weight: 600;
+  background-color: rgb(49, 0, 2);
+  transition: all 0.2s ease;
+}
+.button_redButton__mydWj:hover {
+  background-color: rgb(79, 0, 3);
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/pagination/pagination.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.pagination_wrapper__8t8u6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  padding: 15px 30px;
+  gap: 15px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  border: solid 1px white;
+  font-weight: 600;
+  color: azure;
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.pagination_paginationSettings__LN36h {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .pagination_wrapper__8t8u6 {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 8px 15px;
+  }
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/main-section/mainSection.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.mainSection_mainSection__eBXgn {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/input/input.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.input_defaultInput___vqR_ {
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(0, 49, 0);
+}
+.input_defaultInput___vqR_:focus {
+  box-shadow: 0px 0px 8px 2px rgb(0, 181, 184);
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/search-section/searchSection..module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.searchSection__searchWrapper___kuQl {
+  display: flex;
+  flex-direction: row;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  gap: 20px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[9].use[5]!./src/components/theme-toggle/theme-toggle.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.theme-toggle_toggleButton__3gOY6 {
+  border-radius: 5px;
+}

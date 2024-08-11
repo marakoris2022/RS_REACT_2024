@@ -2,16 +2,10 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme';
 import style from './theme-toggle.module.scss';
 
-export const ThemeToggle = ({
-  toggleIsLightTheme,
-}: {
-  toggleIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const ThemeToggle = () => {
   const theme = useContext(ThemeContext);
 
-  function handleChange() {
-    toggleIsLightTheme((state) => !state);
-  }
+  function handleChange() {}
 
   return (
     <button
@@ -20,7 +14,7 @@ export const ThemeToggle = ({
       onClick={handleChange}
     >
       {theme.theme}
-      {theme.themeIcon}{' '}
+      {theme.themeIcon}
     </button>
   );
 };

@@ -1,25 +1,16 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { UserConfigExport } from 'vite';
-import { defineConfig as defineVitestConfig } from 'vitest/config';
+import { vitePlugin as remix } from "@remix-run/dev";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-// https://vitejs.dev/config/
-const viteConfig: UserConfigExport = defineConfig({
-  plugins: [react()],
+export default defineConfig({
+  plugins: [
+    remix({
+      future: {
+        v3_fetcherPersist: true,
+        v3_relativeSplatPath: true,
+        v3_throwAbortReason: true,
+      },
+    }),
+    tsconfigPaths(),
+  ],
 });
-
-const vitestConfig = defineVitestConfig({
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    coverage: {
-      reporter: ['text'],
-    },
-  },
-});
-
-export default {
-  ...viteConfig,
-  ...vitestConfig,
-};
