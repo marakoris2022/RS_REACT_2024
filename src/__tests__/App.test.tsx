@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { test, expect, vi } from 'vitest';
-import App from '../../pages/index';
+import App from '../../_pages/index';
 import { allPokemonNames } from './__mocks__/constants';
 import Layout from '../components/layout/layout';
 

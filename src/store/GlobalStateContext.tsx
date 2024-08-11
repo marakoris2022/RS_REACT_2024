@@ -1,6 +1,9 @@
+'use client';
+
 import { createContext, useState, useContext, ReactNode } from 'react';
 import { PokemonData } from '../interface/interface';
 import React from 'react';
+import { ThemeContext, themeSettings } from './theme';
 
 type GlobalStateProviderType = {
   searchValue: string;
@@ -32,9 +35,15 @@ export const GlobalStateProvider = ({ children }: GlobalStateProviderProps) => {
     choosenCard: null,
   });
 
+  const [isLightTheme, toggleIsLightTheme] = useState(true);
+
+  const themePicker = isLightTheme ? themeSettings.light : themeSettings.dark;
+
   return (
     <GlobalStateContext.Provider value={{ state, setState }}>
-      {children}
+      <ThemeContext.Provider value={{ themePicker, toggleIsLightTheme }}>
+        {children}
+      </ThemeContext.Provider>
     </GlobalStateContext.Provider>
   );
 };

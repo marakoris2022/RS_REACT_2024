@@ -1,8 +1,4 @@
-'use client';
-
-import { createContext, SetStateAction, Dispatch } from 'react';
-
-export const themeSettings = {
+export const cardPageThemeData = {
   light: {
     theme: 'Light',
     color: 'black',
@@ -36,14 +32,3 @@ export const themeSettings = {
       'radial-gradient(circle, rgb(22, 74, 25) 0%, rgb(10, 21, 13) 100%)',
   },
 };
-
-type themeSetting = typeof themeSettings.light;
-
-export type ThemeContextType = {
-  themePicker: themeSetting;
-  toggleIsLightTheme: Dispatch<SetStateAction<boolean>>;
-};
-
-export const ThemeContext = createContext<ThemeContextType | undefined>(
-  undefined
-);

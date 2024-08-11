@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { SectionCard } from './section-card/SectionCard';
 import style from './contentSection.module.scss';

@@ -1,11 +1,23 @@
+'use client';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { Button } from '../src/components/button/Button';
-import style from '../styles/404.module.scss';
-import ErrPoke from '../public/404page.png';
 import { ButtonType } from '../src/interface/interface';
-import { useRouter } from 'next/router';
-import React from 'react';
+import style from './error.module.scss';
+import ErrPoke from '../public/404page.png';
 
-const NotFoundPage = () => {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
+
   const router = useRouter();
   function handleClick() {
     router.push('/');
@@ -29,6 +41,4 @@ const NotFoundPage = () => {
       </div>
     </div>
   );
-};
-
-export default NotFoundPage;
+}

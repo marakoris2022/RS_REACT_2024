@@ -30,6 +30,12 @@
       }
     ]
   },
-  "include": ["src/**/*", "./dist/types/**/*.ts", "./next-env.d.ts", "pages"],
+  "include": [
+    "src/**/*",
+    "app/**/*",
+    "./dist/types/**/*.ts",
+    "./next-env.d.ts",
+    "_pages"
+  ],
   "exclude": ["./node_modules"]
 }

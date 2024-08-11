@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonType } from '../../interface/interface';
 import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';

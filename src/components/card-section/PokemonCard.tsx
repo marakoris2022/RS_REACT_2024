@@ -1,3 +1,5 @@
+'use client';
+
 import style from './pokemonCard.module.scss';
 import { CardHeader } from './components/CardHeader';
 import { CardIcons } from './components/CardIcons';
@@ -7,8 +9,8 @@ import { CardItems } from './components/CardItems';
 import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
 import { PokemonData } from '../../interface/interface';
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 type PokemonCardType = {
   cardSelected: PokemonData;

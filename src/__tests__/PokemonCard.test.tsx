@@ -5,7 +5,7 @@ import React, { act } from 'react';
 import Layout from '../components/layout/layout';
 import { PokemonCard } from '../components/card-section/PokemonCard';
 import { TestPokemon } from './__mocks__/constants';
-import Card from '../../pages/[pagination]/pokemons/[pokemon]';
+import Card from '../../_pages/[pagination]/pokemons/[pokemon]';
 
 test('render test', () => {
   const pokemon = TestPokemon;

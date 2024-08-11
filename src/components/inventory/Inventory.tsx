@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, useState } from 'react';
 import style from './inventory.module.scss';
 import { Button } from '../button/Button';

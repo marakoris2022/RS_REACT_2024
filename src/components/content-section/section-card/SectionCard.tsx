@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, useEffect, useState } from 'react';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
@@ -8,8 +10,8 @@ import { getPokemonDataByName } from '../../../api/restApi';
 import { PokemonData } from '../../../interface/interface';
 import { SkeletonSectionCard } from './skeleton-section-card/SkeletonSectionCard';
 import { useGlobalState } from '../../../store/GlobalStateContext';
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 type SectionCardProps = {
   pokemonName: string;
@@ -18,7 +20,6 @@ type SectionCardProps = {
 export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const themeContext = useContext(ThemeContext);
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
-  const { state } = useGlobalState();
   const route = useRouter();
 
   if (!themeContext) {
@@ -28,7 +29,7 @@ export const SectionCard = ({ pokemonName }: SectionCardProps) => {
   const { themePicker: theme } = themeContext;
 
   function handleClick() {
-    route.push(`/${state.pageNumber}/pokemons/${pokemon?.name}`);
+    route.push(`/pokemon/${theme.theme.toLocaleLowerCase()}/${pokemon?.name}`);
   }
 
   useEffect(() => {
