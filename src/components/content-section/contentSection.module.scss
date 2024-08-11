@@ -1,0 +1,14 @@
+.sectionCardsWrapper {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+
+  justify-content: center;
+}
+
+.dark {
+  filter: grayscale(80%);
+}

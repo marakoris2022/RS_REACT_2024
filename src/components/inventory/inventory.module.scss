@@ -1,0 +1,114 @@
+.backgroundWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 93px;
+  height: 93px;
+
+  position: fixed;
+  z-index: 999;
+  bottom: 80px;
+  right: 20px;
+
+  border-radius: 50%;
+
+  animation: rainbow-animation 2000ms linear infinite;
+}
+
+@keyframes rainbow-animation {
+  0% {
+    background-color: red;
+  }
+  20% {
+    background-color: orange;
+  }
+  40% {
+    background-color: yellow;
+  }
+  60% {
+    background-color: green;
+  }
+  80% {
+    background-color: blue;
+  }
+  100% {
+    background-color: violet;
+  }
+}
+
+.inventoryWrapper {
+  cursor: pointer;
+
+  width: 80px;
+  height: 80px;
+
+  background-image: url('/pokeball-pokemon-svgrepo-com.svg');
+  background-size: cover;
+
+  animation: 0.3s linear 0s infinite alternate pulse;
+
+  filter: drop-shadow(7px 7px 7px #000000);
+}
+
+.backgroundWrapper.hidden {
+  display: none;
+}
+
+.inventoryWrapper:hover,
+.inventoryWrapper.active {
+  animation: none;
+}
+
+.counterWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+.counter {
+  font-size: 40px;
+  font-weight: 600;
+
+  filter: drop-shadow(3px 3px 1px #00e5ff);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(7px 7px 7px #000000);
+  }
+  to {
+    transform: scale(1.04);
+    filter: drop-shadow(10px 10px 8px #000000);
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 90px;
+
+  flex-direction: row;
+
+  transform: scale(0);
+
+  gap: 20px;
+
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.75);
+
+  transition: all 0.3s ease;
+}
+.buttonsWrapper.active {
+  transform: scale(1);
+}

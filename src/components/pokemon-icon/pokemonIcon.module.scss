@@ -1,0 +1,18 @@
+.pokemonIconWrapper {
+  position: relative;
+}
+
+.pokemonIcon {
+  position: absolute;
+
+  animation: flyUpDown 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flyUpDown {
+  0% {
+    top: -3px;
+  }
+  100% {
+    top: 3px;
+  }
+}

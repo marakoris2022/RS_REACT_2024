@@ -1,0 +1,135 @@
+.cardWrapper {
+  position: relative;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  flex-direction: row;
+  gap: 15px;
+  width: 300px;
+
+  border-radius: 5px;
+  border: outset 3px silver;
+
+  padding: 10px 20px;
+
+  margin-bottom: 20px;
+
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+
+  transition: all 0.3 ease;
+}
+
+@media screen and (max-width: 600px) {
+  .cardWrapper {
+    width: 260px;
+  }
+}
+
+.cardWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  transform: rotateZ(2deg);
+
+  border: 2px rgb(255, 255, 0) solid;
+
+  background: transparent;
+
+  pointer-events: none;
+
+  transition: all 0.3 ease;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.checkboxWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkboxWrapper label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.checkboxWrapper:hover {
+  background-color: rgba(255, 140, 0, 0.3);
+  border-radius: 5px;
+}
+
+.checkboxWrapper input {
+  margin-right: 15px;
+
+  appearance: none;
+  background-color: rgb(249, 181, 97);
+  border: 2px solid #415674;
+  height: 1em;
+  width: 1em;
+  border-radius: 5px;
+  vertical-align: text-bottom;
+  position: relative;
+}
+.checkboxWrapper input:checked {
+  background: red;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.contentTitle {
+  display: inline-block;
+  width: 100px;
+
+  font-weight: 600;
+}
+
+.cardWrapper:hover::after {
+  transform: rotateZ(-2deg);
+  border-color: rgb(247, 147, 78);
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+.cardTitle {
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+
+  font-size: 20px;
+
+  margin: 0;
+}

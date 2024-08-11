@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+
+  width: fit-content;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  flex-direction: row;
+  gap: 15px;
+
+  border-radius: 10px;
+  border: outset 3px silver;
+
+  padding: 10px 20px;
+
+  margin-bottom: 20px;
+
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  transition: all 0.3 ease;
+}

@@ -1,0 +1,33 @@
+.cardWrapper {
+  position: relative;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  flex-direction: row;
+  gap: 15px;
+  width: 300px;
+
+  border-radius: 5px;
+  border: outset 3px silver;
+
+  padding: 10px 20px;
+
+  margin-bottom: 20px;
+
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.6);
+
+  transition: all 0.3 ease;
+}
+
+.contentWrapper {
+  height: 150px;
+  width: 300px;
+  font-size: 30px;
+  text-align: center;
+}
