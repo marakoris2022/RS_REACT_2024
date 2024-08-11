@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
+import { allPokemonNames } from './__mocks__/constants';
 import { GlobalStateProvider } from '../store/GlobalStateContext';
 import React from 'react';
-
-import { SectionCard } from '../components/content-section/section-card/SectionCard';
+import { Dialog } from '../components/dialog/Dialog';
+import { Inventory } from '../components/inventory/Inventory';
+import { MainSection } from '../components/main-section/MainSection';
+import { SearchSection } from '../components/search-section/SearchSection';
+import { ContentSection } from '../components/content-section/ContentSection';
 
 // Mock useRouter
 vi.mock('next/navigation', () => ({
@@ -15,7 +19,12 @@ describe('Page', () => {
   it('renders correctly with mocked data', async () => {
     render(
       <GlobalStateProvider>
-        <SectionCard pokemonName={'pikachu'} />
+        <Dialog />
+        <Inventory />
+        <MainSection>
+          <SearchSection />
+          <ContentSection allPokemonNames={allPokemonNames} />
+        </MainSection>
       </GlobalStateProvider>
     );
 

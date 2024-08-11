@@ -8,7 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noEmit": true,
-    "name": "next"
+    "name": "next",
+    "types": ["vitest/globals", "node"]
   },
   "include": ["vite.config.ts"],
   "references": [

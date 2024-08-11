@@ -1,29 +1,28 @@
 import { render, screen } from '@testing-library/react';
-import { closeDialog, openDialog } from '../components/dialog/dialogStore';
-import { DialogType } from '../interface/interface';
-import React, { act } from 'react';
-import Layout from '../components/layout/layout';
-import { PokemonCard } from '../components/card-section/PokemonCard';
 import { TestPokemon } from './__mocks__/constants';
-import Card from '../../_pages/[pagination]/pokemons/[pokemon]';
+import { GlobalStateProvider } from '../store/GlobalStateContext';
+import React from 'react';
 
-test('render test', () => {
-  const pokemon = TestPokemon;
-  const pagination = '1';
-  const props = { pokemon, pagination };
-  render(
-    <Layout>
-      <PokemonCard cardSelected={TestPokemon} />
-      <Card {...props} />
-    </Layout>
-  );
+import { PokemonCard } from '../components/card-section/PokemonCard';
 
-  act(() => {
-    openDialog(<p>TestDialog</p>, DialogType.INFO);
-    closeDialog();
+// Mock useRouter
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn().mockImplementation(() => ({
+    push: vi.fn(),
+  })),
+}));
 
-    const linkElement = screen.getByText(/Close/i);
+describe('Page', () => {
+  it('renders correctly with mocked data', async () => {
+    render(
+      <GlobalStateProvider>
+        <PokemonCard cardSelected={TestPokemon} />
+      </GlobalStateProvider>
+    );
 
-    expect(linkElement).toBeInTheDocument();
+    const linkElement = screen.getAllByText(/Experience/i);
+    expect(linkElement[0]).toBeInTheDocument();
   });
+
+  // Add more tests as needed
 });

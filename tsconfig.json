@@ -19,6 +19,8 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
+    "types": ["vitest/globals", "node"],
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
