@@ -1,6 +1,5 @@
 import React from 'react';
 import { getPokemonDataByName } from '../../../src/api/restApi';
-// import { themeSettings } from '../../../src/store/theme';
 import { PokemonCard } from '../../../src/components/card-section/PokemonCard';
 import style from './pokemon.module.scss';
 import { cardPageThemeData } from './const';

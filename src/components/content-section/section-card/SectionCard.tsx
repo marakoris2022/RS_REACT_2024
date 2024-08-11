@@ -9,7 +9,6 @@ import { ThemeContext } from '../../../store/theme';
 import { getPokemonDataByName } from '../../../api/restApi';
 import { PokemonData } from '../../../interface/interface';
 import { SkeletonSectionCard } from './skeleton-section-card/SkeletonSectionCard';
-import { useGlobalState } from '../../../store/GlobalStateContext';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
