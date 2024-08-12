@@ -68,6 +68,7 @@ export type PaginationProps = {
   pageNum: number;
   pokemonCount: number;
   theme: ThemeType;
+  searchValue: string;
 };
 
 export type CardComponent = {

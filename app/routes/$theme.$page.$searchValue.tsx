@@ -41,16 +41,19 @@ export async function loader({ params }: LoaderFunctionArgs) {
     usedTheme,
     viewPokemonListData,
     totalPokes,
+    searchValue,
   };
 }
 
 export const ContentPage = () => {
-  const { page, usedTheme, viewPokemonListData, totalPokes } = useLoaderData<{
-    page: string | undefined;
-    usedTheme: string;
-    viewPokemonListData: PokemonData[];
-    totalPokes: number;
-  }>();
+  const { page, usedTheme, viewPokemonListData, totalPokes, searchValue } =
+    useLoaderData<{
+      page: string | undefined;
+      usedTheme: string;
+      viewPokemonListData: PokemonData[];
+      totalPokes: number;
+      searchValue: string;
+    }>();
 
   const pageTheme =
     usedTheme === 'light' ? themeSettings.light : themeSettings.dark;
@@ -64,6 +67,7 @@ export const ContentPage = () => {
       />
       <div>
         <Pagination
+          searchValue={searchValue}
           theme={pageTheme}
           pageNum={page ? Number(page) : 1}
           pokemonCount={totalPokes}
