@@ -19,7 +19,7 @@ export const SearchSection = ({
 
   function handleSearchRequest(searchValue: string) {
     if (searchValue === '') searchValue = 'empty';
-    navigate(`/${themeURL}/${pageNum}/${searchValue}`);
+    navigate(`/${themeURL}/1/${searchValue}`);
   }
 
   return (
