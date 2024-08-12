@@ -1,4 +1,6 @@
 import { Outlet, Scripts } from '@remix-run/react';
+import './App.css';
+import './normalize.css';
 
 export function HydrateFallback() {
   return (

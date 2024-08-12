@@ -18,6 +18,7 @@ export const SearchSection = ({
   const themeURL = theme.theme === 'Light' ? 'light' : 'dark';
 
   function handleSearchRequest(searchValue: string) {
+    if (searchValue === '') searchValue = 'empty';
     navigate(`/${themeURL}/${pageNum}/${searchValue}`);
   }
 

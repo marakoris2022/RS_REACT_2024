@@ -59,7 +59,7 @@ export const ContentPage = () => {
     usedTheme === 'light' ? themeSettings.light : themeSettings.dark;
 
   return (
-    <MainSection>
+    <MainSection theme={pageTheme}>
       <SearchSection theme={pageTheme} pageNum={page ? Number(page) : 1} />
       <ContentSection
         viewPokemonListData={viewPokemonListData}
