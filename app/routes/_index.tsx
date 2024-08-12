@@ -13,10 +13,10 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const searchValue = localStorage.getItem('searchValue');
-  //   navigate(`/light/1/${searchValue ?? 'empty'}`);
-  // }, []);
+  useEffect(() => {
+    const searchValue = localStorage.getItem('searchValue');
+    navigate(`/light/1/${searchValue ?? 'empty'}`);
+  }, []);
 
   return <Loading />;
 }

@@ -6,10 +6,13 @@ export const ThemeToggle = ({ theme }: { theme: ThemeType }) => {
   let navigate = useNavigate();
 
   function handleChange() {
+    console.log(theme.theme);
+
     if (theme.theme === 'Light') {
       navigate(`/dark/1/empty`);
+    } else {
+      navigate(`/light/1/empty`);
     }
-    navigate(`/light/1/empty`);
   }
 
   return (
@@ -19,7 +22,7 @@ export const ThemeToggle = ({ theme }: { theme: ThemeType }) => {
       onClick={handleChange}
     >
       {theme.theme}
-      {theme.themeIcon}
+      {/* {theme.themeIcon} */}
     </button>
   );
 };
