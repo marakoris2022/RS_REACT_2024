@@ -4,9 +4,22 @@ import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
 import { ThemeToggle } from '../theme-toggle/ThemeToggle';
 import { ThemeType } from 'src/store/theme';
+import { useNavigate } from '@remix-run/react';
 
-export const SearchSection = ({ theme }: { theme: ThemeType }) => {
-  function handleSearchRequest() {}
+export const SearchSection = ({
+  theme,
+  pageNum,
+}: {
+  theme: ThemeType;
+  pageNum: number;
+}) => {
+  const navigate = useNavigate();
+
+  const themeURL = theme.theme === 'Light' ? 'light' : 'dark';
+
+  function handleSearchRequest(searchValue: string) {
+    navigate(`/${themeURL}/${pageNum}/${searchValue}`);
+  }
 
   return (
     <section
@@ -20,11 +33,6 @@ export const SearchSection = ({ theme }: { theme: ThemeType }) => {
         >
           <ThemeToggle theme={theme} />
           <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
-          <Button
-            onClick={handleSearchRequest}
-            btnType={ButtonType.GREEN}
-            title="Search"
-          />
         </div>
       </div>
     </section>

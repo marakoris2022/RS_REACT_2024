@@ -60,7 +60,7 @@ export const ContentPage = () => {
 
   return (
     <MainSection>
-      <SearchSection theme={pageTheme} />
+      <SearchSection theme={pageTheme} pageNum={page ? Number(page) : 1} />
       <ContentSection
         viewPokemonListData={viewPokemonListData}
         theme={pageTheme}
