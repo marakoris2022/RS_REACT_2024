@@ -1,5 +1,3 @@
-import { createContext } from 'react';
-
 export const themeSettings = {
   light: {
     theme: 'Light',
@@ -35,4 +33,4 @@ export const themeSettings = {
   },
 };
 
-export const ThemeContext = createContext(themeSettings.light);
+export type ThemeType = typeof themeSettings.light;

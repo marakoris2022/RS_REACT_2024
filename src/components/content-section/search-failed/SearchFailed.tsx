@@ -1,10 +1,7 @@
-import { useContext } from 'react';
+import { ThemeType } from 'src/store/theme';
 import style from './searchFailed.module.scss';
-import { ThemeContext } from '../../../store/theme';
 
-export const SearchFailed = () => {
-  const theme = useContext(ThemeContext);
-
+export const SearchFailed = ({ theme }: { theme: ThemeType }) => {
   return (
     <div
       style={{ background: theme.cardBackground, border: theme.cardBorder }}

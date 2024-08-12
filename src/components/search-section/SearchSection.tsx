@@ -3,12 +3,9 @@ import { Button } from '../button/Button';
 import { SearchInput } from '../input/SearchInput';
 import style from './searchSection..module.scss';
 import { ThemeToggle } from '../theme-toggle/ThemeToggle';
-import { useContext } from 'react';
-import { ThemeContext } from '../../store/theme';
+import { ThemeType } from 'src/store/theme';
 
-export const SearchSection = () => {
-  const theme = useContext(ThemeContext);
-
+export const SearchSection = ({ theme }: { theme: ThemeType }) => {
   function handleSearchRequest() {}
 
   return (
@@ -21,7 +18,7 @@ export const SearchSection = () => {
           style={{ backgroundColor: theme.menuBackground }}
           className={style.searchWrapper}
         >
-          <ThemeToggle />
+          <ThemeToggle theme={theme} />
           <SearchInput onKeyDown={handleSearchRequest} placeholder="Search" />
           <Button
             onClick={handleSearchRequest}

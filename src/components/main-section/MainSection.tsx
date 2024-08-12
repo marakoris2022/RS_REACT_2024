@@ -6,5 +6,5 @@ type MainSectionProps = {
 };
 
 export const MainSection = ({ children }: MainSectionProps) => {
-  return <section className={style.mainSection}>{children}</section>;
+  return <main className={style.mainSection}>{children}</main>;
 };

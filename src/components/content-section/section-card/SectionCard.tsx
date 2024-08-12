@@ -1,16 +1,12 @@
-import { useContext, useEffect } from 'react';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
-import { useLocation } from 'react-router-dom';
 import { PokemonData } from '../../../interface/interface';
-import { AppDispatch, setPokemonCard } from '../../../store/store';
-import { useDispatch } from 'react-redux';
-import { CardCheckbox } from './card-checkbox/CardCheckbox';
-import { ThemeContext } from '../../../store/theme';
+import { themeSettings, ThemeType } from 'src/store/theme';
 
 type SectionCardProps = {
   pokemon: PokemonData;
+  theme: ThemeType;
 };
 
 function scrollToTop() {
@@ -20,28 +16,17 @@ function scrollToTop() {
   });
 }
 
-export const SectionCard = ({ pokemon }: SectionCardProps) => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const pokename = queryParams.get('pokename');
-  const theme = useContext(ThemeContext);
-
-  const dispatch: AppDispatch = useDispatch();
-
+export const SectionCard = ({ pokemon, theme }: SectionCardProps) => {
   function handleClick() {
-    dispatch(setPokemonCard(pokemon));
     scrollToTop();
   }
 
-  useEffect(() => {
-    if (pokename && pokename === pokemon.name) {
-      dispatch(setPokemonCard(pokemon));
-    }
-  }, []);
-
   return (
     <div
-      style={{ background: theme.cardBackground, border: theme.cardBorder }}
+      style={{
+        background: theme.cardBackground,
+        border: theme.cardBorder,
+      }}
       data-testid="cardWrapper"
       className={style.cardWrapper}
       onClick={handleClick}
@@ -66,7 +51,7 @@ export const SectionCard = ({ pokemon }: SectionCardProps) => {
           onClick={(e) => e.stopPropagation()}
           className={style.checkboxWrapper}
         >
-          <CardCheckbox pokemon={pokemon} />
+          {/* <CardCheckbox pokemon={pokemon} /> */}
         </div>
 
         <div>

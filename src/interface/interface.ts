@@ -1,3 +1,5 @@
+import { ThemeType } from 'src/store/theme';
+
 export enum ButtonType {
   GREEN = 'greenButton',
   RED = 'redButton',
@@ -64,8 +66,8 @@ export type PokemonListData = {
 
 export type PaginationProps = {
   pageNum: number;
-  setPageNum: React.Dispatch<React.SetStateAction<number>>;
-  pokemonList: PokemonData[];
+  pokemonCount: number;
+  theme: ThemeType;
 };
 
 export type CardComponent = {
