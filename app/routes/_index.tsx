@@ -18,5 +18,11 @@ export default function Index() {
     navigate(`/light/1/${searchValue ?? 'empty'}`);
   }, []);
 
-  return <Loading />;
+  return (
+    <div style={{ backgroundColor: 'darkgreen', minHeight: '100vh' }}>
+      <div style={{ padding: '20px', margin: '0 auto', width: 'fit-content' }}>
+        <Loading />
+      </div>
+    </div>
+  );
 }

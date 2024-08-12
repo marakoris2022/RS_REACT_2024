@@ -14,14 +14,22 @@
   transform: translate(0);
 }
 
+.mainWrapper {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 15px;
+}
+
 .wrapper {
   padding: 15px;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-bottom: 1px solid white;
-  border-top-left-radius: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
   background-color: rgba(0, 128, 0, 0.8);
-  width: 55%;
+  width: fit-content;
+
+  margin: 0 auto;
 
   min-height: 850px;
 }

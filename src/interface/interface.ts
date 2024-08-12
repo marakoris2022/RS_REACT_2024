@@ -73,6 +73,7 @@ export type PaginationProps = {
 
 export type CardComponent = {
   cardSelected: PokemonData;
+  themePicker: ThemeType;
 };
 
 export interface CardWrapper extends CardComponent {
@@ -80,4 +81,5 @@ export interface CardWrapper extends CardComponent {
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => void;
   children: JSX.Element;
+  themePicker: ThemeType;
 }

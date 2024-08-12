@@ -1,9 +1,4 @@
 import style from './pokemonCard.module.scss';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setPokemonCard } from '../../store/store';
-import { updateQueryParams } from '../../utils/utils';
 import { CardHeader } from './components/CardHeader';
 import { CardIcons } from './components/CardIcons';
 import { CardStats } from './components/CardStats';
@@ -11,52 +6,59 @@ import { CardAbilities } from './components/CardAbilities';
 import { CardItems } from './components/CardItems';
 import { CardSpecialMoves } from './components/CardSpecialMoves';
 import { CardBodyCharacteristics } from './components/CardBodyCharacteristics';
+import { PokemonData } from 'src/interface/interface';
+import { ThemeType } from 'src/store/theme';
+import { useNavigate } from '@remix-run/react';
 
-export const PokemonCard = () => {
-  const location = useLocation();
+export const PokemonCard = ({
+  cardSelected,
+  themePicker,
+}: {
+  cardSelected: PokemonData;
+  themePicker: ThemeType;
+}) => {
   const navigate = useNavigate();
-  const cardSelected = useSelector(
-    (state: RootState) => state.pokeCard.pokemonCard
-  );
-  const dispatch: AppDispatch = useDispatch();
 
-  useEffect(() => {
-    if (cardSelected) {
-      updateQueryParams({ pokename: cardSelected.name }, navigate, location);
-    }
-  }, [cardSelected]);
-
-  function handleClick(
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
-  ) {
-    const target = e.target as HTMLElement;
-    if (target.id === 'close-card-back' || target.id === 'close-card-btn') {
-      updateQueryParams({ pokename: '' }, navigate, location);
-      dispatch(setPokemonCard(null));
-    }
+  function handleClick() {
+    navigate(-1);
   }
 
   return (
-    <section
+    <main
+      className={style.mainWrapper}
+      style={{ backgroundImage: themePicker.mainBackground }}
       onClick={handleClick}
-      className={`${style.background} ${cardSelected ? style.backgroundActive : ''}`}
-      id="close-card-back"
-      data-testid="close-card-back"
     >
       {cardSelected ? (
-        <CardHeader cardSelected={cardSelected} handleClick={handleClick}>
+        <CardHeader
+          themePicker={themePicker}
+          cardSelected={cardSelected}
+          handleClick={handleClick}
+        >
           <>
-            <CardIcons cardSelected={cardSelected} />
-            <CardStats cardSelected={cardSelected} />
+            <CardIcons themePicker={themePicker} cardSelected={cardSelected} />
+            <CardStats themePicker={themePicker} cardSelected={cardSelected} />
             <div className={style.abilItemsWrapper}>
-              <CardAbilities cardSelected={cardSelected} />
-              <CardItems cardSelected={cardSelected} />
+              <CardAbilities
+                themePicker={themePicker}
+                cardSelected={cardSelected}
+              />
+              <CardItems
+                themePicker={themePicker}
+                cardSelected={cardSelected}
+              />
             </div>
-            <CardSpecialMoves cardSelected={cardSelected} />
-            <CardBodyCharacteristics cardSelected={cardSelected} />
+            <CardSpecialMoves
+              themePicker={themePicker}
+              cardSelected={cardSelected}
+            />
+            <CardBodyCharacteristics
+              themePicker={themePicker}
+              cardSelected={cardSelected}
+            />
           </>
         </CardHeader>
       ) : null}
-    </section>
+    </main>
   );
 };

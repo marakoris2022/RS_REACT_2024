@@ -3,6 +3,7 @@ import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from './sectionCard.module.scss';
 import { PokemonData } from '../../../interface/interface';
 import { themeSettings, ThemeType } from 'src/store/theme';
+import { useNavigate } from '@remix-run/react';
 
 type SectionCardProps = {
   pokemon: PokemonData;
@@ -17,8 +18,12 @@ function scrollToTop() {
 }
 
 export const SectionCard = ({ pokemon, theme }: SectionCardProps) => {
+  const navigate = useNavigate();
+
+  const themeURL = theme.theme === 'Light' ? 'light' : 'dark';
+
   function handleClick() {
-    scrollToTop();
+    navigate(`/pokemon/${themeURL}/${pokemon.name.toLowerCase()}`);
   }
 
   return (

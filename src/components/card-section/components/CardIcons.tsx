@@ -1,15 +1,11 @@
-import { useContext } from 'react';
 import { CardComponent } from '../../../interface/interface';
 import { PokemonIcon } from '../../pokemon-icon/PokemonIcon';
 import style from '../pokemonCard.module.scss';
-import { ThemeContext } from '../../../store/theme';
 
-export const CardIcons = ({ cardSelected }: CardComponent) => {
-  const theme = useContext(ThemeContext);
-
+export const CardIcons = ({ cardSelected, themePicker }: CardComponent) => {
   return (
     <div
-      style={{ background: theme.iconBackground }}
+      style={{ background: themePicker.iconBackground }}
       className={style.iconsWrapper}
     >
       <PokemonIcon

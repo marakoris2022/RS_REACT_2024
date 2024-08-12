@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from '@remix-run/node';
-import { useLoaderData, useParams } from '@remix-run/react';
+import { useLoaderData, useNavigate, useParams } from '@remix-run/react';
 import {
   getPokemonDataByNames,
   searchPokemonListByName,

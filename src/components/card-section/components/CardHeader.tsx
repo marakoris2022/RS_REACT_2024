@@ -3,18 +3,16 @@ import { ButtonType, CardWrapper } from '../../../interface/interface';
 import { firstLetterUppercase } from '../../../utils/utils';
 import { Button } from '../../button/Button';
 import style from '../pokemonCard.module.scss';
-import { ThemeContext } from '../../../store/theme';
 
 export const CardHeader = ({
+  themePicker,
   cardSelected,
   handleClick,
   children,
 }: CardWrapper) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <div
-      style={{ backgroundColor: theme.menuBackground }}
+      style={{ backgroundColor: themePicker.menuBackground }}
       className={style.wrapper}
     >
       <Button
@@ -24,7 +22,10 @@ export const CardHeader = ({
         btnType={ButtonType.RED}
       />
       <div
-        style={{ background: theme.cardBackground, border: theme.cardBorder }}
+        style={{
+          background: themePicker.cardBackground,
+          border: themePicker.cardBorder,
+        }}
         className={style.pokemonCardWrapper}
       >
         <p className={style.pokemonCardTitle}>
