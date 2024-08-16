@@ -1,23 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../link/Link';
+import styles from './header.module.css';
 
 export const Header = () => {
     return (
-        <div className="container">
-            <header>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to={'/'}>Main</Link>
+        <header className={styles.header}>
+            <div className="container">
+                <nav className={styles.nav}>
+                    <ul className={styles.ul}>
+                        <li className={styles.li}>
+                            <Link url="/" title="Main" />
                         </li>
                         <li>
-                            <Link to={'/form-controlled'}>React Hook Form</Link>
+                            <Link url="/form-controlled" title="React Hook Form" />
                         </li>
                         <li>
-                            <Link to={'/form-uncontrolled'}>Uncontrolled Components</Link>
+                            <Link url="/form-uncontrolled" title="Uncontrolled Component" />
                         </li>
                     </ul>
                 </nav>
-            </header>
-        </div>
+            </div>
+        </header>
     );
 };

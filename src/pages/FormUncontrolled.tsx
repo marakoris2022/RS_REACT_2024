@@ -1,3 +1,9 @@
 export const FormUncontrolled = () => {
-    return <p>Form Uncontrolled</p>;
+    return (
+        <main>
+            <div className="container">
+                <section>Form Uncontrolled</section>
+            </div>
+        </main>
+    );
 };
