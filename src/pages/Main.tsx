@@ -1,3 +1,7 @@
 export const Main = () => {
-    return <p>Main</p>;
+    return (
+        <div className="container">
+            <main>Main</main>
+        </div>
+    );
 };
