@@ -1,6 +1,11 @@
 import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState, setUncontrolledFormData } from '../store/store';
 
 export const FormUncontrolled = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const countries = useSelector((state: RootState) => state.coreSlice.countries);
+
     const fromRef = useRef<HTMLFormElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const nameErrorRef = useRef<HTMLSpanElement>(null);
@@ -16,8 +21,6 @@ export const FormUncontrolled = () => {
     const termsErrorRef = useRef<HTMLSpanElement>(null);
     const submitErrorRef = useRef<HTMLSpanElement>(null);
 
-    const countries = ['Ukraine', 'USA', 'Germany', 'Spain', 'Italy'];
-
     const countryRef = useRef<string>(countries[0]);
 
     const handleSubmit = () => {
@@ -28,6 +31,18 @@ export const FormUncontrolled = () => {
         console.log('genderRef:', genderRef.current?.checked);
         console.log('termsRef:', termsRef.current?.checked);
         console.log('country:', countryRef.current);
+
+        dispatch(
+            setUncontrolledFormData({
+                name: nameRef.current?.value,
+                age: ageRef.current?.value,
+                email: emailRef.current?.value,
+                password: passwordRef.current?.value,
+                gender: genderRef.current?.checked,
+                terms: termsRef.current?.checked,
+                country: countryRef.current,
+            })
+        );
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
