@@ -14,7 +14,7 @@ export const Header = () => {
                             <Link url="/form-controlled" title="React Hook Form" />
                         </li>
                         <li>
-                            <Link url="/form-uncontrolled" title="Uncontrolled Component" />
+                            <Link url="/form-uncontrolled" title="Uncontrolled Form" />
                         </li>
                     </ul>
                 </nav>
