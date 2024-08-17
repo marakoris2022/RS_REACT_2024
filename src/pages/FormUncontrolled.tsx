@@ -1,50 +1,71 @@
-import { useRef } from 'react';
+import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import { AppDispatch, RootState, setUncontrolledFormData } from '../store/store';
+import { schema } from '../store/validationSchema';
+import { convertImageToBase64 } from '../utils/utils';
+import React from 'react';
+import { INITIAL_ERROR_STATE } from '../store/constants';
+import { formDataProps } from '../interface/interface';
+import { FormField } from '../components/uncontrolled/FormField';
+import { CheckboxField } from '../components/uncontrolled/CheckboxField';
+import { FileInputField } from '../components/uncontrolled/FileInputField';
+import { SelectField } from '../components/uncontrolled/SelectField';
 
 export const FormUncontrolled = () => {
     const dispatch: AppDispatch = useDispatch();
     const countries = useSelector((state: RootState) => state.coreSlice.countries);
+    const navigate = useNavigate();
 
     const nameRef = useRef<HTMLInputElement>(null);
-    const nameErrorRef = useRef<HTMLSpanElement>(null);
     const ageRef = useRef<HTMLInputElement>(null);
-    const ageErrorRef = useRef<HTMLSpanElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
-    const emailErrorRef = useRef<HTMLSpanElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const passwordErrorRef = useRef<HTMLSpanElement>(null);
+    const confirmPasswordRef = useRef<HTMLInputElement>(null);
     const genderRef = useRef<HTMLInputElement>(null);
-    const genderErrorRef = useRef<HTMLSpanElement>(null);
     const termsRef = useRef<HTMLInputElement>(null);
-    const termsErrorRef = useRef<HTMLSpanElement>(null);
-    const submitErrorRef = useRef<HTMLSpanElement>(null);
-    const imageRef = useRef<HTMLInputElement>(null);
-    const imageErrorRef = useRef<HTMLSpanElement>(null);
-
     const countryRef = useRef<string>(countries[0]);
+    const imageRef = useRef<File | null>(null);
+
+    const [error, setError] = useState(INITIAL_ERROR_STATE);
+
+    const validateAndSubmit = async (formData: formDataProps) => {
+        try {
+            const validData = await schema.validate(formData);
+            console.log('Valid data', validData);
+
+            if (formData.image) {
+                const imgUrl = await convertImageToBase64(formData.image);
+                dispatch(setUncontrolledFormData({ ...validData, image: imgUrl }));
+                navigate('/');
+            }
+        } catch (e) {
+            if (e instanceof Yup.ValidationError) {
+                setError(() => ({
+                    ...INITIAL_ERROR_STATE,
+                    [e.path!]: e.message,
+                }));
+            } else {
+                console.error('Unexpected error', e);
+            }
+        }
+    };
 
     const handleSubmit = () => {
-        console.log('Name:', nameRef.current?.value);
-        console.log('age:', ageRef.current?.value);
-        console.log('emailRef:', emailRef.current?.value);
-        console.log('passwordRef:', passwordRef.current?.value);
-        console.log('genderRef:', genderRef.current?.checked);
-        console.log('termsRef:', termsRef.current?.checked);
-        console.log('country:', countryRef.current);
-        console.log('image:', imageRef.current?.value);
+        const formData = {
+            name: nameRef.current?.value,
+            age: Number(ageRef.current?.value),
+            email: emailRef.current?.value,
+            password: passwordRef.current?.value,
+            confirmPassword: confirmPasswordRef.current?.value,
+            gender: genderRef.current?.checked,
+            terms: termsRef.current?.checked,
+            image: imageRef.current,
+            country: countryRef.current,
+        };
 
-        dispatch(
-            setUncontrolledFormData({
-                name: nameRef.current?.value,
-                age: ageRef.current?.value,
-                email: emailRef.current?.value,
-                password: passwordRef.current?.value,
-                gender: genderRef.current?.checked,
-                terms: termsRef.current?.checked,
-                country: countryRef.current,
-            })
-        );
+        validateAndSubmit(formData);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -52,7 +73,7 @@ export const FormUncontrolled = () => {
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files);
+        imageRef.current = e.target.files ? e.target.files[0] : null;
     };
 
     return (
@@ -60,61 +81,27 @@ export const FormUncontrolled = () => {
             <div className="container">
                 <section>
                     <h1>Uncontrolled Form</h1>
-
                     <form>
-                        <div>
-                            <label htmlFor="name">Name:</label>
-                            <input autoComplete="given-name" type="text" id="name" ref={nameRef} />
-                            <span ref={nameErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="age">Age:</label>
-                            <input type="number" min={1} defaultValue={1} id="age" ref={ageRef} />
-                            <span ref={ageErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="email">Email:</label>
-                            <input type="text" id="email" ref={emailRef} />
-                            <span ref={emailErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password:</label>
-                            <input type="password" id="password" ref={passwordRef} />
-                            <span ref={passwordErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="gender">Male / Female:</label>
-                            <input type="checkbox" id="gender" ref={genderRef} />
-                            <span ref={genderErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="terms">Accept T&C:</label>
-                            <input type="checkbox" id="terms" ref={termsRef} />
-                            <span ref={termsErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="image">Add image:</label>
-                            <input onChange={handleImageChange} type="file" id="image" ref={imageRef} />
-                            <span ref={imageErrorRef}></span>
-                        </div>
-                        <div>
-                            <label htmlFor="country">Country:</label>
-                            <select onChange={handleChange} id="country">
-                                {countries.map((country) => {
-                                    return (
-                                        <option key={country} value={country}>
-                                            {country}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                            <span ref={termsErrorRef}></span>
-                        </div>
+                        <FormField label="Name:" id="name" ref={nameRef} error={error.name} />
+                        <FormField label="Age:" id="age" type="number" ref={ageRef} error={error.age} defaultValue="1" />
+                        <FormField label="Email:" id="email" ref={emailRef} error={error.email} />
+                        <FormField label="Password:" id="password" type="password" ref={passwordRef} error={error.password} />
+                        <FormField
+                            label="Confirm Password:"
+                            id="confirmPassword"
+                            type="password"
+                            ref={confirmPasswordRef}
+                            error={error.confirmPassword}
+                        />
+                        <CheckboxField label="Male / Female:" id="gender" ref={genderRef} error={error.gender} />
+                        <CheckboxField label="Accept T&C:" id="terms" ref={termsRef} error={error.terms} />
+                        <FileInputField label="Add image:" id="image" onChange={handleImageChange} error={error.image} />
+                        <SelectField label="Country:" id="country" value={countryRef.current} onChange={handleChange} options={countries} />
+
                         <button onClick={handleSubmit} type="button">
                             Submit
                         </button>
                         <button type="reset">Reset</button>
-                        <span ref={submitErrorRef}></span>
                     </form>
                 </section>
             </div>
