@@ -6,7 +6,6 @@ export const FormUncontrolled = () => {
     const dispatch: AppDispatch = useDispatch();
     const countries = useSelector((state: RootState) => state.coreSlice.countries);
 
-    const fromRef = useRef<HTMLFormElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const nameErrorRef = useRef<HTMLSpanElement>(null);
     const ageRef = useRef<HTMLInputElement>(null);
@@ -20,6 +19,8 @@ export const FormUncontrolled = () => {
     const termsRef = useRef<HTMLInputElement>(null);
     const termsErrorRef = useRef<HTMLSpanElement>(null);
     const submitErrorRef = useRef<HTMLSpanElement>(null);
+    const imageRef = useRef<HTMLInputElement>(null);
+    const imageErrorRef = useRef<HTMLSpanElement>(null);
 
     const countryRef = useRef<string>(countries[0]);
 
@@ -31,6 +32,7 @@ export const FormUncontrolled = () => {
         console.log('genderRef:', genderRef.current?.checked);
         console.log('termsRef:', termsRef.current?.checked);
         console.log('country:', countryRef.current);
+        console.log('image:', imageRef.current?.value);
 
         dispatch(
             setUncontrolledFormData({
@@ -49,13 +51,17 @@ export const FormUncontrolled = () => {
         countryRef.current = e.target.value;
     };
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.files);
+    };
+
     return (
         <main>
             <div className="container">
                 <section>
                     <h1>Uncontrolled Form</h1>
 
-                    <form ref={fromRef}>
+                    <form>
                         <div>
                             <label htmlFor="name">Name:</label>
                             <input autoComplete="given-name" type="text" id="name" ref={nameRef} />
@@ -85,6 +91,11 @@ export const FormUncontrolled = () => {
                             <label htmlFor="terms">Accept T&C:</label>
                             <input type="checkbox" id="terms" ref={termsRef} />
                             <span ref={termsErrorRef}></span>
+                        </div>
+                        <div>
+                            <label htmlFor="image">Add image:</label>
+                            <input onChange={handleImageChange} type="file" id="image" ref={imageRef} />
+                            <span ref={imageErrorRef}></span>
                         </div>
                         <div>
                             <label htmlFor="country">Country:</label>
