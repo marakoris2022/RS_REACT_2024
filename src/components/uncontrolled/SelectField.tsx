@@ -1,3 +1,5 @@
+import styles from './uncontrolled.module.css';
+
 export const SelectField = ({
     label,
     id,
@@ -11,11 +13,13 @@ export const SelectField = ({
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     options: string[];
 }) => (
-    <div>
-        <label htmlFor={id}>{label}</label>
-        <select id={id} value={value} onChange={onChange}>
+    <div className={styles.wrapper}>
+        <label className={styles.label} htmlFor={id}>
+            {label}
+        </label>
+        <select className={styles.select} id={id} value={value} onChange={onChange}>
             {options.map((option) => (
-                <option key={option} value={option}>
+                <option className={styles.option} key={option} value={option}>
                     {option}
                 </option>
             ))}

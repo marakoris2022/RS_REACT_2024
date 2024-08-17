@@ -1,3 +1,5 @@
+import styles from './uncontrolled.module.css';
+
 export const FileInputField = ({
     label,
     id,
@@ -9,9 +11,11 @@ export const FileInputField = ({
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     error: string;
 }) => (
-    <div>
-        <label htmlFor={id}>{label}</label>
-        <input type="file" id={id} onChange={onChange} />
-        {error && <span>{error}</span>}
+    <div className={styles.wrapper}>
+        <label className={styles.label} htmlFor={id}>
+            {label}
+        </label>
+        <input className={styles.input} type="file" id={id} onChange={onChange} />
+        <span className={styles.span}>{error}</span>
     </div>
 );

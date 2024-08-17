@@ -4,7 +4,7 @@ import { Main } from './pages/Main';
 import { FormUncontrolled } from './pages/FormUncontrolled';
 import { FormControlled } from './pages/FormControlled';
 import ErrorBoundary from './components/ErrorBoundary';
-import { Header } from './components/header/header';
+import { Header } from './components/header/Header';
 
 function ErrorFallback(): JSX.Element {
     return <div>Something went wrong</div>;

@@ -12,6 +12,7 @@ import { FormField } from '../components/uncontrolled/FormField';
 import { CheckboxField } from '../components/uncontrolled/CheckboxField';
 import { FileInputField } from '../components/uncontrolled/FileInputField';
 import { SelectField } from '../components/uncontrolled/SelectField';
+import styles from './form.module.css';
 
 export const FormUncontrolled = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -33,7 +34,6 @@ export const FormUncontrolled = () => {
     const validateAndSubmit = async (formData: formDataProps) => {
         try {
             const validData = await schema.validate(formData);
-            console.log('Valid data', validData);
 
             if (formData.image) {
                 const imgUrl = await convertImageToBase64(formData.image);
@@ -79,9 +79,9 @@ export const FormUncontrolled = () => {
     return (
         <main>
             <div className="container">
-                <section>
-                    <h1>Uncontrolled Form</h1>
-                    <form>
+                <section className={styles.wrapper}>
+                    <h1 className={styles.title}>Uncontrolled Form</h1>
+                    <form className={styles.form}>
                         <FormField label="Name:" id="name" ref={nameRef} error={error.name} />
                         <FormField label="Age:" id="age" type="number" ref={ageRef} error={error.age} defaultValue="1" />
                         <FormField label="Email:" id="email" ref={emailRef} error={error.email} />
@@ -98,10 +98,14 @@ export const FormUncontrolled = () => {
                         <FileInputField label="Add image:" id="image" onChange={handleImageChange} error={error.image} />
                         <SelectField label="Country:" id="country" value={countryRef.current} onChange={handleChange} options={countries} />
 
-                        <button onClick={handleSubmit} type="button">
-                            Submit
-                        </button>
-                        <button type="reset">Reset</button>
+                        <div className={styles.buttonWrapper}>
+                            <button className={styles.button} onClick={handleSubmit} type="button">
+                                Submit
+                            </button>
+                            <button className={styles.button} type="reset">
+                                Reset
+                            </button>
+                        </div>
                     </form>
                 </section>
             </div>

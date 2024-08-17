@@ -32,11 +32,19 @@ export const Main = () => {
             <h2>Controlled Form</h2>
             <br />
             <p>Name: {controlledData.name}</p>
-            <p>Age: {controlledData.age}</p>
+            <p>Age: {controlledData.age < 1 ? 'no data' : controlledData.age}</p>
             <p>Email: {controlledData.email}</p>
             <p>Password: {controlledData.password}</p>
+            <p>Confirm Password: {controlledData.confirmPassword}</p>
             <p>Gender: {controlledData.gender ? 'Girl' : 'Man'}</p>
             <p>Terms: {controlledData.terms ? 'Confirmed' : 'Refused'}</p>
+            {controlledData.image ? (
+                <div>
+                    <img width={200} src={controlledData.image} />
+                </div>
+            ) : (
+                <p>No Image</p>
+            )}
             <p>Country: {controlledData.country}</p>
         </div>
     );

@@ -1,9 +1,22 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
+const COUNTRIES_INIT_DATA = ['Ukraine', 'USA', 'Germany', 'Spain', 'Italy'];
+const FORM_INIT_DATA = {
+    name: 'no data',
+    age: 0,
+    email: 'no data',
+    password: 'no data',
+    confirmPassword: 'no data',
+    gender: false,
+    terms: false,
+    image: '',
+    country: 'no data',
+};
+
 const coreSlice = createSlice({
     name: 'coreSlice',
     initialState: {
-        countries: ['Ukraine', 'USA', 'Germany', 'Spain', 'Italy'],
+        countries: COUNTRIES_INIT_DATA,
     },
     reducers: {},
 });
@@ -11,17 +24,7 @@ const coreSlice = createSlice({
 const uncontrolledSlice = createSlice({
     name: 'uncontrolledSlice',
     initialState: {
-        formData: {
-            name: 'no data',
-            age: 0,
-            email: 'no data',
-            password: 'no data',
-            confirmPassword: 'no data',
-            gender: false,
-            terms: false,
-            image: '',
-            country: 'no data',
-        },
+        formData: FORM_INIT_DATA,
     },
     reducers: {
         setUncontrolledFormData: (state, action) => {
@@ -33,17 +36,7 @@ const uncontrolledSlice = createSlice({
 const controlledSlice = createSlice({
     name: 'controlledSlice',
     initialState: {
-        formData: {
-            name: 'no data',
-            age: 1,
-            email: 'no data',
-            password: 'no data',
-            confirmPassword: 'no data',
-            gender: false,
-            terms: false,
-            image: 'no data',
-            country: 'no data',
-        },
+        formData: FORM_INIT_DATA,
     },
     reducers: {
         setControlledFormData: (state, action) => {
