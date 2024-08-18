@@ -35,7 +35,7 @@ export const FormUncontrolled = () => {
         try {
             const validData = await schema.validate(formData);
 
-            if (formData.image) {
+            if (formData.image && typeof formData.image !== 'string') {
                 const imgUrl = await convertImageToBase64(formData.image);
                 dispatch(setUncontrolledFormData({ ...validData, image: imgUrl }));
                 navigate('/');

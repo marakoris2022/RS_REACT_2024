@@ -6,6 +6,6 @@ export type formDataProps = {
     confirmPassword: string | undefined;
     gender: boolean | undefined;
     terms: boolean | undefined;
-    image: File | null;
+    image: File | null | string;
     country: string;
 };
