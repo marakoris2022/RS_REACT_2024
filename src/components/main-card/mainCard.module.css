@@ -1,0 +1,39 @@
+.cardWrapper {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fef9f3;
+    font-family: 'Courier New', Courier, monospace; /* Mimic handwriting with a monospaced font */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.cardTitle {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cardItem {
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.itemTitle {
+    font-weight: bold;
+    color: #555;
+}
+
+.cardImage {
+    margin-top: 10px;
+}
+
+.cardImage img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

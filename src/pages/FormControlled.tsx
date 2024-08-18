@@ -28,8 +28,6 @@ export const FormControlled = () => {
     });
 
     const onSubmit = async (data: formDataProps) => {
-        console.log('data', data);
-
         if (data.image && typeof data.image !== 'string') {
             const imgUrl = await convertImageToBase64(data.image);
             dispatch(setControlledFormData({ ...data, image: imgUrl }));
