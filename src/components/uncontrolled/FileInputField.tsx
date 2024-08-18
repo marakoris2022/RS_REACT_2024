@@ -15,7 +15,7 @@ export const FileInputField = ({
         <label className={styles.label} htmlFor={id}>
             {label}
         </label>
-        <input className={styles.input} type="file" id={id} onChange={onChange} />
+        <input className={styles.input} accept="image/png, image/jpeg" type="file" id={id} onChange={onChange} />
         <span className={styles.span}>{error}</span>
     </div>
 );

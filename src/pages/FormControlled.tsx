@@ -2,26 +2,47 @@ import styles from './form.module.css';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { RootState } from '../store/store';
+import { RootState, setControlledFormData } from '../store/store';
 import { schema } from '../store/validationSchema';
+import { convertImageToBase64 } from '../utils/utils';
+import { useNavigate } from 'react-router-dom';
+import { formDataProps } from '../interface/interface';
+import { FormField } from '../components/uncontrolled/FormField';
+import { CheckboxField } from '../components/uncontrolled/CheckboxField';
+import { FileInputField } from '../components/uncontrolled/FileInputField';
 
 export const FormControlled = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const countries = useSelector((state: RootState) => state.coreSlice.countries);
 
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
+        setValue,
     } = useForm({
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => {
-        console.log('Form Data', data);
+    const onSubmit = async (data: formDataProps) => {
+        console.log('data', data);
+
+        if (data.image) {
+            const imgUrl = await convertImageToBase64(data.image);
+            dispatch(setControlledFormData({ ...data, image: imgUrl }));
+            navigate('/');
+        }
     };
 
-    const handleimageUpload = () => {};
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const file = event.target.files[0];
+            setValue('image', file, { shouldValidate: true });
+        }
+    };
 
     return (
         <main>
@@ -29,81 +50,59 @@ export const FormControlled = () => {
                 <section className={styles.wrapper}>
                     <h1 className={styles.title}>Controlled Form</h1>
                     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                        <div>
-                            <div>
-                                <label htmlFor="name">Name</label>
-                                <input id="name" {...register('name')} />
-                                {errors.name && <p>{errors.name.message}</p>}
-                            </div>
+                        <FormField label="Name:" id="name" error={errors.name ? errors.name.message! : ''} register={register} />
+                        <FormField label="Age:" id="age" defaultValue={1} error={errors.age ? errors.age.message! : ''} register={register} />
+                        <FormField label="Email:" id="email" error={errors.email ? errors.email.message! : ''} register={register} />
+                        <FormField
+                            label="Password:"
+                            id="password"
+                            type="password"
+                            error={errors.password ? errors.password.message! : ''}
+                            register={register}
+                        />
+                        <FormField
+                            label="Confirm Password:"
+                            id="confirmPassword"
+                            type="password"
+                            register={register}
+                            error={errors.confirmPassword ? errors.confirmPassword.message! : ''}
+                        />
 
-                            <div>
-                                <label htmlFor="age">Age</label>
-                                <input id="age" type="number" {...register('age')} />
-                                {errors.age && <p>{errors.age.message}</p>}
-                            </div>
+                        <CheckboxField
+                            label="Male / Female:"
+                            id="gender"
+                            error={errors.gender ? errors.gender.message! : ''}
+                            {...register('gender')}
+                        />
+                        <CheckboxField label="Accept T&C:" id="terms" error={errors.terms ? errors.terms.message! : ''} {...register('terms')} />
 
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <input id="email" type="email" {...register('email')} />
-                                {errors.email && <p>{errors.email.message}</p>}
-                            </div>
+                        <FileInputField
+                            label="Add image:"
+                            id="image"
+                            onChange={handleImageUpload}
+                            error={errors.image ? errors.image.message! : ''}
+                        />
 
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <input id="password" type="password" {...register('password')} />
-                                {errors.password && <p>{errors.password.message}</p>}
-                            </div>
+                        <div className={styles.selectWrapper}>
+                            <label className={styles.label} htmlFor="country">
+                                Country:
+                            </label>
+                            <select className={styles.select} id="country" {...register('country')}>
+                                {countries.map((country) => (
+                                    <option className={styles.option} key={country} value={country}>
+                                        {country}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-                            <div>
-                                <label htmlFor="confirmPassword">Confirm Password</label>
-                                <input id="confirmPassword" type="password" {...register('confirmPassword')} />
-                                {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-                            </div>
-
-                            <div>
-                                <label htmlFor="gender">Gender</label>
-                                <select id="gender" {...register('gender')}>
-                                    <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                                {errors.gender && <p>{errors.gender.message}</p>}
-                            </div>
-
-                            <div>
-                                <label htmlFor="terms">
-                                    <input type="checkbox" id="terms" {...register('terms')} />
-                                    Accept Terms and Conditions
-                                </label>
-                                {errors.terms && <p>{errors.terms.message}</p>}
-                            </div>
-
-                            <div>
-                                <label htmlFor="image">Upload Picture</label>
-                                <input id="picture" type="file" {...register('image')} onChange={handleimageUpload} />
-                                {errors.image && <p>{errors.image.message}</p>}
-                            </div>
-
-                            <div>
-                                <label className={styles.label} htmlFor="country">
-                                    Country:
-                                </label>
-                                <select className={styles.select} id="country" {...register('country')}>
-                                    {countries.map((country) => (
-                                        <option className={styles.option} key={country} value={country}>
-                                            {country}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className={styles.buttonWrapper}>
-                                <button className={styles.button} type="submit">
-                                    Submit
-                                </button>
-                                <button className={styles.button} type="reset">
-                                    Reset
-                                </button>
-                            </div>
+                        <div className={styles.buttonWrapper}>
+                            <button className={styles.button} type="submit">
+                                Submit
+                            </button>
+                            <button className={styles.button} type="button" onClick={() => reset()}>
+                                Reset
+                            </button>
                         </div>
                     </form>
                 </section>
