@@ -17,8 +17,13 @@ const coreSlice = createSlice({
     name: 'coreSlice',
     initialState: {
         countries: COUNTRIES_INIT_DATA,
+        changedCard: null,
     },
-    reducers: {},
+    reducers: {
+        setChangedCard: (state, action) => {
+            state.changedCard = action.payload;
+        },
+    },
 });
 
 const uncontrolledSlice = createSlice({
@@ -45,6 +50,7 @@ const controlledSlice = createSlice({
     },
 });
 
+export const { setChangedCard } = coreSlice.actions;
 export const { setUncontrolledFormData } = uncontrolledSlice.actions;
 export const { setControlledFormData } = controlledSlice.actions;
 

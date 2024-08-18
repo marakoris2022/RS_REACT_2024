@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { AppDispatch, RootState, setUncontrolledFormData } from '../store/store';
+import { AppDispatch, RootState, setChangedCard, setUncontrolledFormData } from '../store/store';
 import { schema } from '../store/validationSchema';
 import { convertImageToBase64 } from '../utils/utils';
 import React from 'react';
@@ -38,6 +38,8 @@ export const FormUncontrolled = () => {
             if (formData.image && typeof formData.image !== 'string') {
                 const imgUrl = await convertImageToBase64(formData.image);
                 dispatch(setUncontrolledFormData({ ...validData, image: imgUrl }));
+                dispatch(setChangedCard('Uncontrolled Form'));
+
                 navigate('/');
             }
         } catch (e) {

@@ -2,7 +2,7 @@ import styles from './form.module.css';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { RootState, setControlledFormData } from '../store/store';
+import { RootState, setChangedCard, setControlledFormData } from '../store/store';
 import { schema } from '../store/validationSchema';
 import { convertImageToBase64 } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +31,7 @@ export const FormControlled = () => {
         if (data.image && typeof data.image !== 'string') {
             const imgUrl = await convertImageToBase64(data.image);
             dispatch(setControlledFormData({ ...data, image: imgUrl }));
+            dispatch(setChangedCard('Controlled Form'));
             navigate('/');
         }
     };
