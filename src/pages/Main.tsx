@@ -11,8 +11,8 @@ export const Main = () => {
         <div className="container">
             <h1 className={styles.title}>Form Data</h1>
             <div className={styles.cardsWrapper}>
-                <MainCard title="Uncontrolled Form" data={uncontrolledData} />
                 <MainCard title="Controlled Form" data={controlledData} />
+                <MainCard title="Uncontrolled Form" data={uncontrolledData} />
             </div>
         </div>
     );

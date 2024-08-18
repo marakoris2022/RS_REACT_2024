@@ -32,7 +32,7 @@ export const FormField = React.forwardRef<
             <label className={styles.label} htmlFor={id}>
                 {label}
             </label>
-            <input className={styles.input} {...props} type={type} id={id} defaultValue={defaultValue} />
+            <input autoComplete="on" className={styles.input} {...props} type={type} id={id} defaultValue={defaultValue} />
             <span className={styles.span}>{error}</span>
         </div>
     );

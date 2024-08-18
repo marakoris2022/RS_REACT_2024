@@ -30,7 +30,7 @@ export const CheckboxField = React.forwardRef<
             <label className={styles.label} htmlFor={id}>
                 {label}
             </label>
-            <input className={styles.input} type="checkbox" id={id} {...props} />
+            <input autoComplete="on" className={styles.input} type="checkbox" id={id} {...props} />
             <span className={styles.span}>{error}</span>
         </div>
     );

@@ -66,13 +66,9 @@ export const FormControlled = () => {
                             error={errors.confirmPassword ? errors.confirmPassword.message! : ''}
                         />
 
-                        <CheckboxField
-                            label="Male / Female:"
-                            id="gender"
-                            error={errors.gender ? errors.gender.message! : ''}
-                            {...register('gender')}
-                        />
-                        <CheckboxField label="Accept T&C:" id="terms" error={errors.terms ? errors.terms.message! : ''} {...register('terms')} />
+                        <CheckboxField label="Male / Female:" id="gender" error={errors.gender ? errors.gender.message! : ''} register={register} />
+
+                        <CheckboxField label="Accept T&C:" id="terms" error={errors.terms ? errors.terms.message! : ''} register={register} />
 
                         <FileInputField
                             label="Add image:"
