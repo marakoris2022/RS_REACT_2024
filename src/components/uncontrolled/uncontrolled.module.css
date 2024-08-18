@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.label {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+.input {
+    border-radius: 5px;
+    padding: 1px 5px;
+}
+.span {
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    width: 100%;
+
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}

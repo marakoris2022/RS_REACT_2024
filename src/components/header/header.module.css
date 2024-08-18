@@ -1,0 +1,16 @@
+.header {
+    padding: 20px 0;
+    background-color: lightgoldenrodyellow;
+}
+.nav {
+}
+.ul {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+
+    justify-content: center;
+    align-items: center;
+}
+.li {
+}

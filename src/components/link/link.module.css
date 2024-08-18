@@ -1,0 +1,22 @@
+.link,
+.activeLink {
+    display: block;
+    padding: 3px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    color: black;
+
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
+.link:hover,
+.activeLink {
+    background-color: darkgrey;
+}
